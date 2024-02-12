@@ -17,12 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['first', 'second'])->group(function () {
-    Route::get('/', function () {
-        // Uses first & second middleware...
-    });
- 
-    Route::get('/user/profile', function () {
-        // Uses first & second middleware...
-    });
+Route::get('/login', function () {
+    return view('auth/login');
+});
+Route::get('/register', function () {
+    return view('auth/registration');
+});
+Route::get('/forgot-pass', function () {
+    return view('auth/forgot-password');
 });

@@ -7,6 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="{{}}"></a>
+    <a href="{{ 'login' }}">hello world!</a>
 </body>
 </html>

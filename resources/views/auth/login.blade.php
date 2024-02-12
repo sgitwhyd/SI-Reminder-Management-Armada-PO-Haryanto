@@ -1,7 +1,6 @@
 @extends('auth/layout/main')
 
 @section('content')
-
 <div class="wrapper vh-100">
    <div class="row align-items-center h-100">
       <form class="col-lg-3 col-md-4 col-10 mx-auto" action="" method="">
@@ -33,7 +32,10 @@
          </div>
          <button class="btn btn-lg btn-primary btn-block mb-2" type="submit">Login</button>
          <div class="text-right">
-            <a href="#">Forgot password!</a>
+            <a href="{{ '/forgot-pass' }}">Forgot password!</a>
+         </div>
+         <div class="text-center">
+            <p class="mt-3 mb-3">Don't have an account? <a href="{{ '/register' }}">Create one</a></p>
          </div>
          <p class="mt-5 mb-3 text-muted text-center">Copyright &copy <script>document.write(new Date().getFullYear())</script></p>
       </form>
@@ -42,8 +44,6 @@
 @endsection
    
 @section('script')
-    
-  
    <!-- Global site tag (gtag.js) - Google Analytics -->
    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
    <script>
