@@ -17,32 +17,36 @@
         </a>
         <h2 class="my-3">Register</h2>
       </div>
-      @if(session('success'))
-        <div class="alert alert-success">
-          {{session('success')}}
-        </div>
-      @endif
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="username" class="form-control" id="username" name="username" required>
+        <input type="username" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{old('username')}}" required>
+        @error('password')
+        <div class="invalid-feedback"> Username harus diisi.</div>
+        @enderror
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" name="email" required>
+        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{old('email')}}"required>
+        @error('password')
+        <div class="invalid-feedback"> Email tidak valid.</div>
+        @enderror
       </div>
-       
       <hr class="my-4">
       <div class="row mb-4">
         <div class="col-md-6">
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password">
-            <div class="invalid-feedback"> Please provide a password. </div>
+            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
+            @error('password')
+            <div class="invalid-feedback"> {{ $message }}</div>
+            @enderror
           </div>
           <div class="form-group">
             <label for="confirm_password">Confirm Password</label>
-            <input type="password" class="form-control" id="confirm_password" name="confirm_password">
-            <div class="invalid-feedback"> Please provide a valid confirmation password. </div>
+            <input type="password" class="form-control @error('confirm_password') is-invalid @enderror" id="confirm_password" name="confirm_password">
+            @error('confirm_password')
+            <div class="invalid-feedback"> {{ $message }}</div>
+            @enderror
           </div>
         </div>
         <div class="col-md-6">

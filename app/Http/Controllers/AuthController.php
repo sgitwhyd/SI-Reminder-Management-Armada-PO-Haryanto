@@ -29,18 +29,29 @@ class AuthController extends Controller
         if (Auth::Attempt($data)) {
             return redirect('/home');
         }else{
-            Session::flash('error', 'Email atau Password Salah');
-            return redirect('/');
+            Session::flash('error', 'Username atau Password Salah');
+            return redirect('/login');
         }
     }
 
     public function register()
     {
-        return view('auth.register');
+        if (Auth::check()) {
+            return redirect('/dashboard');
+        }else{
+            return view('auth.register');
+        }
     }
 
     public function registerVerify(Request $request)
     {
+        $isValid = $request->validate([
+            'email' => 'required|unique:users',
+            'username' => 'required|unique:users',
+            'password' => 'required|min:8',
+            'confirm_password' => 'required_with:password|same:password|min:8'
+        ]);
+
         $user = User::create([
             'email' => $request->email,
             'username' => $request->username,
