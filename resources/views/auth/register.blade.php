@@ -3,7 +3,8 @@
 @section('content')
 <div class="wrapper vh-100">
   <div class="row align-items-center h-100">
-    <form class="col-lg-6 col-md-8 col-10 mx-auto">
+    <form class="col-lg-6 col-md-8 col-10 mx-auto" action="{{'/register'}}" method="post">
+      @csrf
       <div class="text-center">
         <a class="navbar-brand mx-auto mt-2 flex-fill" href="#">
           <svg version="1.1" id="logo" class="navbar-brand-img brand-md" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120" xml:space="preserve">
@@ -16,30 +17,32 @@
         </a>
         <h2 class="my-3">Register</h2>
       </div>
+      @if(session('success'))
+        <div class="alert alert-success">
+          {{session('success')}}
+        </div>
+      @endif
       <div class="form-group">
-        <label for="inputEmail4">Email</label>
-        <input type="email" class="form-control" id="inputEmail4">
+        <label for="username">Username</label>
+        <input type="username" class="form-control" id="username" name="username" required>
       </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="firstname">Firstname</label>
-          <input type="text" id="firstname" class="form-control">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="lastname">Lastname</label>
-          <input type="text" id="lastname" class="form-control">
-        </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required>
       </div>
+       
       <hr class="my-4">
       <div class="row mb-4">
         <div class="col-md-6">
           <div class="form-group">
-            <label for="inputPassword5">New Password</label>
-            <input type="password" class="form-control" id="inputPassword5">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password">
+            <div class="invalid-feedback"> Please provide a password. </div>
           </div>
           <div class="form-group">
-            <label for="inputPassword6">Confirm Password</label>
-            <input type="password" class="form-control" id="inputPassword6">
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+            <div class="invalid-feedback"> Please provide a valid confirmation password. </div>
           </div>
         </div>
         <div class="col-md-6">
@@ -66,7 +69,25 @@
 @section('script')
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
-    <script>
+    <script> 
+    // (function () {
+    //   'use strict';
+    //   window.addEventListener('load', function () {
+    //     // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    //     var forms = document.getElementsByClassName('needs-validation');
+    //     // Loop over them and prevent submission
+    //     var validation = Array.prototype.filter.call(forms, function (form) {
+    //       form.addEventListener('submit', function (event) {
+    //         if (form.checkValidity() === false) {
+    //           event.preventDefault();
+    //           event.stopPropagation();
+    //         }
+    //         form.classList.add('was-validated');
+    //       }, false);
+    //     });
+    //   }, false);
+    // })();
+
       window.dataLayer = window.dataLayer || [];
 
       function gtag()

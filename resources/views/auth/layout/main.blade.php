@@ -28,6 +28,7 @@
     <script src="js/simplebar.min.js"></script>
     <script src='js/daterangepicker.js'></script>
     <script src='js/jquery.stickOnScroll.js'></script>
+    <script src='js/jquery.validate.min.js'></script>
     <script src="js/tinycolor-min.js"></script>
     <script src="js/config.js"></script>
     <script src="js/apps.js"></script>

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('auth/login');
-});
-Route::get('/register', function () {
-    return view('auth/registration');
-});
-Route::get('/forgot-pass', function () {
-    return view('auth/forgot-password');
-});
+Route::get('/home', [HomeController::class, 'index']);
+Route::get('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'loginVerify']);
+Route::get('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'registerVerify']);
+Route::get('/forgot-pass', [AuthController::class, 'forgotPassword']);
+Route::get('/logout', [AuthController::class, 'logout']);
