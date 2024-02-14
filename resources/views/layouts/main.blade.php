@@ -28,9 +28,9 @@
   <body class="vertical dark">
     <div class="wrapper">
       <!-- navbar here -->
-      @include('layouts.navbar');
+      @include('layouts.navbar')
       <!-- sidebar here -->
-      @include('layouts.sidebar');
+      @include('layouts.sidebar')
       <main role="main" class="main-content">
         <div class="container-fluid">
          <!-- content here -->
