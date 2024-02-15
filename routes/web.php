@@ -34,6 +34,8 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 // armada
 Route::get('/armada', [ArmadaController::class, 'index']);
+Route::post('/armada', [ArmadaController::class, 'store']);
+Route::post('/armada/edit/(:num)', [ArmadaController::class, 'edit/$1']);
 
 
 // sparepart

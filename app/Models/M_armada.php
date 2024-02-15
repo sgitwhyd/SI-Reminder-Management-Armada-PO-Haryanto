@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\DB;
 class M_armada extends Model
 {
     use HasFactory;
-
-    protected $table = 'armada';
+    public $timestamps = false;
+    protected $table = 'master_armada';
     protected $primaryKey = 'id_armada';
     protected $fillable = ['no_polisi', 'no_lambung', 'no_stnk', 'tahun', 'trayek', 'jenis_trayek'];
 
