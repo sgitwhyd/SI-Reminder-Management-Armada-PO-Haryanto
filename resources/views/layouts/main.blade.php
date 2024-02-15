@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <!-- Icons CSS -->
     <link rel="stylesheet" href="css/feather.css">
+    <link rel="stylesheet" href="css/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="css/select2.css">
     <link rel="stylesheet" href="css/dropzone.css">
     <link rel="stylesheet" href="css/uppy.min.css">
@@ -196,6 +197,8 @@
     <script src='js/dropzone.min.js'></script>
     <script src='js/uppy.min.js'></script>
     <script src='js/quill.min.js'></script>
+    <script src='js/jquery.dataTables.min.js'></script>
+    <script src='js/dataTables.bootstrap4.min.js'></script>
     <script>
       $('.select2').select2(
       {
@@ -400,6 +403,7 @@
       }
     </script>
     <script src="js/apps.js"></script>
+    @yield('script')
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
     <script>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\M_armada;
+
 
 class ArmadaController extends Controller
 {
@@ -11,7 +13,12 @@ class ArmadaController extends Controller
      */
     public function index()
     {
-        return view('armada');
+        $m_armada = new M_armada();
+        $jenis_trayek = $m_armada->get_enum_values('master_armada', 'jenis_trayek');
+        $data = [
+            'jenis_trayek' => $jenis_trayek,
+        ];
+        return view('armada', $data);
     }
 
     /**
