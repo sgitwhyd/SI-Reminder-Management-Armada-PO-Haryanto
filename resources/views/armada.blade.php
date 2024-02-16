@@ -63,21 +63,14 @@
                </div>
             </div>
          </div>
-         @if ($errors->any())
-            <div class="alert alert-danger">
-               There were some errors with your request.
-               <ul>
-                  @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-                  @endforeach
-               </ul>
-            </div>
-         @endif
+        <div id="form-notif">
          @if(session('success'))
             <div class="alert alert-success">
                <p>{{ session('success') }}</p>
             </div>
-         @endif 
+         @endif
+        </div>
+          
          <div class="row my-4">
             <!-- Small table -->
             <div class="col-md-12">
@@ -167,7 +160,6 @@
                console.error('Error:', error);
             }
          });
-         // Fetch data for editing if needed
       });
 
       // Save or update post
@@ -180,29 +172,39 @@
          var tahun = $('#tahun').val();
          var trayek = $('#trayek').val();
          var jenis_trayek = $('#jenis_trayek').val();
-         var url = postId ? '/armada/edit/' + postId : '/armada';
+         var url = postId ? '/armada/update/' + postId : '/armada';
          var method = postId ? 'PUT' : 'POST';
 
          $.ajax({
-               url: url,
-               type: method,
-               data: {
-                  id_armada: postId,
-                  no_polisi: no_pol,
-                  no_lambung: no_lam,
-                  no_stnk: no_stnk,
-                  tahun: tahun,
-                  trayek: trayek,
-                  jenis_trayek: jenis_trayek,
-                  _token: '{{ csrf_token() }}'
-               },
-               success: function(data) {
-                  // console.log(data)
-                  location.reload()
-               },
-               error: function(xhr, status, error) {
-                  console.error('Error:', error);
-               }
+            url: url,
+            type: method,
+            data: {
+               id_armada: postId,
+               no_polisi: no_pol,
+               no_lambung: no_lam,
+               no_stnk: no_stnk,
+               tahun: tahun,
+               trayek: trayek,
+               jenis_trayek: jenis_trayek,
+               _token: '{{ csrf_token() }}'
+            },
+            success: function(data) {
+               // successHtml = '<div class="alert alert-success">'+data['message']+'</div>';
+               // $('#form-notif').html( successHtml );
+               // $('#addArmada').modal('hide');
+               location.reload();
+            },
+            error: function(data) {
+               var result = data.responseJSON;
+               console.log(data);
+               errorsHtml = '<div class="alert alert-danger"><ul>';
+               $.each( result.errors, function( key, value ) {
+                     errorsHtml += '<li>'+ value[0] + '</li>';
+               });
+               errorsHtml += '</ul></div>';
+               $('#form-notif').html( errorsHtml );
+               $('#addArmada').modal('hide');
+            }
          });
       });
 

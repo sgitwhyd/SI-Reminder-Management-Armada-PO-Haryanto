@@ -43,7 +43,7 @@ class ArmadaController extends Controller
     public function store(Request $request)
     {
         if ($request->ajax()) {
-            $request->validate([
+            $isValid = $request->validate([
                 'no_polisi' => 'required|unique:master_armada',
                 'no_lambung' => 'required|unique:master_armada',
                 'no_stnk' => 'required|unique:master_armada',
@@ -52,14 +52,28 @@ class ArmadaController extends Controller
                 'jenis_trayek' => 'required',
             ]);
 
-            $armada = M_armada::create($request->all());
-
-            if(!$armada){
-                Session::flash('error', 'Kesalahan teknis, Armada gagal ditambahkan!');
-                return response()->json($armada);
+            if (!$isValid) {
+                return response()->json([
+                    'success' => 'false',
+                    'errors'  => $isValid->errors()->all(),
+                ], 400);
+            } else {
+                try {
+                    M_armada::create($request->all());
+                    // return response()->json([
+                    //     'success' => true,
+                    //     'message'  => 'Armada berhasil ditambahkan.',
+                    // ], 200);
+                    Session::flash('success', 'Armada berhasil ditambahkan.');
+                    return response()->json(['success' => true], 200);
+                }
+                catch(Exception $e) {
+                    return response()->json([
+                        'success' => 'false',
+                        'errors'  => $e->getMessage(),
+                    ], 400);
+                }
             }
-            Session::flash('success', 'Armada berhasil ditambahkan.');
-            return response()->json($armada);
         }
     }
 
@@ -80,8 +94,6 @@ class ArmadaController extends Controller
             $armada = M_armada::findOrFail($request->id);
             return response()->json($armada);
         }
-        
-        // If it's not an AJAX request, you may want to return a different response
         return abort(404);
     }
 
@@ -91,23 +103,37 @@ class ArmadaController extends Controller
     public function update(Request $request, string $id)
     {
         if ($request->ajax()) {
-            $request->validate([
-                'no_polisi' => 'required|unique:master_armada',
-                'no_lambung' => 'required|unique:master_armada',
-                'no_stnk' => 'required|unique:master_armada',
+            $isValid = $request->validate([
+                'no_polisi' => 'required',
+                'no_lambung' => 'required',
+                'no_stnk' => 'required',
                 'tahun' => 'required',
                 'trayek' => 'required',
                 'jenis_trayek' => 'required',
             ]);
 
-            $armada = M_armada::create($request->all());
-
-            if(!$armada){
-                Session::flash('error', 'Kesalahan teknis, Armada gagal ditambahkan!');
-                return response()->json($armada);
+            if (!$isValid) {
+                return response()->json([
+                    'success' => 'false',
+                    'errors'  => $isValid->errors()->all(),
+                ], 400);
+            } else {
+                try {
+                    M_armada::update($request->all());
+                    // return response()->json([
+                    //     'success' => true,
+                    //     'message'  => 'Armada berhasil ditambahkan.',
+                    // ], 200);
+                    Session::flash('success', 'Armada berhasil diubah.');
+                    return response()->json(['success' => true], 200);
+                }
+                catch(Exception $e) {
+                    return response()->json([
+                        'success' => 'false',
+                        'errors'  => $e->getMessage(),
+                    ], 400);
+                }
             }
-            Session::flash('success', 'Armada berhasil ditambahkan.');
-            return response()->json($armada);
         }
     }
 
