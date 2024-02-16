@@ -42,6 +42,10 @@ Route::delete('/delete/{id}', [ArmadaController::class, 'destroy']);
 
 // sparepart
 Route::get('/sparepart', [SparepartController::class, 'index']);
+Route::post('/sparepart', [SparepartController::class, 'store']);
+Route::post('/sparepart/edit', [SparepartController::class, 'edit']);
+Route::put('/sparepart/update', [SparepartController::class, 'update']);
+Route::delete('/delete/{id}', [SparepartController::class, 'destroy']);
 
 
 // user
