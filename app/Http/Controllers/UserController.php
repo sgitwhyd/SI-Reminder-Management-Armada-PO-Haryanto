@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Session;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -11,7 +14,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user');
+        $users = User::all();
+        $data = [
+            'users' => $users,
+        ];
+        return view('user', $data);
     }
 
     /**
@@ -27,7 +34,45 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $isValid = $request->validate([
+                'username' => 'required|unique:users',
+                'email' => 'required|email|unique:users',
+                'full_name' => 'required',
+                'password' => 'required|min:8',
+            ]);
+
+            if (!$isValid) {
+                return response()->json([
+                    'success' => 'false',
+                    'errors'  => $isValid->errors()->all(),
+                ], 400);
+            } else {
+                try {
+                    $user = [
+                        'full_name' => $request->full_name,
+                        'username' => $request->username,
+                        'email' => $request->email,
+                        'password' => Hash::make($request->password),
+                        'role' => $request->role,
+                    ];
+
+                    User::create($user);
+                    // return response()->json([
+                    //     'success' => true,
+                    //     'message'  => 'Armada berhasil ditambahkan.',
+                    // ], 200);
+                    Session::flash('success', 'Pengguna baru berhasil ditambahkan.');
+                    return response()->json(['success' => true], 200);
+                }
+                catch(Exception $e) {
+                    return response()->json([
+                        'success' => 'false',
+                        'errors'  => $e->getMessage(),
+                    ], 400);
+                }
+            }
+        }
     }
 
     /**
