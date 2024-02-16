@@ -172,7 +172,7 @@
          var tahun = $('#tahun').val();
          var trayek = $('#trayek').val();
          var jenis_trayek = $('#jenis_trayek').val();
-         var url = postId ? '/armada/update/' + postId : '/armada';
+         var url = postId ? '/armada/update' : '/armada';
          var method = postId ? 'PUT' : 'POST';
 
          $.ajax({
@@ -196,7 +196,6 @@
             },
             error: function(data) {
                var result = data.responseJSON;
-               console.log(data);
                errorsHtml = '<div class="alert alert-danger"><ul>';
                $.each( result.errors, function( key, value ) {
                      errorsHtml += '<li>'+ value[0] + '</li>';
@@ -213,13 +212,13 @@
          var postId = $(this).data('id');
          if (confirm('Are you sure you want to delete this post?')) {
                $.ajax({
-                  url: '/posts/' + postId,
+                  url: '/delete/' + postId,
                   type: 'DELETE',
                   data: {
                      _token: '{{ csrf_token() }}'
                   },
                   success: function(data) {
-                     // Handle success
+                     location.reload();
                   },
                   error: function(xhr, status, error) {
                      console.error('Error:', error);
@@ -239,7 +238,6 @@
       });
    });
   </script>
-   
-
+  
 @endsection
 

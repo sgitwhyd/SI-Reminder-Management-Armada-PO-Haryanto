@@ -20,8 +20,8 @@ class ArmadaController extends Controller
      */
     public function index()
     {
-        $list_armada = $this->m_armada::all();
-        $jenis_trayek = $this->m_armada->get_enum_values('master_armada', 'jenis_trayek');
+        $list_armada = M_armada::all();
+        $jenis_trayek = M_armada::get_enum_values('master_armada', 'jenis_trayek');
         $data = [
             'jenis_trayek' => $jenis_trayek,
             'list_armada' => $list_armada,
@@ -100,9 +100,10 @@ class ArmadaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         if ($request->ajax()) {
+            // check if request data same with old data (soon)
             $isValid = $request->validate([
                 'no_polisi' => 'required',
                 'no_lambung' => 'required',
@@ -119,7 +120,15 @@ class ArmadaController extends Controller
                 ], 400);
             } else {
                 try {
-                    M_armada::update($request->all());
+                    $armada = [
+                        'no_polisi' => $request->no_polisi,
+                        'no_lambung' => $request->no_lambung,
+                        'no_stnk' => $request->no_stnk,
+                        'tahun' => $request->tahun,
+                        'trayek' => $request->trayek,
+                        'jenis_trayek' => $request->jenis_trayek,
+                    ];
+                    M_armada::where('id_armada', $request->id_armada)->update($armada);
                     // return response()->json([
                     //     'success' => true,
                     //     'message'  => 'Armada berhasil ditambahkan.',
@@ -140,8 +149,11 @@ class ArmadaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
-    }
+        $armada = M_armada::findOrFail($id);
+        $armada->delete();
+
+        Session::flash('success', 'Armada berhasil dihapus.');
+        return response()->json(['success' => true], 200);    }
 }
