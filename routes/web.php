@@ -52,7 +52,7 @@ Route::get('/user', [UserController::class, 'index']);
 Route::post('/user', [UserController::class, 'store']);
 Route::post('/user/edit', [UserController::class, 'edit']);
 Route::put('/user/update', [UserController::class, 'update']);
-Route::delete('sparepart/delete/{id}', [UserController::class, 'destroy']);
+Route::delete('user/delete/{id}', [UserController::class, 'destroy']);
 
 // perawatan
 Route::get('/perawatan', [PerawatanController::class, 'index']);
