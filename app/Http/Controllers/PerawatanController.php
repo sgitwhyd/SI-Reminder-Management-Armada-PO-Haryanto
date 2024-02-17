@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\M_armada;
 
 class PerawatanController extends Controller
 {
@@ -19,7 +20,10 @@ class PerawatanController extends Controller
      */
     public function create()
     {
-        return view('add-perawatan');
+        $data = [
+            'jenis_trayek' => M_armada::get_enum_values('master_armada', 'jenis_trayek'),
+        ];
+        return view('add-perawatan', $data);
     }
 
     /**
