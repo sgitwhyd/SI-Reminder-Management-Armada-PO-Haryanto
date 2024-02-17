@@ -57,13 +57,10 @@
             </div>
          @endif
         </div>
-          
          <div class="row my-4">
-            <!-- Small table -->
             <div class="col-md-12">
                <div class="card shadow">
                   <div class="card-body">
-                     <!-- table -->
                      <table class="table datatables" id="datasparepart">
                         <thead>
                         <tr>
@@ -83,8 +80,8 @@
                            <td>{{ $value['nama_sp'] }}</td>
                            <td>{{ $value['stock'] }}</td>
                            <td>{{ $value['status'] }}</td>
-                           <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              </button>
+                           <td>
+                              <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                               <div class="dropdown-menu dropdown-menu-right">
                                  <button type="button" class="dropdown-item edit-sparepart" data-id="{{$value['id_sp']}}">Edit</button>
                                  <button type="button" class="dropdown-item delete-sparepart" data-id="{{$value['id_sp']}}">Remove</button>
@@ -142,7 +139,6 @@
             }
          });
       });
-
       // Save or update post
       $('#sparepart-add').submit(function(e) {
          e.preventDefault();
@@ -183,13 +179,12 @@
             }
          });
       });
-
       // Delete post
       $('.delete-sparepart').click(function() {
          var postId = $(this).data('id');
          if (confirm('Are you sure you want to delete this post?')) {
                $.ajax({
-                  url: '/delete/' + postId,
+                  url: 'sparepart/delete/' + postId,
                   type: 'DELETE',
                   data: {
                      _token: '{{ csrf_token() }}'

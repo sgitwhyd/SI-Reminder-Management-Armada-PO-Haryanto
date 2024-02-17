@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-           
    <div class="row justify-content-center">
       <div class="col-12">
          <h2 class="mb-2 page-title">Data User</h2>
@@ -54,20 +53,17 @@
                </div>
             </div>
          </div>
-        <div id="form-notif">
+         <div id="form-notif">
          @if(session('success'))
             <div class="alert alert-success">
                <p>{{ session('success') }}</p>
             </div>
          @endif
-        </div>
-          
+         </div>
          <div class="row my-4">
-            <!-- Small table -->
             <div class="col-md-12">
                <div class="card shadow">
                   <div class="card-body">
-                     <!-- table -->
                      <table class="table datatables" id="datauser">
                         <thead>
                         <tr>
@@ -104,7 +100,6 @@
          </div>
       </div>
    </div>
-   
 @endsection
 
 @section('script')
@@ -162,7 +157,6 @@
             }
          });
       });
-
       // Save or update post
       $('#user-add').submit(function(e) {
          e.preventDefault();
@@ -205,24 +199,24 @@
             }
          });
       });
-
       // Delete post
       $('.delete-user').click(function() {
          var postId = $(this).data('id');
          if (confirm('Apakah anda yakin ingin menghapus user?')) {
-               $.ajax({
-                  url: '/delete/' + postId,
-                  type: 'DELETE',
-                  data: {
-                     _token: '{{ csrf_token() }}'
-                  },
-                  success: function(data) {
-                     location.reload();
-                  },
-                  error: function(xhr, status, error) {
-                     console.error('Error:', error);
-                  }
-               });
+            $.ajax({
+               url: 'user/delete/' + postId,
+               type: 'DELETE',
+               data: {
+                  _token: '{{ csrf_token() }}'
+               },
+               success: function(data) {
+                  console.log(data);
+                  location.reload();
+               },
+               error: function(xhr, status, error) {
+                  console.error('Error:', error);
+               }
+            });
          }
       });
 
@@ -233,8 +227,6 @@
          $('#email').val('')
          $('#password').val('')
       });
-
-      
    });
   </script>
   

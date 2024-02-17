@@ -210,20 +210,20 @@
       // Delete post
       $('.delete-armada').click(function() {
          var postId = $(this).data('id');
-         if (confirm('Are you sure you want to delete this post?')) {
-               $.ajax({
-                  url: '/delete/' + postId,
-                  type: 'DELETE',
-                  data: {
-                     _token: '{{ csrf_token() }}'
-                  },
-                  success: function(data) {
-                     location.reload();
-                  },
-                  error: function(xhr, status, error) {
-                     console.error('Error:', error);
-                  }
-               });
+         if (confirm('Apakah anda yakin untuk menghapus armada?')) {
+            $.ajax({
+               url: 'armada/delete/' + postId,
+               type: 'DELETE',
+               data: {
+                  _token: '{{ csrf_token() }}'
+               },
+               success: function(data) {
+                  location.reload();
+               },
+               error: function(xhr, status, error) {
+                  console.error('Error:', error);
+               }
+            });
          }
       });
 

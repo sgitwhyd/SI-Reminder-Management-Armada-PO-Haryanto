@@ -136,11 +136,10 @@ class SparepartController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $armada = M_sparepart::findOrFail($id);
         $armada->delete();
-
         Session::flash('success', 'Sparepart berhasil dihapus.');
         return response()->json(['success' => true], 200);
     }

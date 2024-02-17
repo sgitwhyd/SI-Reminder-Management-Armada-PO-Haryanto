@@ -8,8 +8,5 @@
 </head>
 <body>
     <a href="{{ 'login' }}">hello world!</a>
-    @error('username')
-    <div class="h2">{{ $message }}</div>   
-    @enderror
 </body>
 </html>

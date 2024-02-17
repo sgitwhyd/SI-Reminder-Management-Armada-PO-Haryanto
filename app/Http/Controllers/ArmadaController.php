@@ -153,7 +153,7 @@ class ArmadaController extends Controller
     {
         $armada = M_armada::findOrFail($id);
         $armada->delete();
-
         Session::flash('success', 'Armada berhasil dihapus.');
-        return response()->json(['success' => true], 200);    }
+        return response()->json(['success' => true], 200);
+    }
 }

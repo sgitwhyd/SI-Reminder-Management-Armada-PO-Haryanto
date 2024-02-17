@@ -38,21 +38,21 @@ Route::get('/armada', [ArmadaController::class, 'index']);
 Route::post('/armada', [ArmadaController::class, 'store']);
 Route::post('/armada/edit', [ArmadaController::class, 'edit']);
 Route::put('/armada/update/', [ArmadaController::class, 'update']);
-Route::delete('/delete/{id}', [ArmadaController::class, 'destroy']);
+Route::delete('armada/delete/{id}', [ArmadaController::class, 'destroy']);
 
 // sparepart
 Route::get('/sparepart', [SparepartController::class, 'index']);
 Route::post('/sparepart', [SparepartController::class, 'store']);
 Route::post('/sparepart/edit', [SparepartController::class, 'edit']);
 Route::put('/sparepart/update', [SparepartController::class, 'update']);
-Route::delete('/delete/{id}', [SparepartController::class, 'destroy']);
+Route::delete('sparepart/delete/{id}', [SparepartController::class, 'destroy']);
 
 // user
 Route::get('/user', [UserController::class, 'index']);
 Route::post('/user', [UserController::class, 'store']);
 Route::post('/user/edit', [UserController::class, 'edit']);
 Route::put('/user/update', [UserController::class, 'update']);
-Route::delete('/delete/{id}', [UserController::class, 'destroy']);
+Route::delete('sparepart/delete/{id}', [UserController::class, 'destroy']);
 
 // perawatan
 Route::get('/perawatan', [PerawatanController::class, 'index']);
@@ -60,4 +60,4 @@ Route::get('/perawatan/add', [PerawatanController::class, 'create']);
 Route::post('/perawatan', [PerawatanController::class,'store']);
 Route::post('/perawatan/edit', [PerawatanController::class, 'edit']);
 Route::put('/perawatan/update', [PerawatanController::class, 'update']);
-Route::delete('/delete/{id}', [PerawatanController::class, 'destroy']);
+Route::delete('perawatan/delete/{id}', [PerawatanController::class, 'destroy']);

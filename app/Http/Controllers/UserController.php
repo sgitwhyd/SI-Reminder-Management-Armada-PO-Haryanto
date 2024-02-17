@@ -137,20 +137,16 @@ class UserController extends Controller
                     ], 400);
                 }
             }
-              
-        
         }
-    
     }
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $user = User::findOrFail($id);
         $user->delete();
         Session::flash('success', 'User berhasil dihapus.');
         return response()->json(['success' => true], 200);
-        
     }
 }
