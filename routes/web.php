@@ -47,7 +47,12 @@ Route::post('/sparepart/edit', [SparepartController::class, 'edit']);
 Route::put('/sparepart/update', [SparepartController::class, 'update']);
 Route::delete('/delete/{id}', [SparepartController::class, 'destroy']);
 
- 
+
 // user
 Route::get('/user', [UserController::class, 'index']);
 Route::post('/user', [UserController::class, 'store']);
+Route::post('/user/edit', [UserController::class, 'edit']);
+Route::put('/user/update', [UserController::class, 'update']);
+Route::delete('/delete/{id}', [UserController::class, 'destroy']);
+
+

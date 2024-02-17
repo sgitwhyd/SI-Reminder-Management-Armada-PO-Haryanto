@@ -86,24 +86,71 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $user = User::findOrFail($request->id);
+            return response()->json($user);
+        }
+        return abort(404);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $isValid = $request->validate([
+                'full_name' =>'required',
+                'username' =>'required',
+                'email' =>'required|email',
+            ]);
+    
+            if (!$isValid) {
+                return response()->json([
+                    'success' => 'false',
+                    'errors'  => $isValid->errors()->all(),
+                ], 400);
+            } else {
+                try {
+                    $user = [
+                        'full_name' => $request->full_name,
+                        'username' => $request->username,
+                        'email' => $request->email,
+                        'password' => $request->password,
+                        'role' => $request->role,
+                    ];
+                    if($request->password === null) unset($user['password']);
+                    User::where('id_user', $request->id_user)->update($user);
+                    // return response()->json([
+                    //     'success' => true,
+                    //     'message'  => 'Sparepart berhasil ditambahkan.',
+                    // ], 200);
+                    Session::flash('success', 'User berhasil diubah.');
+                    return response()->json(['success' => true], 200);
+                }
+                catch(Exception $e) {
+                    return response()->json([
+                        'success' => 'false',
+                        'errors'  => $e->getMessage(),
+                    ], 400);
+                }
+            }
+              
+        
+        }
+    
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        Session::flash('success', 'User berhasil dihapus.');
+        return response()->json(['success' => true], 200);
+        
     }
 }

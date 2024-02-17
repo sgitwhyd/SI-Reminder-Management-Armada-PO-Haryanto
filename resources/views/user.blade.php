@@ -44,7 +44,7 @@
                         <div class="custom-control custom-switch">
                            <input type="checkbox" class="custom-control-input" name="adminRole" id="adminRole" value="ADMIN">
                            <label class="custom-control-label" for="adminRole">Switch account to administrator</label>
-                      </div>
+                        </div>
                      </div>
                      <div class="modal-footer">
                         <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Close</button>
@@ -147,13 +147,15 @@
             success: function(data) {
                // console.log(data)
                $('#postId').val(data['id_user'])
-               $('#no_polisi').val(data['no_polisi'])
-               $('#no_lambung').val(data['no_lambung'])
-               $('#no_stnk').val(data['no_stnk'])
-               $('#tahun').val(data['tahun'])
-               $('#trayek').val(data['trayek'])
-               $('#jenis_trayek').val(data['jenis_trayek'])
-               $('#adduser').modal('show');
+               $('#full_name').val(data['full_name'])
+               $('#username').val(data['username'])
+               $('#email').val(data['email'])
+               if(data['role'] == 'ADMIN'){
+                  $('#adminRole').prop('checked', true);
+               } else {
+                  $('#adminRole').prop('checked', false);
+               }
+               $('#addUser').modal('show');
             },
             error: function(xhr, status, error) {
                console.error('Error:', error);
@@ -207,7 +209,7 @@
       // Delete post
       $('.delete-user').click(function() {
          var postId = $(this).data('id');
-         if (confirm('Are you sure you want to delete this post?')) {
+         if (confirm('Apakah anda yakin ingin menghapus user?')) {
                $.ajax({
                   url: '/delete/' + postId,
                   type: 'DELETE',
