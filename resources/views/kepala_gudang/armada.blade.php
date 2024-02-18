@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@include('sidebar.menu_kepala_gudang')
 
 @section('content')
            
@@ -172,7 +173,7 @@
          var tahun = $('#tahun').val();
          var trayek = $('#trayek').val();
          var jenis_trayek = $('#jenis_trayek').val();
-         var url = postId ? '/armada/update' : '/armada';
+         var url = postId ? 'armada/update' : 'armada';
          var method = postId ? 'PUT' : 'POST';
 
          $.ajax({

@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@include('sidebar.menu_kepala_gudang')
 
 @section('content')
    <div class="row justify-content-center">
@@ -147,7 +148,7 @@
          var nama_sp = $('#nama_sp').val();
          var stock = $('#stock').val();
          var status = $('#status').val();
-         var url = postId ? '/sparepart/update' : '/sparepart';
+         var url = postId ? 'sparepart/update' : 'sparepart';
          var method = postId ? 'PUT' : 'POST';
 
          $.ajax({

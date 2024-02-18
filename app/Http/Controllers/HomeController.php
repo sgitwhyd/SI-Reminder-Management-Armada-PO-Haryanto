@@ -6,8 +6,18 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function indexKepalaGudang()
     {
-        return view('home');
+        return view('kepala_gudang.dashboard');
+    }
+
+    public function indexCrew()
+    {
+        return view('crew.dashboard');
+    }
+
+    public function indexMekanik()
+    {
+        return view('mekanik.dasboard');
     }
 }

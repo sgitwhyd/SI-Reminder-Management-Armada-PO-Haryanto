@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@include('sidebar.menu_kepala_gudang')
 
 @section('content')
    <div class="row justify-content-center">

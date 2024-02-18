@@ -12,7 +12,7 @@ class PerawatanController extends Controller
      */
     public function index()
     {
-        return view('perawatan');
+        return view('kepala_gudang.perawatan');
     }
 
     /**

@@ -19,8 +19,7 @@ class Users extends Seeder
                 'username' => 'Johan',
                 'full_name' => 'Johan Saputra',
                 'password' => Hash::make('johan123'),
-                'role' => 'ADMIN',
-                'email' => 'johan@gmail.com',
+                'role' => 'KEPALA GUDANG',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -28,8 +27,15 @@ class Users extends Seeder
                 'username' => 'Alia',
                 'full_name' => 'Alia Putri',
                 'password' => Hash::make('alia123'),
-                'role' => 'USER',
-                'email' => 'alia@gmail.com',
+                'role' => 'CREW',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'username' => 'Joko',
+                'full_name' => 'Joko Susilo',
+                'password' => Hash::make('joko123'),
+                'role' => 'MEKANIK',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],

@@ -18,7 +18,7 @@ class UserController extends Controller
         $data = [
             'users' => $users,
         ];
-        return view('user', $data);
+        return view('kepala_gudang.user', $data);
     }
 
     /**

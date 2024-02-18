@@ -9,12 +9,6 @@ use Session;
 
 class ArmadaController extends Controller
 {
-
-    public $m_armada;
-    public function __construct()
-    {
-        $this->m_armada = new M_armada();
-    }
     /**
      * Display a listing of the resource.
      */
@@ -26,7 +20,7 @@ class ArmadaController extends Controller
             'jenis_trayek' => $jenis_trayek,
             'list_armada' => $list_armada,
         ];
-        return view('armada', $data);
+        return view('kepala_gudang.armada', $data);
     }
 
     /**

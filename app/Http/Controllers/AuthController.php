@@ -13,7 +13,14 @@ class AuthController extends Controller
     public function login()
     {
         if (Auth::check()) {
-            return redirect('/dashboard');
+            $user = Auth::user();
+            if($user->role == 'KEPALA GUDANG'){
+                return redirect('kepala-gudang/dashboard');
+            } else if ($user->role == 'CREW'){
+                return redirect('crew/dashboard');
+            } else if ($user->role == 'MEKANIK'){
+                return redirect('mekanik/dashboard');
+            }
         }else{
             return view('auth.login');
         }
@@ -27,7 +34,15 @@ class AuthController extends Controller
         ];
 
         if (Auth::Attempt($data)) {
-            return redirect('/dashboard');
+            $user = Auth::user();
+            if($user->role == 'KEPALA GUDANG'){
+                return redirect('kepala-gudang/dashboard');
+            } else if ($user->role == 'CREW'){
+                return redirect('crew/dashboard');
+            } else if ($user->role == 'MEKANIK'){
+                return redirect('mekanik/dashboard');
+            }
+            
         }else{
             Session::flash('error', 'Username atau Password Salah');
             return redirect('/login');

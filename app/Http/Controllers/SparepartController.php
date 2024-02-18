@@ -19,7 +19,7 @@ class SparepartController extends Controller
             'status_sp' => $status_sp,
             'list_sparepart' => $list_sparepart,
         ];
-        return view('sparepart', $data);
+        return view('kepala_gudang.sparepart', $data);
     }
 
     /**

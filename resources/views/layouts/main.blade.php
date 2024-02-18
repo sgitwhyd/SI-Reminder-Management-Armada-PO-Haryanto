@@ -30,15 +30,12 @@
     <div class="wrapper">
       <!-- navbar here -->
       @include('layouts.navbar')
-      <!-- sidebar here -->
-      @include('layouts.sidebar')
+
       <main role="main" class="main-content">
         <div class="container-fluid">
          <!-- content here -->
          @yield('content')
-         
         </div> <!-- .container-fluid -->
-
         
         <div class="modal fade modal-notif modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-sm" role="document">
