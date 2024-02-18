@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nama_sp', 255);
             $table->integer('stock')->length(11)->unsigned();
             $table->enum('status', ['READY','KOSONG'])->default('READY');
+            $table->timestamps();
         });
     }
 

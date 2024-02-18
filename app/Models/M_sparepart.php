@@ -10,7 +10,6 @@ class M_sparepart extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
     protected $table = 'master_sparepart';
     protected $primaryKey = 'id_sp';
     protected $fillable = ['no_sp', 'nama_sp', 'stock', 'status'];

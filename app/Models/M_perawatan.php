@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 class M_perawatan extends Model
 {
     use HasFactory;
-    public $timestamps = false;
     protected $table = 'perawatan';
     protected $primaryKey = 'id_perawatan';
     protected $fillable = ['tgl_perawatan', 'lokasi'];

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('tahun')->length(5)->unsigned();
             $table->string('trayek', 100);
             $table->enum('jenis_trayek', ['AKAP','AKDP','PARIWISATA','MPU'])->default('AKAP');
+            $table->timestamps();
         });
     }
 
