@@ -37,7 +37,6 @@ class UserController extends Controller
         if ($request->ajax()) {
             $isValid = $request->validate([
                 'username' => 'required|unique:users',
-                'email' => 'required|email|unique:users',
                 'full_name' => 'required',
                 'password' => 'required|min:8',
             ]);
@@ -52,7 +51,6 @@ class UserController extends Controller
                     $user = [
                         'full_name' => $request->full_name,
                         'username' => $request->username,
-                        'email' => $request->email,
                         'password' => Hash::make($request->password),
                         'role' => $request->role,
                     ];
@@ -104,7 +102,6 @@ class UserController extends Controller
             $isValid = $request->validate([
                 'full_name' =>'required',
                 'username' =>'required',
-                'email' =>'required|email',
             ]);
     
             if (!$isValid) {
@@ -117,7 +114,6 @@ class UserController extends Controller
                     $user = [
                         'full_name' => $request->full_name,
                         'username' => $request->username,
-                        'email' => $request->email,
                         'password' => $request->password,
                         'role' => $request->role,
                     ];

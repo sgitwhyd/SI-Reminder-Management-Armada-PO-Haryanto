@@ -24,15 +24,9 @@
                            <label for="full_name">Nama lengkap</label>
                            <input type="text" class="form-control" id="full_name" name="full_name">
                         </div>
-                        <div class="form-row">
-                           <div class="form-group col-md-6">
-                              <label for="username">Username</label>
-                              <input type="text" class="form-control" id="username" name="username">
-                           </div>
-                           <div class="form-group col-md-6">
-                              <label for="email">Email</label>
-                              <input type="text" class="form-control" id="email" name="email">
-                           </div>
+                        <div class="form-group">
+                           <label for="username">Username</label>
+                           <input type="text" class="form-control" id="username" name="username">
                         </div>
                         <div class="input-group mb-3">
                            <div class="input-group-append">
@@ -41,9 +35,28 @@
                            <input type="text" class="form-control" id="password" name="password" placeholder="password">
                         </div>
                         <hr class="my-3">
-                        <div class="custom-control custom-switch">
-                           <input type="checkbox" class="custom-control-input" name="adminRole" id="adminRole" value="ADMIN">
-                           <label class="custom-control-label" for="adminRole">Switch account to administrator</label>
+                        <div class="mb-2">
+                           <p class="mb-2">Akses User</p>
+                           <div class="form-row">
+                              <div class="col-md-4">
+                                 <div class="custom-control custom-radio mb-3">
+                                    <input type="radio" class="custom-control-input" id="kepala_gudang" value="KEPALA GUDANG" name="role" required>
+                                    <label class="custom-control-label" for="kepala_gudang">Kepala Gudang</label>
+                                 </div>
+                              </div>
+                              <div class="col-md-4">
+                                 <div class="custom-control custom-radio mb-3">
+                                    <input type="radio" class="custom-control-input" id="mekanik" value="MEKANIK" name="role" required>
+                                    <label class="custom-control-label" for="mekanik">Mekanik</label>
+                                 </div>
+                              </div>
+                              <div class="col-md-4">
+                                 <div class="custom-control custom-radio mb-3">
+                                    <input type="radio" class="custom-control-input" id="crew" value="CREW"name="role" required>
+                                    <label class="custom-control-label" for="crew">Crew</label>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
                      </div>
                      <div class="modal-footer">
@@ -71,7 +84,6 @@
                            <th>#</th>
                            <th>Nama</th>
                            <th>Username</th>
-                           <th>Email</th>
                            <th>Role</th>
                            <th>Action</th>
                         </tr>
@@ -82,7 +94,6 @@
                               <td>{{($key+1)}}</td>
                               <td>{{ $value['full_name'] }}</td>
                               <td>{{ $value['username'] }}</td>
-                              <td>{{ $value['email'] }}</td>
                               <td>{{ $value['role'] }}</td>
                               <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                  </button>
@@ -141,15 +152,15 @@
                _token: '{{ csrf_token() }}'
             },
             success: function(data) {
-               // console.log(data)
                $('#postId').val(data['id_user'])
                $('#full_name').val(data['full_name'])
                $('#username').val(data['username'])
-               $('#email').val(data['email'])
-               if(data['role'] == 'ADMIN'){
-                  $('#adminRole').prop('checked', true);
-               } else {
-                  $('#adminRole').prop('checked', false);
+               if(data['role'] == 'KEPALA GUDANG'){
+                  $('#kepala_gudang').prop('checked', true);
+               } else if (data['role'] == 'MEKANIK'){
+                  $('#mekanik').prop('checked', true);
+               } else if (data['role'] == 'CREW'){
+                  $('#crew').prop('checked', true);
                }
                $('#addUser').modal('show');
             },
@@ -164,10 +175,12 @@
          var postId = $('#postId').val();
          var full_name = $('#full_name').val();
          var username = $('#username').val();
-         var email = $('#email').val();
          var password = $('#password').val();
-         var role = $('#adminRole').is(':checked') ? 'ADMIN' : 'USER';
-         var url = postId ? '/user/update' : '/user';
+         var role;
+         if($('#kepala_gudang').is(':checked')) role = 'KEPALA GUDANG';
+         if($('#mekanik').is(':checked')) role = 'MEKANIK';
+         if($('#crew').is(':checked')) role = 'CREW';
+         var url = postId ? 'user/update' : 'user';
          var method = postId ? 'PUT' : 'POST';
 
          $.ajax({
@@ -177,7 +190,6 @@
                id_user: postId,
                full_name: full_name,
                username: username,
-               email: email,
                password: password,
                role: role,
                _token: '{{ csrf_token() }}'
