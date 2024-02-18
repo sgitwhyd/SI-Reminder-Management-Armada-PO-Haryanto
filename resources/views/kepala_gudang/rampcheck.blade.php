@@ -4,9 +4,9 @@
 @section('content')
 <div class="row justify-content-center">
    <div class="col-12">
-      <h2 class="mb-2 page-title">Data Perawatan</h2>
-      <p class="card-text">Mencakup data perawatan kendaraan dan kondisi Perawatan</p>
-      <a href="{{ '/perawatan/add' }}" class="btn mb-2 btn-primary" ><i class="fe fe-plus"></i> Tambah</a>
+      <h2 class="mb-2 page-title">Data Rampcheck</h2>
+      <p class="card-text">Mencakup data pengecekan sebelum keberangkatan</p>
+      <a href="{{ 'rampcheck/add' }}" class="btn mb-2 btn-primary" ><i class="fe fe-plus"></i> Tambah</a>
       <div id="form-notif">
          @if(session('success'))
          <div class="alert alert-success">
