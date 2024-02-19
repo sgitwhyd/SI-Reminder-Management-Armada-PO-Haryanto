@@ -3,9 +3,13 @@
 
 
 ### prosess
-
+- rampcheck
 
 
 ### finish
 - register
 - login
+- master_armada
+- master_user
+- master_sparepart
+
