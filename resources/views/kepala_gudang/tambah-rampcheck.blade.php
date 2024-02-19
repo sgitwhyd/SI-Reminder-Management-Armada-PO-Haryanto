@@ -405,8 +405,8 @@
                   </div>
                   <div class="card-body">
                      <div class="form-group mb-3">
-                        <label for="catatan-rampcheck">Catatan</label>
-                        <textarea class="form-control" id="catatan-rampcheck" name="catatan-rampcheck" placeholder="Catatan dalam pengecekan" rows="5"></textarea>
+                        <label for="catatan_rampcheck">Catatan</label>
+                        <textarea class="form-control" id="catatan_rampcheck" name="catatan_rampcheck" placeholder="Catatan dalam pengecekan" rows="5"></textarea>
                      </div>
                      <div class="form-row">
                         <div class="form-group col-md-6">

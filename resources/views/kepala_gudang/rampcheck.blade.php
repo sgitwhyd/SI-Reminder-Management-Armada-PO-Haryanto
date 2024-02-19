@@ -22,18 +22,21 @@
                      <thead>
                      <tr>
                         <th>#</th>
-                        <th>Kode</th>
-                        <th>Tgl Perawatan</th>
-                        <th>Lokasi</th>
+                        <th>Tgl Periksa</th>
+                        <th>No Polisi</th>
+                        <th>No Lambung</th>
+                        <th>Kilometer</th>
                         <th>Action</th>
                      </tr>
                      </thead>
                      <tbody>
+                        @foreach($list_rampcheck as $key => $value)
                         <tr>
-                           <td>1.</td>
-                           <td>PWT-001</td>
-                           <td>12-02-2024</td>
-                           <td>Pool</td>
+                           <td>{{($key+1)}}</td>
+                           <td>{{$value['tgl_rampcheck']}}</td>
+                           <td>{{$value['no_polisi']}}</td>
+                           <td>{{$value['no_lambung']}}</td>
+                           <td>{{$value['posisi_kilometer']}}</td>
                            <td>
                               <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                               <div class="dropdown-menu dropdown-menu-right">
@@ -42,6 +45,7 @@
                               </div>
                            </td>
                         </tr>
+                        @endforeach
                      </tbody>
                   </table>
                </div>

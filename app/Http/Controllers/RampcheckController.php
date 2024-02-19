@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\M_rampcheck;
+use Illuminate\Support\Str;
 
 class RampcheckController extends Controller
 {
@@ -11,7 +13,10 @@ class RampcheckController extends Controller
      */
     public function index()
     {
-        return view('kepala_gudang.rampcheck');
+        $data = [
+            'list_rampcheck' => M_rampcheck::all(),
+        ];
+        return view('kepala_gudang.rampcheck', $data);
     }
 
     /**
@@ -27,7 +32,33 @@ class RampcheckController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $request->validate([
+            'checker' => 'required',
+            'date_check' => 'required',
+            'time_check' => 'required',
+            'no_polisi' => 'required',
+            'no_lambung' => 'required',
+            'posisi_kilometer' => 'required|numeric',
+            'posisi_bbm' => 'required',
+            'ttd_checker' => 'required|file|max:1024',
+            'ttd_pengemudi' => 'required|file|max:1024',
+        ]);
+
+        if ($request->hasFile('ttd_checker')) {
+            // ttd_checker
+            $ttd_1 = $request->file('ttd_checker');
+            $rd_name1 = Str::random(15); // random caracter generator
+            $ext1 = $ttd_1->getClientOriginalExtension();
+            $fileName1 = time().'_'.$rd_name1.'.'.$ext1;
+            $ttd_checker = $ttd_1->storeAs('uploads', $fileName1); // Store file in 'storage/app/uploads' directory
+            // ttd_pengemudi
+            $ttd_2 = $request->file('ttd_pengemudi');
+            $rd_name2 = Str::random(15); // random caracter generator
+            $ext2 = $ttd_2->getClientOriginalExtension();
+            $fileName2 = time().'_'.$rd_name2.'.'.$ext2;
+            $ttd_pengemudi = $ttd_2->storeAs('uploads', $fileName2); // Store file in 'storage/app/uploads' directory
+        }
+
         $column = [
             'checker' => $request->checker,
             'tgl_rampcheck' => $request->date_check,
@@ -61,9 +92,18 @@ class RampcheckController extends Controller
             'segitiga_pengaman' => isset($request->segitiga_pengaman_ada)? 'ADA' : 'TIDAK ADA',
             'ban_cadangan' => isset($request->ban_cadangan_ada)? 'ADA' : 'TIDAK ADA',
             'catatan_rampcheck' => $request->catatan_rampcheck,
+            'ttd_checker' => $ttd_checker,
+            'ttd_pengemudi' => $ttd_pengemudi,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
         ];
-
-        Rampcheck::create($columny);
+        try {
+            M_rampcheck::create($column);
+            return redirect()->to('kepala-gudang/rampcheck')->with('success', 'Rampcheck berhasil ditambahkan.');
+        }
+        catch(Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage)->withInput();
+        }
     }
 
     /**
