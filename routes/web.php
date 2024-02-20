@@ -8,6 +8,7 @@ use App\Http\Controllers\CrewController;
 use App\Http\Controllers\SparepartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PerawatanController;
+use App\Http\Controllers\RampcheckController;
 
 /*
 |--------------------------------------------------------------------------
