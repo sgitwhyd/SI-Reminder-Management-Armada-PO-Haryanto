@@ -4,19 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('master_sparepart', function (Blueprint $table) {
-            $table->bigIncrements('id_sp');
-            $table->string('no_sp', 100);
-            $table->string('nama_sp', 255);
+        Schema::create('spareparts', function (Blueprint $table) {
+            $table->id();
+            $table->string('kode_sparepart', 100);
+            $table->string('nama_sparepart', 100);
+            $table->integer('harga')->length(11)->unsigned();
             $table->integer('stock')->length(11)->unsigned();
             $table->enum('status', ['READY','KOSONG'])->default('READY');
+            $table->text('keterangan', 100);
+            $table->timestamps();
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('master_sparepart');
+        Schema::dropIfExists('spareparts');
     }
 };

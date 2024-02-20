@@ -2,7 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Armada;
+use App\Models\Perawatan;
+use App\Models\Perbaikan;
+use App\Models\PerbaikanHasSparepart;
+use App\Models\Sparepart;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,5 +20,13 @@ class DatabaseSeeder extends Seeder
             Users::class,
 
         ]);
+
+        Armada::factory()->count(10)->create();
+        Perawatan::factory()->count(10)->create();
+        Sparepart::factory()->count(10)->create();
+        Perbaikan::factory()->count(10)->create();
+        PerbaikanHasSparepart::factory()->count(10)->create();
+
+        
     }
 }

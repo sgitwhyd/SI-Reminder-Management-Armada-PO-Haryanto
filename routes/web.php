@@ -4,10 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArmadaController;
+use App\Http\Controllers\CrewController;
 use App\Http\Controllers\SparepartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PerawatanController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +25,7 @@ Route::get('/', function () {
 });
 
 // auth
-Route::get('/login', [AuthController::class, 'login']);
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'loginVerify']);
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/register', [AuthController::class, 'registerVerify']);
@@ -64,23 +64,22 @@ Route::middleware(['auth'])->prefix('kepala-gudang')->group(function () {
     Route::delete('perawatan/delete/{id}', [PerawatanController::class, 'destroy']);
 
     // rampcheck
-    Route::get('/rampcheck', [RampcheckController::class, 'index']);
-    Route::get('/rampcheck/add', [RampcheckController::class, 'create']);
-    Route::post('/rampcheck', [RampcheckController::class,'store']);
-    Route::post('/rampcheck/edit', [RampcheckController::class, 'edit']);
-    Route::put('/rampcheck/update', [RampcheckController::class, 'update']);
-    Route::delete('rampcheck/delete/{id}', [RampcheckController::class, 'destroy']);
+    // Route::get('/rampcheck', [RampcheckController::class, 'index']);
+    // Route::get('/rampcheck/add', [RampcheckController::class, 'create']);
+    // Route::post('/rampcheck', [RampcheckController::class,'store']);
+    // Route::post('/rampcheck/edit', [RampcheckController::class, 'edit']);
+    // Route::put('/rampcheck/update', [RampcheckController::class, 'update']);
+    // Route::delete('rampcheck/delete/{id}', [RampcheckController::class, 'destroy']);
 
 });
 
 Route::middleware(['auth'])->prefix('crew')->group(function () {
     Route::get('/dashboard', [HomeController::class, 'indexCrew']);
+    Route::get('/riwayat-perbaikan', [CrewController::class, 'riwayatPerbaikan']);
+    Route::get('/riwayat-perawatan', [CrewController::class, 'riwayatPerawatan']);
+    Route::get('/riwayat-rampcheck', [CrewController::class, 'riwayatRampcheck']);
 });
 
 Route::middleware(['auth'])->prefix('mekanik')->group(function () {
     Route::get('/dashboard', [HomeController::class, 'indexMekanik']);
 });
-
-
-
-
