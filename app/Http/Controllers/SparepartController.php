@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\M_sparepart;
+use App\Models\Sparepart;
 use Session;
 
 class SparepartController extends Controller
@@ -13,10 +13,8 @@ class SparepartController extends Controller
      */
     public function index()
     {
-        $list_sparepart = M_sparepart::all();
-        $status_sp = M_sparepart::get_enum_values('master_sparepart', 'status');
+        $list_sparepart = Sparepart::all();
         $data = [
-            'status_sp' => $status_sp,
             'list_sparepart' => $list_sparepart,
         ];
         return view('kepala_gudang.sparepart', $data);
@@ -37,12 +35,11 @@ class SparepartController extends Controller
     {
         if ($request->ajax()) {
             $isValid = $request->validate([
-                'no_sp' => 'required|unique:master_sparepart',
-                'nama_sp' => 'required|unique:master_sparepart',
+                'kode_sparepart' => 'required|unique:spareparts',
+                'nama_sparepart' => 'required|unique:spareparts',
                 'stock' => 'required',
                 'status' => 'required',
             ]);
-
             if (!$isValid) {
                 return response()->json([
                     'success' => 'false',
@@ -50,7 +47,7 @@ class SparepartController extends Controller
                 ], 400);
             } else {
                 try {
-                    M_sparepart::create($request->all());
+                    Sparepart::create($request->all());
                     // return response()->json([
                     //     'success' => true,
                     //     'message'  => 'Armada berhasil ditambahkan.',
@@ -82,7 +79,7 @@ class SparepartController extends Controller
     public function edit(Request $request)
     {
         if ($request->ajax()) {
-            $sparepart = M_sparepart::findOrFail($request->id);
+            $sparepart = Sparepart::findOrFail($request->id);
             return response()->json($sparepart);
         }
         return abort(404);
@@ -96,8 +93,8 @@ class SparepartController extends Controller
         if ($request->ajax()) {
             // check if request data if same with old data (soon)
             $isValid = $request->validate([
-                'no_sp' => 'required',
-                'nama_sp' => 'required',
+                'kode_sparepart' => 'required',
+                'nama_sparepart' => 'required',
                 'stock' => 'required',
                 'status' => 'required',
             ]);
@@ -110,12 +107,12 @@ class SparepartController extends Controller
             } else {
                 try {
                     $sparepart = [
-                        'no_sp' => $request->no_sp,
-                        'nama_sp' => $request->nama_sp,
+                        'kode_sparepart' => $request->kode_sparepart,
+                        'nama_sparepart' => $request->nama_sparepart,
                         'stock' => $request->stock,
                         'status' => $request->status,
                     ];
-                    M_sparepart::where('id_sp', $request->id_sp)->update($sparepart);
+                    Sparepart::where('id', $request->id_sp)->update($sparepart);
                     // return response()->json([
                     //     'success' => true,
                     //     'message'  => 'Sparepart berhasil ditambahkan.',
@@ -138,7 +135,7 @@ class SparepartController extends Controller
      */
     public function destroy($id)
     {
-        $armada = M_sparepart::findOrFail($id);
+        $armada = Sparepart::findOrFail($id);
         $armada->delete();
         Session::flash('success', 'Sparepart berhasil dihapus.');
         return response()->json(['success' => true], 200);

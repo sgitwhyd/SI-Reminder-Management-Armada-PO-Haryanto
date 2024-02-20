@@ -21,26 +21,35 @@
                      <input type="hidden" name="postId" id="postId">
                      <div class="modal-body">
                         <div class="form-group">
-                           <label for="nama_sp">Nama Sparepart</label>
-                           <input type="text" class="form-control" id="nama_sp" name="nama_sp">
+                           <label for="nama_sparepart">Nama Sparepart</label>
+                           <input type="text" class="form-control" id="nama_sparepart" name="nama_sparepart">
                         </div>
                         <div class="form-row">
                            <div class="form-group col-md-6">
-                              <label for="no_sp">No. Sparepart</label>
-                              <input type="text" class="form-control" id="no_sp" name="no_sp">
+                              <label for="kode_sparepart">Kode Sparepart</label>
+                              <input type="text" class="form-control" id="kode_sparepart" name="kode_sparepart">
                            </div>
                            <div class="form-group col-md-6">
                               <label for="stock">Stock</label>
                               <input type="text" class="form-control" id="stock" name="stock">
                            </div>
                         </div>
+                        <div class="form-row">
+                           <div class="form-group col-md-6">
+                              <label for="harga">Harga</label>
+                              <input type="number" class="form-control" id="harga" name="harga">
+                           </div>
+                           <div class="form-group col-md-6">
+                              <label for="status">Status</label>
+                              <select class="form-control select-status" id="status" name="status" tabindex="-1">
+                                 <option value="READY">READY</option>
+                                 <option value="KOSONG">KOSONG</option>
+                              </select>
+                           </div>
+                        </div>
                         <div class="form-group">
-                           <label for="status">Status</label>
-                           <select class="form-control select-status" id="status" name="status" tabindex="-1">
-                              @foreach ($status_sp as $key => $value)
-                                 <option value="{{ $value }}">{{$value}}</option>
-                              @endforeach
-                           </select>
+                           <label for="keterangan">Keterangan</label>
+                           <input type="text" class="form-control" id="keterangan" name="keterangan">
                         </div>
                      </div>
                      <div class="modal-footer">
@@ -66,29 +75,33 @@
                         <thead>
                         <tr>
                            <th>#</th>
-                           <th>No. Sparepart</th>
+                           <th>Kode Sparepart</th>
                            <th>Nama Sparepart</th>
+                           <th>Harga</th>
                            <th>Stock</th>
                            <th>Status</th>
+                           <th>Keterangan</th>
                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($list_sparepart as $key => $value)
-                        <tr>
-                           <td>{{($key+1)}}</td>
-                           <td>{{ $value['no_sp'] }}</td>
-                           <td>{{ $value['nama_sp'] }}</td>
-                           <td>{{ $value['stock'] }}</td>
-                           <td>{{ $value['status'] }}</td>
-                           <td>
-                              <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                              <div class="dropdown-menu dropdown-menu-right">
-                                 <button type="button" class="dropdown-item edit-sparepart" data-id="{{$value['id_sp']}}">Edit</button>
-                                 <button type="button" class="dropdown-item delete-sparepart" data-id="{{$value['id_sp']}}">Remove</button>
-                              </div>
-                           </td>
-                        </tr>
+                           <tr>
+                              <td>{{($key+1)}}</td>
+                              <td>{{ $value['kode_sparepart'] }}</td>
+                              <td>{{ $value['nama_sparepart'] }}</td>
+                              <td>Rp. {{ number_format($value['harga']) }}</td>
+                              <td>{{ $value['stock'] }}</td>
+                              <td>{{ $value['status'] }}</td>
+                              <td>{{ $value['keterangan'] }}</td>
+                              <td>
+                                 <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                 <div class="dropdown-menu dropdown-menu-right">
+                                    <button type="button" class="dropdown-item edit-sparepart" data-id="{{$value['id']}}">Edit</button>
+                                    <button type="button" class="dropdown-item delete-sparepart" data-id="{{$value['id']}}">Remove</button>
+                                 </div>
+                              </td>
+                           </tr>
                         @endforeach
                         </tbody>
                      </table>
@@ -117,7 +130,7 @@
 
    $(document).ready(function() {
       //  Edit post
-      $('.edit-sparepart').click(function() {
+      $(document).on('click', '.edit-sparepart', function(){
          var postId = $(this).data('id');
          $.ajax({
             url: 'sparepart/edit',
@@ -128,11 +141,13 @@
             },
             success: function(data) {
                // console.log(data)
-               $('#postId').val(data['id_sp'])
-               $('#nama_sp').val(data['nama_sp'])
-               $('#no_sp').val(data['no_sp'])
+               $('#postId').val(data['id'])
+               $('#nama_sparepart').val(data['nama_sparepart'])
+               $('#kode_sparepart').val(data['kode_sparepart'])
                $('#stock').val(data['stock'])
-               $('#status').val(data['status'])
+               $('#harga').val(data['harga'])
+               $('#status').val(data['status']).trigger('change')
+               $('#keterangan').val(data['keterangan'])
                $('#addSparepart').modal('show');
             },
             error: function(xhr, status, error) {
@@ -144,9 +159,11 @@
       $('#sparepart-add').submit(function(e) {
          e.preventDefault();
          var postId = $('#postId').val();
-         var no_sp = $('#no_sp').val();
-         var nama_sp = $('#nama_sp').val();
+         var kode_sparepart = $('#kode_sparepart').val();
+         var nama_sparepart = $('#nama_sparepart').val();
          var stock = $('#stock').val();
+         var harga = $('#harga').val();
+         var keterangan = $('#keterangan').val();
          var status = $('#status').val();
          var url = postId ? 'sparepart/update' : 'sparepart';
          var method = postId ? 'PUT' : 'POST';
@@ -156,9 +173,11 @@
             type: method,
             data: {
                id_sp: postId,
-               no_sp: no_sp,
-               nama_sp: nama_sp,
+               kode_sparepart: kode_sparepart,
+               nama_sparepart: nama_sparepart,
                stock: stock,
+               harga: harga,
+               keterangan: keterangan,
                status: status,
                _token: '{{ csrf_token() }}'
             },
@@ -181,7 +200,7 @@
          });
       });
       // Delete post
-      $('.delete-sparepart').click(function() {
+      $(document).on('click', '.delete-sparepart', function() {
          var postId = $(this).data('id');
          if (confirm('Are you sure you want to delete this post?')) {
                $.ajax({
@@ -202,10 +221,12 @@
 
       $('#addSparepart').on('hidden.bs.modal', function () {
          $('#postId').val('')
-         $('#no_sp').val('')
-         $('#nama_sp').val('')
+         $('#kode_sparepart').val('')
+         $('#nama_sparepart').val('')
          $('#stock').val('')
+         $('#harga').val('')
          $('#status').val('')
+         $('#keterangan').val('')
       });
    });
   </script>

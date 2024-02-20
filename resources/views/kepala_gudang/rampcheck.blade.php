@@ -40,8 +40,9 @@
                            <td>
                               <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                               <div class="dropdown-menu dropdown-menu-right">
-                                 <button type="button" class="dropdown-item">Edit</button>
-                                 <button type="button" class="dropdown-item">Remove</button>
+                                 <a href="{{'rampcheck/show/'.$value['id_rampcheck']}}" class="dropdown-item">View</a>
+                                 <a href="{{'rampcheck/edit/'.$value['id_rampcheck']}}" class="dropdown-item">Edit</a>
+                                 <button type="button" class="dropdown-item delete-armada" data-id="{{$value['id_rampcheck']}}">Delete</button>
                               </div>
                            </td>
                         </tr>
@@ -66,6 +67,26 @@
          [10, 25, 50, "All"]
       ]
    });
+
+   // Delete post
+   $('.delete-armada').click(function() {
+         var postId = $(this).data('id');
+         if (confirm('Apakah anda yakin untuk menghapus rampcheck?')) {
+            $.ajax({
+               url: 'rampcheck/delete/' + postId,
+               type: 'DELETE',
+               data: {
+                  _token: '{{ csrf_token() }}'
+               },
+               success: function(data) {
+                  location.reload();
+               },
+               error: function(xhr, status, error) {
+                  console.error('Error:', error);
+               }
+            });
+         }
+      });
 </script>
 @endsection
 

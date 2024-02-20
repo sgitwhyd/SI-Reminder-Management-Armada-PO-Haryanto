@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\M_armada;
+use App\Models\Armada;
 use Session;
 
 
@@ -14,10 +14,8 @@ class ArmadaController extends Controller
      */
     public function index()
     {
-        $list_armada = M_armada::all();
-        $jenis_trayek = M_armada::get_enum_values('master_armada', 'jenis_trayek');
+        $list_armada = Armada::all();
         $data = [
-            'jenis_trayek' => $jenis_trayek,
             'list_armada' => $list_armada,
         ];
         return view('kepala_gudang.armada', $data);
@@ -38,9 +36,9 @@ class ArmadaController extends Controller
     {
         if ($request->ajax()) {
             $isValid = $request->validate([
-                'no_polisi' => 'required|unique:master_armada',
-                'no_lambung' => 'required|unique:master_armada',
-                'no_stnk' => 'required|unique:master_armada',
+                'no_polisi' => 'required|unique:armadas',
+                'no_lambung' => 'required|unique:armadas',
+                'no_stnk' => 'required|unique:armadas',
                 'tahun' => 'required',
                 'trayek' => 'required',
                 'jenis_trayek' => 'required',
@@ -53,7 +51,7 @@ class ArmadaController extends Controller
                 ], 400);
             } else {
                 try {
-                    M_armada::create($request->all());
+                    Armada::create($request->all());
                     // return response()->json([
                     //     'success' => true,
                     //     'message'  => 'Armada berhasil ditambahkan.',
@@ -85,7 +83,7 @@ class ArmadaController extends Controller
     public function edit(Request $request)
     {
         if ($request->ajax()) {
-            $armada = M_armada::findOrFail($request->id);
+            $armada = Armada::findOrFail($request->id);
             return response()->json($armada);
         }
         return abort(404);
@@ -122,11 +120,8 @@ class ArmadaController extends Controller
                         'trayek' => $request->trayek,
                         'jenis_trayek' => $request->jenis_trayek,
                     ];
-                    M_armada::where('id_armada', $request->id_armada)->update($armada);
-                    // return response()->json([
-                    //     'success' => true,
-                    //     'message'  => 'Armada berhasil ditambahkan.',
-                    // ], 200);
+                    Armada::where('id', $request->id_armada)->update($armada);
+                
                     Session::flash('success', 'Armada berhasil diubah.');
                     return response()->json(['success' => true], 200);
                 }
@@ -145,7 +140,7 @@ class ArmadaController extends Controller
      */
     public function destroy($id)
     {
-        $armada = M_armada::findOrFail($id);
+        $armada = Armada::findOrFail($id);
         $armada->delete();
         Session::flash('success', 'Armada berhasil dihapus.');
         return response()->json(['success' => true], 200);

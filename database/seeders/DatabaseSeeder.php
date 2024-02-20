@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
-        Armada::factory()->count(10)->create();
-        Perawatan::factory()->count(10)->create();
-        Sparepart::factory()->count(10)->create();
-        Perbaikan::factory()->count(10)->create();
-        PerbaikanHasSparepart::factory()->count(10)->create();
+        Armada::factory()->count(18)->create();
+        Perawatan::factory()->count(18)->create();
+        Sparepart::factory()->count(18)->create();
+        Perbaikan::factory()->count(18)->create();
+        PerbaikanHasSparepart::factory()->count(18)->create();
 
         
     }

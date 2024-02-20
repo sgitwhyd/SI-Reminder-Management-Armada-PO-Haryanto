@@ -65,12 +65,13 @@ Route::middleware(['auth'])->prefix('kepala-gudang')->group(function () {
     Route::delete('perawatan/delete/{id}', [PerawatanController::class, 'destroy']);
 
     // rampcheck
-    // Route::get('/rampcheck', [RampcheckController::class, 'index']);
-    // Route::get('/rampcheck/add', [RampcheckController::class, 'create']);
-    // Route::post('/rampcheck', [RampcheckController::class,'store']);
-    // Route::post('/rampcheck/edit', [RampcheckController::class, 'edit']);
-    // Route::put('/rampcheck/update', [RampcheckController::class, 'update']);
-    // Route::delete('rampcheck/delete/{id}', [RampcheckController::class, 'destroy']);
+    Route::get('/rampcheck', [RampcheckController::class, 'index']);
+    Route::get('/rampcheck/add', [RampcheckController::class, 'create']);
+    Route::get('/rampcheck/show/{id}', [RampcheckController::class,'show']);
+    Route::post('/rampcheck', [RampcheckController::class,'store']);
+    Route::get('/rampcheck/edit/{id}', [RampcheckController::class, 'edit']);
+    Route::put('/rampcheck/update', [RampcheckController::class, 'update']);
+    Route::delete('rampcheck/delete/{id}', [RampcheckController::class, 'destroy']);
 
 });
 

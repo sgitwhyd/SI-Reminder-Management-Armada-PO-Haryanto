@@ -2,7 +2,7 @@
 @include('sidebar.menu_kepala_gudang')
 
 @section('content')
-           
+
    <div class="row justify-content-center">
       <div class="col-12">
          <h2 class="mb-2 page-title">Data Armada</h2>
@@ -49,9 +49,10 @@
                            <div class="form-group col-md-6">
                               <label for="jenis_trayek">Jenis Trayek</label>
                               <select class="form-control select-trayek" id="jenis_trayek" name="jenis_trayek" tabindex="-1">
-                                 @foreach ($jenis_trayek as $key => $value)
-                                    <option value="{{ $value }}">{{$value}}</option>
-                                 @endforeach
+                                 <option value="AKAP">AKAP</option>
+                                 <option value="AKDP">AKDP</option>
+                                 <option value="MPU">MPU</option>
+                                 <option value="PARIWISATA">PARIWISATA</option>
                               </select>
                            </div>
                         </div>
@@ -104,8 +105,8 @@
                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               </button>
                               <div class="dropdown-menu dropdown-menu-right">
-                                 <button type="button" class="dropdown-item edit-armada" data-id="{{$value['id_armada']}}">Edit</button>
-                                 <button type="button" class="dropdown-item delete-armada" data-id="{{$value['id_armada']}}">Remove</button>
+                                 <button type="button" class="dropdown-item edit-armada" data-id="{{$value['id']}}">Edit</button>
+                                 <button type="button" class="dropdown-item delete-armada" data-id="{{$value['id']}}">Remove</button>
                               </div>
                            </td>
                         </tr>
@@ -137,7 +138,7 @@
 
    $(document).ready(function() {
       //  Edit post
-      $('.edit-armada').click(function() {
+      $(document).on('click', '.edit-armada', function() {
          var postId = $(this).data('id');
          $.ajax({
             url: 'armada/edit',
@@ -147,8 +148,7 @@
                _token: '{{ csrf_token() }}'
             },
             success: function(data) {
-               // console.log(data)
-               $('#postId').val(data['id_armada'])
+               $('#postId').val(data['id'])
                $('#no_polisi').val(data['no_polisi'])
                $('#no_lambung').val(data['no_lambung'])
                $('#no_stnk').val(data['no_stnk'])
@@ -209,7 +209,7 @@
       });
 
       // Delete post
-      $('.delete-armada').click(function() {
+      $(document).on('click', '.delete-armada', function() {
          var postId = $(this).data('id');
          if (confirm('Apakah anda yakin untuk menghapus armada?')) {
             $.ajax({

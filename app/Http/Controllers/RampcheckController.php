@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\M_rampcheck;
+use App\Models\Rampcheck;
 use Illuminate\Support\Str;
 
 class RampcheckController extends Controller
@@ -14,7 +14,7 @@ class RampcheckController extends Controller
     public function index()
     {
         $data = [
-            'list_rampcheck' => M_rampcheck::all(),
+            'list_rampcheck' => Rampcheck::all(),
         ];
         return view('kepala_gudang.rampcheck', $data);
     }
@@ -98,7 +98,7 @@ class RampcheckController extends Controller
             'updated_at' => date('Y-m-d H:i:s'),
         ];
         try {
-            M_rampcheck::create($column);
+            Rampcheck::create($column);
             return redirect()->to('kepala-gudang/rampcheck')->with('success', 'Rampcheck berhasil ditambahkan.');
         }
         catch(Exception $e) {
@@ -109,32 +109,32 @@ class RampcheckController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        dd($id);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        dd($id);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        
     }
 }
