@@ -40,7 +40,7 @@
                            <td>
                               <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                               <div class="dropdown-menu dropdown-menu-right">
-                                 <a href="{{'rampcheck/show/'.$value['id_rampcheck']}}" class="dropdown-item">View</a>
+                                 <a href="#" class="dropdown-item">View</a>
                                  <a href="{{'rampcheck/edit/'.$value['id_rampcheck']}}" class="dropdown-item">Edit</a>
                                  <button type="button" class="dropdown-item delete-armada" data-id="{{$value['id_rampcheck']}}">Delete</button>
                               </div>

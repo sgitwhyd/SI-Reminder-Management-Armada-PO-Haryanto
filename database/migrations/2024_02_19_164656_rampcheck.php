@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('panel_led_dalam',50);
             $table->string('lampu_kabin',50);
             $table->string('klakson',50);
-            $table->string('konektor_panel_hidrolik',50);
+            $table->string('konektor_pintu_hidrolik',50);
             $table->string('handgrip',50);
             $table->string('tempat_sampah',50);
             $table->string('apar',50);

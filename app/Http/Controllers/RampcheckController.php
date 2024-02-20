@@ -49,14 +49,14 @@ class RampcheckController extends Controller
             $ttd_1 = $request->file('ttd_checker');
             $rd_name1 = Str::random(15); // random caracter generator
             $ext1 = $ttd_1->getClientOriginalExtension();
-            $fileName1 = time().'_'.$rd_name1.'.'.$ext1;
-            $ttd_checker = $ttd_1->storeAs('uploads', $fileName1); // Store file in 'storage/app/uploads' directory
+            $ttd_checker = time().'_'.$rd_name1.'.'.$ext1;
+            $file_path1 = $ttd_1->storeAs('public/uploads', $ttd_checker); // Store file in 'storage/app/uploads' directory
             // ttd_pengemudi
             $ttd_2 = $request->file('ttd_pengemudi');
             $rd_name2 = Str::random(15); // random caracter generator
             $ext2 = $ttd_2->getClientOriginalExtension();
-            $fileName2 = time().'_'.$rd_name2.'.'.$ext2;
-            $ttd_pengemudi = $ttd_2->storeAs('uploads', $fileName2); // Store file in 'storage/app/uploads' directory
+            $ttd_pengemudi = time().'_'.$rd_name2.'.'.$ext2;
+            $file_path2 = $ttd_2->storeAs('public/uploads', $ttd_pengemudi); // Store file in 'storage/app/uploads' directory
         }
 
         $column = [
@@ -70,7 +70,7 @@ class RampcheckController extends Controller
             'panel_led_dalam' => isset($request->pld_ada) ? 'ADA' : 'TIDAK ADA',
             'lampu_kabin' => isset($request->lampu_kabin_ada) ? 'ADA' : 'TIDAK ADA',
             'klakson' => isset($request->klakson_ada) ? 'ADA' : 'TIDAK ADA',
-            'konektor_panel_hidrolik' => isset($request->konektor_ph_ada) ? 'ADA' : 'TIDAK ADA',
+            'konektor_pintu_hidrolik' => isset($request->konektor_ph_ada) ? 'ADA' : 'TIDAK ADA',
             'handgrip' => isset($request->handgrip_ada) ? 'ADA' : 'TIDAK',
             'tempat_sampah' => isset($request->tempat_sampah_ada) ? 'ADA' : 'TIDAK ADA',
             'apar' => isset($request->apar_ada) ? 'ADA' : 'TIDAK ADA',
@@ -84,7 +84,7 @@ class RampcheckController extends Controller
             'lampu_senja' => isset($request->lampu_senja_ada) ? 'ADA' : 'TIDAK ADA',
             'wiper_washer' => isset($request->wiper_washer_ada) ? 'ADA' : 'TIDAK ADA',
             'spion' => isset($request->spion_ada) ? 'ADA' : 'TIDAK ADA',
-            'lampu_mundur' => isset($request->lampu_mundur) ? 'ADA' : 'TIDAK ADA',
+            'lampu_mundur' => isset($request->lampu_mundur_ada) ? 'ADA' : 'TIDAK ADA',
             'lampu_rem' => isset($request->lampu_rem_ada) ? 'ADA' : 'TIDAK',
             'lampu_plat_nopol' => isset($request->lampu_plat_nopol_ada) ? 'ADA' : 'TIDAK ADA',
             'dongkrak' => isset($request->dongkrak_ada)? 'ADA' : 'TIDAK ADA',
@@ -111,7 +111,7 @@ class RampcheckController extends Controller
      */
     public function show($id)
     {
-        dd($id);
+        //
     }
 
     /**
@@ -119,7 +119,10 @@ class RampcheckController extends Controller
      */
     public function edit($id)
     {
-        dd($id);
+        $data = [
+            'rampcheck' => Rampcheck::findOrFail($id),
+        ];
+        return view('kepala_gudang/edit-rampcheck', $data);
     }
 
     /**
@@ -135,6 +138,6 @@ class RampcheckController extends Controller
      */
     public function destroy($id)
     {
-        
+        dd($id);
     }
 }
