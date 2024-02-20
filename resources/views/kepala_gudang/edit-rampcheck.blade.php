@@ -7,8 +7,10 @@
       <h2 class="mb-2 page-title">Edit Form Rampcheck</h2>
       <p class="card-text">Mencakup data pengecekan sebelum keberangkatan</p>
       <a href="{{ '/kepala-gudang/rampcheck' }}" class="btn mb-2 btn-secondary"><i class="fe fe-chevron-left fe-18"></i> Kembali</a>
-      <form action="{{ '/kepala-gudang/update'}}" method="put" enctype="multipart/form-data">
+      <form action="{{ '/kepala-gudang/rampcheck/update'}}" method="post" enctype="multipart/form-data">
          @csrf
+         @method('PUT')
+         <input type="hidden" name="id_rampcheck" id="id_rampcheck">
          <div class="row my-4">
             <div class="col-md-12">
                <div class="card shadow">
@@ -406,20 +408,20 @@
                   <div class="card-body">
                      <div class="form-group mb-3">
                         <label for="catatan_rampcheck">Catatan</label>
-                        <textarea class="form-control" id="catatan_rampcheck" name="catatan_rampcheck" placeholder="Catatan dalam pengecekan" rows="5"></textarea>
+                        <textarea class="form-control" id="catatan_rampcheck" name="catatan_rampcheck" placeholder="Catatan dalam pengecekan" rows="5">{{$rampcheck['catatan_rampcheck']}}</textarea>
                      </div>
                      <div class="form-row">
                         <div class="form-group col-md-6">
                            <label for="ttd_checker">Tanta tangan checker</label>
                            <div class="custom-file mb-3">
-                              <input type="file" class="custom-file-input" id="ttd_checker" name="ttd_checker" required="">
+                              <input type="file" class="custom-file-input" id="ttd_checker" name="ttd_checker">
                               <label class="custom-file-label" for="ttd_checker">Choose file...</label>
                            </div>
                         </div>
                         <div class="form-group col-md-6">
                            <label for="ttd_checker">Tanta tangan pengemudi</label>
                            <div class="custom-file mb-3">
-                              <input type="file" class="custom-file-input" id="ttd_pengemudi" name="ttd_pengemudi" required="">
+                              <input type="file" class="custom-file-input" id="ttd_pengemudi" name="ttd_pengemudi">
                               <label class="custom-file-label" for="ttd_pengemudi">Choose file...</label>
                            </div>
                         </div>
@@ -453,30 +455,31 @@
       
       });
       console.log('test_check_all');
+      $('#id_rampcheck').val("{{ $rampcheck['id_rampcheck']}}");
       if ("{{ $rampcheck['panel_led_dalam']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['lampu_kabin']}}" == 'ADA') $('#lampu_kabin').prop('checked', true);
-      if ("{{ $rampcheck['klakson']}}" == 'ADA') $('#klakson').prop('checked', true);
-      if ("{{ $rampcheck['konektor_panel_hidrolik']}}" == 'ADA') $('#kn_hidrolik').prop('checked', true);
-      if ("{{ $rampcheck['handgrip']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['tempat_sampah']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['apar']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['palu_darurat']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['pjk']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['ban']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['ac']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['panel_led_luar']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['lampu_utama']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['lampu_sein']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['lampu_senja']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['wiper_washer']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['spion']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['lampu_mundur']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['lampu_rem']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['lampu_plat_nopol']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['dongkrak']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['pembuka_roda']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['segitiga_pengaman']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-      if ("{{ $rampcheck['ban_cadangan']}}" == 'ADA') $('#pld_ada').prop('checked', true);
+      if ("{{ $rampcheck['lampu_kabin']}}" == 'ADA') $('#lampu_kabin_ada').prop('checked', true);
+      if ("{{ $rampcheck['klakson']}}" == 'ADA') $('#klakson_ada').prop('checked', true);
+      if ("{{ $rampcheck['konektor_pintu_hidrolik']}}" == 'ADA') $('#konektor_ph_ada').prop('checked', true);
+      if ("{{ $rampcheck['handgrip']}}" == 'ADA') $('#handgrip_ada').prop('checked', true);
+      if ("{{ $rampcheck['tempat_sampah']}}" == 'ADA') $('#tempat_sampah_ada').prop('checked', true);
+      if ("{{ $rampcheck['apar']}}" == 'ADA') $('#apar_ada').prop('checked', true);
+      if ("{{ $rampcheck['palu_darurat']}}" == 'ADA') $('#palu_darurat_ada').prop('checked', true);
+      if ("{{ $rampcheck['pjk']}}" == 'ADA') $('#pjk_ada').prop('checked', true);
+      if ("{{ $rampcheck['ban']}}" == 'ADA') $('#ban_ada').prop('checked', true);
+      if ("{{ $rampcheck['ac']}}" == 'ADA') $('#ac_ada').prop('checked', true);
+      if ("{{ $rampcheck['panel_led_luar']}}" == 'ADA') $('#panel_led_luar_ada').prop('checked', true);
+      if ("{{ $rampcheck['lampu_utama']}}" == 'ADA') $('#lampu_utama_ada').prop('checked', true);
+      if ("{{ $rampcheck['lampu_sein']}}" == 'ADA') $('#lampu_sein_ada').prop('checked', true);
+      if ("{{ $rampcheck['lampu_senja']}}" == 'ADA') $('#lampu_senja_ada').prop('checked', true);
+      if ("{{ $rampcheck['wiper_washer']}}" == 'ADA') $('#wiper_washer_ada').prop('checked', true);
+      if ("{{ $rampcheck['spion']}}" == 'ADA') $('#spion_ada').prop('checked', true);
+      if ("{{ $rampcheck['lampu_mundur']}}" == 'ADA') $('#lampu_mundur_ada').prop('checked', true);
+      if ("{{ $rampcheck['lampu_rem']}}" == 'ADA') $('#lampu_rem_ada').prop('checked', true);
+      if ("{{ $rampcheck['lampu_plat_nopol']}}" == 'ADA') $('#lampu_plat_nopol_ada').prop('checked', true);
+      if ("{{ $rampcheck['dongkrak']}}" == 'ADA') $('#dongkrak_ada').prop('checked', true);
+      if ("{{ $rampcheck['pembuka_roda']}}" == 'ADA') $('#pembuka_roda_ada').prop('checked', true);
+      if ("{{ $rampcheck['segitiga_pengaman']}}" == 'ADA') $('#segitiga_pengaman_ada').prop('checked', true);
+      if ("{{ $rampcheck['ban_cadangan']}}" == 'ADA') $('#ban_cadangan_ada').prop('checked', true);
    });
 </script>
 @endsection

@@ -17,7 +17,7 @@
       </div>
       <ul class="navbar-nav flex-fill w-100 mb-2">
          <li class="nav-item w-100">
-            <a class="nav-link" href="{{ 'dashboard' }}">
+            <a class="nav-link" href="{{ '/kepala-gudang/dashboard' }}">
                <i class="fe fe-calendar fe-16"></i>
                <span class="ml-3 item-text">Dashboard</span>
             </a>
@@ -28,19 +28,19 @@
       </p>
       <ul class="navbar-nav flex-fill w-100 mb-2">
          <li class="nav-item w-100">
-            <a class="nav-link" href="{{ 'armada' }}">
+            <a class="nav-link" href="{{ '/kepala-gudang/armada' }}">
                <i class="fe fe-layers fe-16"></i>
                <span class="ml-3 item-text">Armada</span>
             </a>
          </li>
          <li class="nav-item w-100">
-            <a class="nav-link" href="{{ 'sparepart' }}">
+            <a class="nav-link" href="{{ '/kepala-gudang/sparepart' }}">
                <i class="fe fe-layers fe-16"></i>
                <span class="ml-3 item-text">Sparepart</span>
             </a>
          </li>
          <li class="nav-item w-100">
-            <a class="nav-link" href="{{ 'user' }}">
+            <a class="nav-link" href="{{ '/kepala-gudang/user' }}">
                <i class="fe fe-layers fe-16"></i>
                <span class="ml-3 item-text">User</span>
             </a>
@@ -57,13 +57,13 @@
             </a>
          </li>
          <li class="nav-item w-100">
-            <a class="nav-link" href="{{ 'perawatan' }}">
+            <a class="nav-link" href="{{ '/kepala-gudang/perawatan' }}">
                <i class="fe fe-calendar fe-16"></i>
                <span class="ml-3 item-text">Perawatan</span>
             </a>
          </li>
          <li class="nav-item w-100">
-            <a class="nav-link" href="{{ 'rampcheck' }}">
+            <a class="nav-link" href="{{ '/kepala-gudang/rampcheck' }}">
                <i class="fe fe-calendar fe-16"></i>
                <span class="ml-3 item-text">Rampcheck</span>
             </a>
