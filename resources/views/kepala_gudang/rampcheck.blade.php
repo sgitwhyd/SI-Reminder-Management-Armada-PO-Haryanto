@@ -42,7 +42,7 @@
                               <div class="dropdown-menu dropdown-menu-right">
                                  <a href="#" class="dropdown-item">View</a>
                                  <a href="{{'rampcheck/edit/'.$value['id_rampcheck']}}" class="dropdown-item">Edit</a>
-                                 <button type="button" class="dropdown-item delete-armada" data-id="{{$value['id_rampcheck']}}">Delete</button>
+                                 <button type="button" class="dropdown-item delete-rampcheck" data-id="{{$value['id_rampcheck']}}">Delete</button>
                               </div>
                            </td>
                         </tr>
@@ -68,8 +68,9 @@
       ]
    });
 
+   $(document).ready(function(){
    // Delete post
-   $('.delete-armada').click(function() {
+      $(document).on('click', '.delete-rampcheck', function() {
          var postId = $(this).data('id');
          if (confirm('Apakah anda yakin untuk menghapus rampcheck?')) {
             $.ajax({
@@ -87,6 +88,9 @@
             });
          }
       });
+
+   })
+   
 </script>
 @endsection
 
