@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Rampcheck;
 use Illuminate\Support\Str;
 use Session;
+use PDF;
 
 class RampcheckController extends Controller
 {
@@ -220,4 +221,18 @@ class RampcheckController extends Controller
         Session::flash('success', 'Rampcheck berhasil dihapus.');
         return response()->json(['success' => true], 200);
     }
+
+    public function rampcheckPDF($id)
+    {
+        $rampchcek = Rampcheck::findOrFail($id);
+        // printout
+        $data = [
+            'rampcheck' => $rampchcek,
+        ];
+
+        $pdf = PDF::loadView('print-templates/rampcheck-pdf', $data);
+        return $pdf->stream('Rampcheck.pdf');
+        
+    }
+
 }

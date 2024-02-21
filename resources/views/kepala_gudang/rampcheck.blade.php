@@ -7,6 +7,7 @@
       <h2 class="mb-2 page-title">Data Rampcheck</h2>
       <p class="card-text">Mencakup data pengecekan sebelum keberangkatan</p>
       <a href="{{ 'rampcheck/add' }}" class="btn mb-2 btn-primary" ><i class="fe fe-plus"></i> Tambah</a>
+      <a href="{{ 'rampcheck/pdf/1' }}" class="btn mb-2 btn-warning" ><i class="fe fe-file"></i> Export PDF</a>
       <div id="form-notif">
          @if(session('success'))
          <div class="alert alert-success">

@@ -72,6 +72,7 @@ Route::middleware(['auth'])->prefix('kepala-gudang')->group(function () {
     Route::get('/rampcheck/edit/{id}', [RampcheckController::class, 'edit']);
     Route::put('/rampcheck/update', [RampcheckController::class, 'update']);
     Route::delete('rampcheck/delete/{id}', [RampcheckController::class, 'destroy']);
+    Route::get('/rampcheck/pdf/{id}', [RampcheckController::class, 'rampcheckPDF']);
 
 });
 
