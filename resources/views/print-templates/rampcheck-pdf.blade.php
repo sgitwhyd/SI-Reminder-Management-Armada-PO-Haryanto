@@ -118,144 +118,144 @@
       <td class="font-semibold">Panel LED dalam</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['panel_led_dalam']; ?>
       </td>
       <td class="font-semibold">Lampu Kabin</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['lampu_kabin']; ?>
       </td>
     </tr>
     <tr>
       <td class="font-semibold">Klakson</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['klakson']; ?>
       </td>
       <td class="font-semibold">Konektor Pintu Hidrolik</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['konektor_pintu_hidrolik']; ?>
       </td>
     </tr>
     <tr>
       <td class="font-semibold">Handgrip</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['handgrip']; ?>
       </td>
       <td class="font-semibold">Tempat Sampah</td>
       <td>: </td>
       <td>
-        TIDAK ADA
+        <?= $rampcheck['tempat_sampah']; ?>
       </td>
     </tr>
     <tr>
       <td class="font-semibold">Pemadam/APAR</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['apar']; ?>
       </td>
       <td class="font-semibold">Palu Darurat</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['palu_darurat']; ?>
       </td>
     </tr>
     <tr>
       <td class="font-semibold">PJK</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['pjk']; ?>
       </td>
       <td class="font-semibold">Ban/Roda</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['ban']; ?>
       </td>
     </tr>
     <tr>
       <td class="font-semibold">AC</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['ac']; ?>
       </td>
       <td class="font-semibold">Panel LED Luar</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['panel_led_luar']; ?>
       </td>
     </tr>
     <tr>
       <td class="font-semibold">Lampu Utama</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['lampu_utama']; ?>
       </td>
       <td class="font-semibold">Lampu Sein</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['lampu_sein']; ?>
       </td>
     </tr>
     <tr>
       <td class="font-semibold">Lampu Senja</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['lampu_senja']; ?>
       </td>
       <td class="font-semibold">Wiper dan Washer</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['wiper_washer']; ?>
       </td>
     </tr>
     <tr>
       <td class="font-semibold">Spion</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['spion']; ?>
       </td>
       <td class="font-semibold">Lampu Mundur</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['lampu_mundur']; ?>
       </td>
     </tr>
     <tr>
       <td class="font-semibold">Lampu Rem</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['lampu_rem']; ?>
       </td>
       <td class="font-semibold">Lampu Plat Nopol</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['lampu_plat_nopol']; ?>
       </td>
     </tr>
     <tr>
       <td class="font-semibold">Dongkrak</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['dongkrak']; ?>
       </td>
       <td class="font-semibold">Pembuka Roda</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['pembuka_roda']; ?>
       </td>
     </tr>
     <tr>
       <td class="font-semibold">Segitiga Pengaman</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['segitiga_pengaman']; ?>
       </td>
       <td class="font-semibold">Ban Cadangan</td>
       <td>: </td>
       <td>
-        ADA
+        <?= $rampcheck['ban_cadangan']; ?>
       </td>
     </tr>
   </table>
