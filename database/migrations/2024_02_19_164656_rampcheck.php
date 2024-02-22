@@ -46,7 +46,7 @@ return new class extends Migration
             $table->string('ban_cadangan',50);
             $table->string('catatan_rampcheck',100)->nullable();
             $table->string('ttd_checker',255);
-            $table->string('ttd_pengemudi',255);
+            $table->string('ttd_kepala_gudang',255);
             $table->timestamps();
         });
 

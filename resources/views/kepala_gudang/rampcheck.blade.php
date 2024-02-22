@@ -19,7 +19,7 @@
          <div class="col-md-12">
             <div class="card shadow">
                <div class="card-body">
-                  <table class="table datatables" id="dataPerawatan">
+                  <table class="table datatables" id="dataRampcheck">
                      <thead>
                      <tr>
                         <th>#</th>
@@ -41,7 +41,7 @@
                            <td>
                               <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                               <div class="dropdown-menu dropdown-menu-right">
-                                 <a href="#" class="dropdown-item">View</a>
+                                 <a href="{{ 'rampcheck/pdf/'.$value['id_rampcheck'] }}" class="dropdown-item">View</a>
                                  <a href="{{'rampcheck/edit/'.$value['id_rampcheck']}}" class="dropdown-item">Edit</a>
                                  <button type="button" class="dropdown-item delete-rampcheck" data-id="{{$value['id_rampcheck']}}">Delete</button>
                               </div>
@@ -61,7 +61,7 @@
 
 @section('script')
 <script>
-   $('#dataPerawatan').DataTable({
+   $('#dataRampcheck').DataTable({
       autoWidth: true,
       "lengthMenu": [
          [10, 25, 50, -1],

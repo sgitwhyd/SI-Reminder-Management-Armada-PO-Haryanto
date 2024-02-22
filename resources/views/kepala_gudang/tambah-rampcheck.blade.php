@@ -410,17 +410,17 @@
                      </div>
                      <div class="form-row">
                         <div class="form-group col-md-6">
-                           <label for="ttd_checker">Tanta tangan checker</label>
+                           <label for="ttd_checker">Tertanda Checker</label>
                            <div class="custom-file mb-3">
                               <input type="file" class="custom-file-input" id="ttd_checker" name="ttd_checker" required="">
                               <label class="custom-file-label" for="ttd_checker">Choose file...</label>
                            </div>
                         </div>
                         <div class="form-group col-md-6">
-                           <label for="ttd_checker">Tanta tangan pengemudi</label>
+                           <label for="ttd_kepala_gudang">Tertanda Kepala Gudang</label>
                            <div class="custom-file mb-3">
-                              <input type="file" class="custom-file-input" id="ttd_pengemudi" name="ttd_pengemudi" required="">
-                              <label class="custom-file-label" for="ttd_pengemudi">Choose file...</label>
+                              <input type="file" class="custom-file-input" id="ttd_kepala_gudang" name="ttd_kepala_gudang" required="">
+                              <label class="custom-file-label" for="ttd_kepala_gudang">Choose file...</label>
                            </div>
                         </div>
                      </div>

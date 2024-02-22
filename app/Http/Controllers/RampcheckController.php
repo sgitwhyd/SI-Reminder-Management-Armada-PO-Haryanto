@@ -43,7 +43,7 @@ class RampcheckController extends Controller
             'posisi_kilometer' => 'required|numeric',
             'posisi_bbm' => 'required',
             'ttd_checker' => 'required|file|max:1024',
-            'ttd_pengemudi' => 'required|file|max:1024',
+            'ttd_kepala_gudang' => 'required|file|max:1024',
         ]);
 
         if ($request->hasFile('ttd_checker')) {
@@ -55,13 +55,13 @@ class RampcheckController extends Controller
             $file_path1 = $ttd_1->storeAs('public/uploads', $ttd_checker); // Store file in 'storage/app/uploads' directory
         }
 
-        if ($request->hasFile('ttd_pengemudi')) {
-            // ttd_pengemudi
-            $ttd_2 = $request->file('ttd_pengemudi');
+        if ($request->hasFile('ttd_kepala_gudang')) {
+            // ttd_kepala_gudang
+            $ttd_2 = $request->file('ttd_kepala_gudang');
             $rd_name2 = Str::random(15); // random caracter generator
             $ext2 = $ttd_2->getClientOriginalExtension();
-            $ttd_pengemudi = time().'_'.$rd_name2.'.'.$ext2;
-            $file_path2 = $ttd_2->storeAs('public/uploads', $ttd_pengemudi); // Store file in 'storage/app/uploads' directory
+            $ttd_kepala_gudang = time().'_'.$rd_name2.'.'.$ext2;
+            $file_path2 = $ttd_2->storeAs('public/uploads', $ttd_kepala_gudang); // Store file in 'storage/app/uploads' directory
         }
 
         $column = [
@@ -98,7 +98,7 @@ class RampcheckController extends Controller
             'ban_cadangan' => isset($request->ban_cadangan_ada)? 'ADA' : 'TIDAK ADA',
             'catatan_rampcheck' => $request->catatan_rampcheck,
             'ttd_checker' => $ttd_checker,
-            'ttd_pengemudi' => $ttd_pengemudi,
+            'ttd_kepala_gudang' => $ttd_kepala_gudang,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
@@ -144,7 +144,7 @@ class RampcheckController extends Controller
             'posisi_kilometer' => 'required|numeric',
             'posisi_bbm' => 'required',
             'ttd_checker' => 'file|max:1024',
-            'ttd_pengemudi' => 'file|max:1024',
+            'ttd_kepala_gudang' => 'file|max:1024',
         ]);
 
         $column = [
@@ -192,13 +192,13 @@ class RampcheckController extends Controller
             $file_path1 = $ttd_1->storeAs('public/uploads', $ttd_checker); // Store file in 'storage/app/uploads' directory
             $column['ttd_checker'] = $ttd_checker;
         }
-        if ($request->hasFile('ttd_pengemudi')) {
-            $ttd_2 = $request->file('ttd_pengemudi');
+        if ($request->hasFile('ttd_kepala_gudang')) {
+            $ttd_2 = $request->file('ttd_kepala_gudang');
             $rd_name2 = Str::random(15); // random caracter generator
             $ext2 = $ttd_2->getClientOriginalExtension();
-            $ttd_pengemudi = time().'_'.$rd_name2.'.'.$ext2;
-            $file_path2 = $ttd_2->storeAs('public/uploads', $ttd_pengemudi); // Store file in 'storage/app/uploads' directory
-            $column['ttd_pengemudi'] = $ttd_pengemudi;
+            $ttd_kepala_gudang = time().'_'.$rd_name2.'.'.$ext2;
+            $file_path2 = $ttd_2->storeAs('public/uploads', $ttd_kepala_gudang); // Store file in 'storage/app/uploads' directory
+            $column['ttd_kepala_gudang'] = $ttd_kepala_gudang;
         }
 
         try {
@@ -230,6 +230,7 @@ class RampcheckController extends Controller
             'rampcheck' => $rampchcek,
         ];
 
+        // $pdf = PDF::load_html('print-templates/rampcheck-pdf');
         $pdf = PDF::loadView('print-templates/rampcheck-pdf', $data);
         return $pdf->stream('Rampcheck.pdf');
         

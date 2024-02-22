@@ -51,9 +51,10 @@
   }
 
   .signature-frame img {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
   }
+
   </style>
 </head>
 <body>
@@ -63,25 +64,25 @@
   <table>
     <tr>
       <td width="50%" class="font-semibold">Checker</td>
-      <td>: name</td>
+      <td>: <?= $rampcheck['checker']; ?></td>
     </tr>
     <tr>
       <td width="50%" class="font-semibold">Hari / Tanggal</td>
-      <td>: name</td>
+      <td>: <?= date('d-m-Y', strtotime($rampcheck['tgl_rampcheck'])); ?></td>
     </tr>
     <tr>
       <td width="50%" class="font-semibold">
         Waktu
       </td>
-      <td>: name</td>
+      <td>: <?= $rampcheck['waktu_rampcheck']; ?></td>
     </tr>
     <tr>
       <td width="50%" class="font-semibold">No. Polisi</td>
-      <td>: name</td>
+      <td>: <?= $rampcheck['no_polisi']; ?></td>
     </tr>
     <tr>
       <td width="50%" class="font-semibold">No. Lambung</td>
-      <td>: name</td>
+      <td>: <?= $rampcheck['no_lambung']; ?></td>
     </tr>
   </table>
   <div class="separator">
@@ -90,284 +91,175 @@
   <table>
     <tr>
       <td width="50%" class="font-semibold">Posisi Kilometer</td>
-      <td>: 123.000</td>
+      <td>: <?= $rampcheck['posisi_kilometer']; ?></td>
     </tr>
     <tr>
       <td width="50%" class="font-semibold">
         Posisi BBM
       </td>
-      <td>: Penuh</td>
+      <td>: <?= $rampcheck['posisi_bbm']; ?></td>
     </tr>
-
   </table>
   <div class="separator">
     <h2 class="text-center">Kondisi Kendaraan</h2>
   </div>
   <table>
+    <thead>
+      <tr>
+        <th width="30%"></th>
+        <th width="2%"></th>
+        <th></th>
+        <th width="30%"></th>
+        <th width="2%"></th>
+        <th></th>
+      </tr>
+    </thead>
     <tr>
       <td class="font-semibold">Panel LED dalam</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
-    </tr>
-    <tr>
       <td class="font-semibold">Lampu Kabin</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
     </tr>
     <tr>
       <td class="font-semibold">Klakson</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
-    </tr>
-    <tr>
-      <td class="font-semibold">
-        Konektor Pinto hidrolin
-      </td>
+      <td class="font-semibold">Konektor Pintu Hidrolik</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
     </tr>
     <tr>
       <td class="font-semibold">Handgrip</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
-    </tr>
-    <tr>
       <td class="font-semibold">Tempat Sampah</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        TIDAK ADA
       </td>
     </tr>
     <tr>
-      <td class="font-semibold">Pemadam / Apar (2)</td>
+      <td class="font-semibold">Pemadam/APAR</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
-    </tr>
-    <tr>
       <td class="font-semibold">Palu Darurat</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
     </tr>
     <tr>
       <td class="font-semibold">PJK</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
-    </tr>
-    <tr>
       <td class="font-semibold">Ban/Roda</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
     </tr>
     <tr>
       <td class="font-semibold">AC</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
-    </tr>
-    <tr>
-      <td class="font-semibold">Panel LED luar</td>
+      <td class="font-semibold">Panel LED Luar</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
     </tr>
     <tr>
       <td class="font-semibold">Lampu Utama</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
-    </tr>
-    <tr>
       <td class="font-semibold">Lampu Sein</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
     </tr>
     <tr>
       <td class="font-semibold">Lampu Senja</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
-    </tr>
-    <tr>
       <td class="font-semibold">Wiper dan Washer</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
     </tr>
     <tr>
       <td class="font-semibold">Spion</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
-    </tr>
-    <tr>
       <td class="font-semibold">Lampu Mundur</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
     </tr>
     <tr>
       <td class="font-semibold">Lampu Rem</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
+      </td>
+      <td class="font-semibold">Lampu Plat Nopol</td>
+      <td>: </td>
+      <td>
+        ADA
       </td>
     </tr>
     <tr>
-      <td class="font-semibold">Lampu Plat Nomor</td>
+      <td class="font-semibold">Dongkrak</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
-    </tr>
-    <tr>
-      <td class="font-semibold">Lampu Dongkrak</td>
-      <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
-      </td>
-    </tr>
-    <tr>
       <td class="font-semibold">Pembuka Roda</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
     </tr>
     <tr>
       <td class="font-semibold">Segitiga Pengaman</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
-    </tr>
-    <tr>
       <td class="font-semibold">Ban Cadangan</td>
+      <td>: </td>
       <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
-      </td>
-    </tr>
-    <tr>
-      <td class="font-semibold">Lampu Sein</td>
-      <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
-      </td>
-    </tr>
-    <tr>
-      <td class="font-semibold">Lampu Sein</td>
-      <td>
-        :
-        <input type="checkbox" name="panel_led" checked value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
-      </td>
-    </tr>
-    <tr>
-      <td class="font-semibold">Lampu Sein</td>
-      <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
-      </td>
-    </tr>
-    <tr>
-      <td class="font-semibold">Lampu Sein</td>
-      <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
-      </td>
-    </tr>
-    <tr>
-      <td class="font-semibold">Lampu Sein</td>
-      <td>
-        :
-        <input type="checkbox" name="panel_led" value="A/TA" /> A/TA
-        <input type="checkbox" name="panel_led" value="B/TB" />
-        B/TB
+        ADA
       </td>
     </tr>
   </table>
+  <br><hr>
   <table>
     <tr>
       <td>
@@ -377,25 +269,23 @@
     </tr>
     <tr>
       <td width="100%">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Quae quidem ea sunt fugiat autem doloribus praesentium
-        saepe, aliquid odio explicabo nihil, reprehenderit dicta
-        consequuntur rem. Excepturi sunt dolores modi recusandae.
+        <?= $rampcheck['catatan_rampcheck']; ?>
       </td>
     </tr>
   </table>
+  <br><hr>
   <table>
     <tr>
       <td width="50%">
         <div class="signature-frame">
           <p class="text-center">Tertanda Checker</p>
-          <img src="https://picsum.photos/100" alt="" />
+          <img src="../public/storage/uploads/<?= $rampcheck['ttd_checker']; ?>" alt="" />
         </div>
       </td>
       <td>
         <div class="signature-frame">
           <p class="text-center">Tertanda Kepala Gudang</p>
-          <img src="https://picsum.photos/100" alt="" />
+          <img src="../public/storage/uploads/<?= $rampcheck['ttd_kepala_gudang']; ?>" alt="" />
         </div>
       </td>
     </tr>
