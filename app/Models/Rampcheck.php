@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Rampcheck extends Model
 {
     use HasFactory;
-    protected $table = 'rampcheck';
+    protected $table = 'rampchecks';
     protected $primaryKey = 'id_rampcheck';
     protected $guarded = [];
 }

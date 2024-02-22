@@ -17,19 +17,18 @@
             <h2 class="my-3">Reset Password</h2>
           </div>
           <p class="text-muted">Enter your email address and we'll send you an email with instructions to reset your password</p>
-         <div class="form-group">
+          <div class="form-group">
             <label for="inputEmail" class="sr-only">Email address</label>
             <input type="email" id="inputEmail" class="form-control form-control-lg" placeholder="Email address" required="" autofocus="">
-         </div>
-         <button class="btn btn-lg btn-primary btn-block" type="submit">Reset Password</button>
-         <div class="text-center">
-            <p class="mt-3 mb-3"><a href="{{ '/register' }}">Back to login</a></p>
-         </div>
-         <p class="mt-5 mb-3 text-muted text-center">Copyright &copy <script>document.write(new Date().getFullYear())</script></p>
-         </form>
+          </div>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Reset Password</button>
+          <div class="text-center">
+            <p class="mt-3 mb-3"><a href="{{ '/login' }}">Back to login</a></p>
+          </div>
+          <p class="mt-5 mb-3 text-muted text-center">Copyright &copy <script>document.write(new Date().getFullYear())</script></p>
+        </form>
       </div>
     </div>
-
 @endsection
 
 @section('script')

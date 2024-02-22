@@ -21,9 +21,7 @@ use App\Http\Controllers\RampcheckController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () { return redirect('login'); });
 
 // auth
 Route::get('/login', [AuthController::class, 'login'])->name('login');

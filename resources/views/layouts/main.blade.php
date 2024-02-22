@@ -196,7 +196,7 @@
     <script src="{{url('js/quill.min.js')}}"></script>
     <script src="{{url('js/jquery.dataTables.min.js')}}"></script>
     <script src="{{url('js/dataTables.bootstrap4.min.js')}}"></script>
-    <script>
+    {{-- <script>
       $('.select2').select2(
       {
         theme: 'bootstrap4',
@@ -397,7 +397,7 @@
             console.log('Upload complete! We have uploaded these files:', result.successful)
          });
       }
-    </script>
+    </script> --}}
     <script src="{{url('js/apps.js')}}"></script>
     @yield('script')
     <!-- Global site tag (gtag.js) - Google Analytics -->

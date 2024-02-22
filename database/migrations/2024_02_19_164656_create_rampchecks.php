@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rampcheck', function (Blueprint $table) {
+        Schema::create('rampchecks', function (Blueprint $table) {
             $table->bigIncrements('id_rampcheck');
             $table->string('checker',50);
             $table->string('tgl_rampcheck',50);
@@ -57,6 +57,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rampcheck');
+        Schema::dropIfExists('rampchecks');
     }
 };
