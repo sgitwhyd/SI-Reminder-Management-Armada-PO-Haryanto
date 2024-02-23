@@ -1,6 +1,7 @@
 ### remaining
-
-
+- tambah column status(lulus, tidak lulus, menunggu konfirmasi) rampcheck
+- kp gudang konfirmasi only
+- rampchcek di crew
 
 ### prosess
 - rampcheck
