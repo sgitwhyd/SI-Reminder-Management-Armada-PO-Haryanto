@@ -19,7 +19,7 @@ class Users extends Seeder
                 'username' => 'Johan',
                 'full_name' => 'Johan Saputra',
                 'password' => Hash::make('johan123'),
-                'role' => 'KEPALA GUDANG',
+                'role' => 'KEPALA-GUDANG',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
