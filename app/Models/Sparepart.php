@@ -13,6 +13,6 @@ class Sparepart extends Model
 
     public function perbaikans()
     {
-        return $this->belongsToMany(Perbaikan::class, 'perbaikan_has_spareparts', 'sparepart_id', 'perbaikan_id');
+        return $this->belongsToMany(Perbaikan::class, 'perbaikan_has_spareparts', 'sparepart_id', 'perbaikan_id')->withPivot('createdAt', 'updatedAt');
     }
 }

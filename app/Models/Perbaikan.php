@@ -12,7 +12,7 @@ class Perbaikan extends Model
 
     public function armada()
     {
-        return $this->belongsTo(Armada::class);
+        return $this->belongsTo(Armada::class, 'id_armada');
     }
 
     public function spareparts()

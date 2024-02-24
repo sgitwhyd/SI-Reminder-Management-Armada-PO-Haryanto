@@ -13,6 +13,6 @@ class Perawatan extends Model
 
     public function armada()
     {
-        return $this->belongsTo(Armada::class);
+        return $this->belongsTo(Armada::class, 'id_armada');
     }
 }
