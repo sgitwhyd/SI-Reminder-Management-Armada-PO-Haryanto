@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArmadaController;
 use App\Http\Controllers\CrewController;
+use App\Http\Controllers\MekanikController;
 use App\Http\Controllers\SparepartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PerawatanController;
@@ -31,7 +32,7 @@ Route::post('/register', [AuthController::class, 'registerVerify']);
 Route::get('/forgot-pass', [AuthController::class, 'forgotPassword']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
-Route::middleware(['auth'])->prefix('kepala-gudang')->group(function () {
+Route::middleware(['auth', 'checkRole:KEPALA-GUDANG'])->prefix('kepala-gudang')->group(function () {
     Route::get('/dashboard', [HomeController::class, 'indexKepalaGudang']);
     // armada
     Route::get('/armada', [ArmadaController::class, 'index']);
@@ -74,13 +75,18 @@ Route::middleware(['auth'])->prefix('kepala-gudang')->group(function () {
 
 });
 
-Route::middleware(['auth'])->prefix('crew')->group(function () {
-    Route::get('/dashboard', [HomeController::class, 'indexCrew']);
+Route::middleware(['auth', 'checkRole:CREW'])->prefix('crew')->group(function () {
+    Route::get('/dashboard', [CrewController::class, 'index']);
     Route::get('/riwayat-perbaikan', [CrewController::class, 'riwayatPerbaikan']);
     Route::get('/riwayat-perawatan', [CrewController::class, 'riwayatPerawatan']);
     Route::get('/riwayat-rampcheck', [CrewController::class, 'riwayatRampcheck']);
 });
 
-Route::middleware(['auth'])->prefix('mekanik')->group(function () {
-    Route::get('/dashboard', [HomeController::class, 'indexMekanik']);
+Route::middleware(['auth', 'checkRole:MEKANIK'])->prefix('mekanik')->as('mekanik.')->group(function () {
+    Route::get('/perawatan', [MekanikController::class, 'showPerawatan']);
+    Route::get('/tambah-perawatan', [MekanikController::class, 'createPerawatan']);
+    Route::post('/tambah-perawatan', [MekanikController::class, 'storePerawatan'])->name('tambah-perawatan');
+    Route::get('/perbaikan', [MekanikController::class, 'showPerbaikan']);
+    Route::get('/tambah-perbaikan', [MekanikController::class, 'createPerbaikan']);
+    Route::post('/tambah-perbaikan', [MekanikController::class, 'storePerbaikan'])->name('tambah-perbaikan');
 });
