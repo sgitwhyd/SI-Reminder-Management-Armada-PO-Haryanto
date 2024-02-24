@@ -19,9 +19,9 @@ class PerawatanFactory extends Factory
         return [
             'tanggal' => $this->faker->date(),
             'id_armada' => $this->faker->randomElement([1, 2, 3, 4, 5]),
-            'oli_gardan' => $this->faker->word,
-            'oli_mesin' => $this->faker->word,
-            'oli_transmisi' => $this->faker->word,
+            'oli_gardan' => $this->faker->numberBetween(1, 3000),
+            'oli_mesin' => $this->faker->numberBetween(1, 3000),
+            'oli_transmisi' => $this->faker->numberBetween(1, 3000),
             'status' => $this->faker->randomElement(['selesai', 'menunggu konfirmasi kepala gudang']),
         ];
     }
