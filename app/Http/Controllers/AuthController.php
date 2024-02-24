@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Session;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -14,14 +14,14 @@ class AuthController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if($user->role == 'KEPALA GUDANG'){
+            if($user->role == 'KEPALA GUDANG') {
                 return redirect('kepala-gudang/dashboard');
-            } else if ($user->role == 'CREW'){
+            } elseif ($user->role == 'CREW') {
                 return redirect('crew/dashboard');
-            } else if ($user->role == 'MEKANIK'){
-                return redirect('mekanik/dashboard');
+            } elseif ($user->role == 'MEKANIK') {
+                return redirect('mekanik/perawatan');
             }
-        }else{
+        } else {
             return view('auth.login');
         }
     }
@@ -35,15 +35,15 @@ class AuthController extends Controller
 
         if (Auth::Attempt($data)) {
             $user = Auth::user();
-            if($user->role == 'KEPALA GUDANG'){
+            if($user->role == 'KEPALA GUDANG') {
                 return redirect('kepala-gudang/dashboard');
-            } else if ($user->role == 'CREW'){
+            } elseif ($user->role == 'CREW') {
                 return redirect('crew/dashboard');
-            } else if ($user->role == 'MEKANIK'){
-                return redirect('mekanik/dashboard');
+            } elseif ($user->role == 'MEKANIK') {
+                return redirect('mekanik/perawatan');
             }
             
-        }else{
+        } else {
             Session::flash('error', 'Username atau Password Salah');
             return redirect('/login');
         }
@@ -53,7 +53,7 @@ class AuthController extends Controller
     {
         if (Auth::check()) {
             return redirect('/dashboard');
-        }else{
+        } else {
             return view('auth.register');
         }
     }
