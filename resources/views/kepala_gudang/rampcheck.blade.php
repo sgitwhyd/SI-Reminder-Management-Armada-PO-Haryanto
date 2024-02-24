@@ -23,9 +23,9 @@
                      <tr>
                         <th>#</th>
                         <th>Tgl Periksa</th>
-                        <th>No Polisi</th>
+                        <th>Petugas</th>
                         <th>No Lambung</th>
-                        <th>Kilometer</th>
+                        <th>Status</th>
                         <th>Action</th>
                      </tr>
                      </thead>
@@ -34,14 +34,14 @@
                         <tr>
                            <td>{{($key+1)}}</td>
                            <td>{{$value['tgl_rampcheck']}}</td>
-                           <td>{{$value['no_polisi']}}</td>
+                           <td>{{$value['checker']}}</td>
                            <td>{{$value['no_lambung']}}</td>
-                           <td>{{$value['posisi_kilometer']}}</td>
+                           <td>{{$value['status_check']}}</td>
                            <td>
                               <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                               <div class="dropdown-menu dropdown-menu-right">
                                  <a href="{{ 'rampcheck/pdf/'.$value['id_rampcheck'] }}" class="dropdown-item">View</a>
-                                 <a href="{{'rampcheck/edit/'.$value['id_rampcheck']}}" class="dropdown-item">Edit</a>
+                                 <a href="{{'rampcheck/edit/'.$value['id_rampcheck']}}" class="dropdown-item">Konfirmasi</a>
                                  <button type="button" class="dropdown-item delete-rampcheck" data-id="{{$value['id_rampcheck']}}">Delete</button>
                               </div>
                            </td>

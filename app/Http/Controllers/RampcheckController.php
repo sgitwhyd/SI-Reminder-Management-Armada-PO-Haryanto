@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Rampcheck;
 use Illuminate\Support\Str;
 use Session;
@@ -43,26 +44,7 @@ class RampcheckController extends Controller
             'posisi_kilometer' => 'required|numeric',
             'posisi_bbm' => 'required',
             'ttd_checker' => 'required|file|max:1024',
-            'ttd_kepala_gudang' => 'required|file|max:1024',
         ]);
-
-        if ($request->hasFile('ttd_checker')) {
-            // ttd_checker
-            $ttd_1 = $request->file('ttd_checker');
-            $rd_name1 = Str::random(15); // random caracter generator
-            $ext1 = $ttd_1->getClientOriginalExtension();
-            $ttd_checker = time().'_'.$rd_name1.'.'.$ext1;
-            $file_path1 = $ttd_1->storeAs('public/uploads', $ttd_checker); // Store file in 'storage/app/uploads' directory
-        }
-
-        if ($request->hasFile('ttd_kepala_gudang')) {
-            // ttd_kepala_gudang
-            $ttd_2 = $request->file('ttd_kepala_gudang');
-            $rd_name2 = Str::random(15); // random caracter generator
-            $ext2 = $ttd_2->getClientOriginalExtension();
-            $ttd_kepala_gudang = time().'_'.$rd_name2.'.'.$ext2;
-            $file_path2 = $ttd_2->storeAs('public/uploads', $ttd_kepala_gudang); // Store file in 'storage/app/uploads' directory
-        }
 
         $column = [
             'checker' => $request->checker,
@@ -97,11 +79,41 @@ class RampcheckController extends Controller
             'segitiga_pengaman' => isset($request->segitiga_pengaman_ada)? 'ADA' : 'TIDAK ADA',
             'ban_cadangan' => isset($request->ban_cadangan_ada)? 'ADA' : 'TIDAK ADA',
             'catatan_rampcheck' => $request->catatan_rampcheck,
-            'ttd_checker' => $ttd_checker,
-            'ttd_kepala_gudang' => $ttd_kepala_gudang,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
+
+        if ($request->hasFile('ttd_checker')) {
+            // ttd_checker
+            $ttd_1 = $request->file('ttd_checker');
+            $rd_name1 = Str::random(15); // random caracter generator
+            $ext1 = $ttd_1->getClientOriginalExtension();
+            $ttd_checker = time().'_'.$rd_name1.'.'.$ext1;
+            $file_path1 = $ttd_1->storeAs('public/uploads', $ttd_checker); // Store file in 'storage/app/uploads' directory
+            $column['ttd_checker'] = $ttd_checker;
+            $column['status_check'] = "MENUNGGU KONFIRMASI";
+        }
+
+        if ($request->hasFile('ttd_kepala_gudang')) {
+            $request->validate([
+                'ttd_kepala_gudang' => 'required|file|max:1024'
+            ]);
+            // ttd_kepala_gudang
+            $ttd_2 = $request->file('ttd_kepala_gudang');
+            $rd_name2 = Str::random(15); // random caracter generator
+            $ext2 = $ttd_2->getClientOriginalExtension();
+            $ttd_kepala_gudang = time().'_'.$rd_name2.'.'.$ext2;
+            $file_path2 = $ttd_2->storeAs('public/uploads', $ttd_kepala_gudang); // Store file in 'storage/app/uploads' directory
+            $column['ttd_kepala_gudang'] = $ttd_kepala_gudang;
+            if(isset($request->status_check)){
+                $column['status'] = $request->status_check;
+            }
+        }
+
+        $user_id = Auth::user();
+        $column['user_id'] = $user_id->id_user;
+
+
         try {
             Rampcheck::create($column);
             return redirect()->to('kepala-gudang/rampcheck')->with('success', 'Rampcheck berhasil ditambahkan.');
@@ -159,7 +171,7 @@ class RampcheckController extends Controller
             'lampu_kabin' => isset($request->lampu_kabin_ada) ? 'ADA' : 'TIDAK ADA',
             'klakson' => isset($request->klakson_ada) ? 'ADA' : 'TIDAK ADA',
             'konektor_pintu_hidrolik' => isset($request->konektor_ph_ada) ? 'ADA' : 'TIDAK ADA',
-            'handgrip' => isset($request->handgrip_ada) ? 'ADA' : 'TIDAK',
+            'handgrip' => isset($request->handgrip_ada) ? 'ADA' : 'TIDAK ADA',
             'tempat_sampah' => isset($request->tempat_sampah_ada) ? 'ADA' : 'TIDAK ADA',
             'apar' => isset($request->apar_ada) ? 'ADA' : 'TIDAK ADA',
             'palu_darurat' => isset($request->palu_darurat_ada) ? 'ADA' : 'TIDAK ADA',

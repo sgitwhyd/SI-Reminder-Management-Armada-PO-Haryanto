@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('rampchecks', function (Blueprint $table) {
             $table->bigIncrements('id_rampcheck');
+            $table->integer('user_id');
             $table->string('checker',50);
             $table->string('tgl_rampcheck',50);
             $table->string('waktu_rampcheck',50);
@@ -45,8 +46,9 @@ return new class extends Migration
             $table->string('segitiga_pengaman',50);
             $table->string('ban_cadangan',50);
             $table->string('catatan_rampcheck',100)->nullable();
+            $table->string('status_check',100);
             $table->string('ttd_checker',255);
-            $table->string('ttd_kepala_gudang',255);
+            $table->string('ttd_kepala_gudang',255)->nullable();
             $table->timestamps();
         });
 

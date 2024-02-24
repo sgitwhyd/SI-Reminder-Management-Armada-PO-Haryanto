@@ -419,7 +419,7 @@
                         <div class="form-group col-md-6">
                            <label for="ttd_kepala_gudang">Tertanda Kepala Gudang</label>
                            <div class="custom-file mb-3">
-                              <input type="file" class="custom-file-input" id="ttd_kepala_gudang" name="ttd_kepala_gudang" required="">
+                              <input type="file" class="custom-file-input" id="ttd_kepala_gudang" name="ttd_kepala_gudang" >
                               <label class="custom-file-label" for="ttd_kepala_gudang">Choose file...</label>
                            </div>
                         </div>

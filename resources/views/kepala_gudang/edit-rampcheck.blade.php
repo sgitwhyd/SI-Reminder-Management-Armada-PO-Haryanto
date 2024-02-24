@@ -454,7 +454,6 @@
          }
       
       });
-      console.log('test_check_all');
       $('#id_rampcheck').val("{{ $rampcheck['id_rampcheck']}}");
       if ("{{ $rampcheck['panel_led_dalam']}}" == 'ADA') $('#pld_ada').prop('checked', true);
       if ("{{ $rampcheck['lampu_kabin']}}" == 'ADA') $('#lampu_kabin_ada').prop('checked', true);
