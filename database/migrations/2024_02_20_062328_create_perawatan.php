@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->enum('status', [
                 'selesai',
                 'menunggu konfirmasi kepala gudang'
-            ]);
+            ])->default('menunggu konfirmasi kepala gudang');
 
             $table->timestamps();
             $table->foreign('id_armada')->references('id')->on('armadas')->onDelete('cascade');

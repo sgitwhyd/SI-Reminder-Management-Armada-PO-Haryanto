@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->enum('status', [
                 'selesai',
                 'menunggu konfirmasi kepala gudang'
-            ]);
+            ])->default('menunggu konfirmasi kepala gudang');
             $table->integer('biaya')->length(11)->unsigned();
             $table->text('keterangan', 100);
 
