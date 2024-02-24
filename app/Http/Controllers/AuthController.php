@@ -14,7 +14,7 @@ class AuthController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if($user->role == 'KEPALA GUDANG') {
+            if($user->role == 'KEPALA-GUDANG') {
                 return redirect('kepala-gudang/dashboard');
             } elseif ($user->role == 'CREW') {
                 return redirect('crew/dashboard');
@@ -35,7 +35,7 @@ class AuthController extends Controller
 
         if (Auth::Attempt($data)) {
             $user = Auth::user();
-            if($user->role == 'KEPALA GUDANG') {
+            if($user->role == 'KEPALA-GUDANG') {
                 return redirect('kepala-gudang/dashboard');
             } elseif ($user->role == 'CREW') {
                 return redirect('crew/dashboard');
