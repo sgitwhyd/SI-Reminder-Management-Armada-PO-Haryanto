@@ -6,15 +6,15 @@
   Tambah Perawatan
 </h1>
 
-<div class="col-md-6 col-sm-12">
+<div class="col-12">
   <div class="card shadow">
     <div class="card-body">
       <form action="{{ route('mekanik.tambah-perawatan') }}" method="POST">
         @method('POST')
         @csrf
-        <div class="form-group mb-3">
+        <div class="form-group mb-3 d-flex flex-column">
           <label for="armada">Pilih Armada</label>
-          <select name="id_armada" id="armada" class="custom-select">
+          <select name="id_armada" id="armada" class="custom-select" style="width: 100%;">
             @foreach($data as $armada)
             <option value="{{ $armada->id }}">{{ $armada->no_lambung }}</option>
             @endforeach

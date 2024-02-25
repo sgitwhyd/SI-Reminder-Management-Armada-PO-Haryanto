@@ -6,7 +6,7 @@
   Tambah Perbaikan
 </h1>
 
-<div class="col-md-6 col-sm-12">
+<div class="col-12">
   <div class="card shadow">
     <div class="card-body">
       <form action="{{ route('mekanik.tambah-perbaikan') }}" method="POST">
@@ -24,9 +24,9 @@
           <label for="tanggal">Tanggal Perbaikan</label>
           <input type="date" name="tanggal" id="tanggal" class="form-control">
         </div>
-        <div class="form-group mb-3">
+        <div class="form-group mb-3 d-flex flex-column">
           <label for="spareparts">Suku Cadang</label>
-          <select name="spareparts[]" id="spareparts" class="custom-select" multiple>
+          <select name="spareparts[]" id="spareparts" class="custom-select" multiple style="width: 100%;">
             @foreach($spareparts as $sparepart)
             <option value="{{ $sparepart->id }}">{{ $sparepart->nama_sparepart }}</option>
             @endforeach
