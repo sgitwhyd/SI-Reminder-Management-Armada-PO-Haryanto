@@ -7,6 +7,7 @@
          <h2 class="mb-2 page-title">Data Sparepart</h2>
          <p class="card-text">Mencakup data stok dan status sparepart</p>
          <button type="button" class="btn mb-2 btn-primary" data-toggle="modal" data-target="#addSparepart"><i class="fe fe-plus"></i> Tambah</button>
+         <a href="{{ 'sparepart/xlsx' }}" class="btn mb-2 btn-success"><i class="fe fe-download"></i> xlsx</a>
          {{-- modal add --}}
          <div class="modal fade" id="addSparepart" tabindex="-1" role="dialog" aria-labelledby="addSparepartTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -202,7 +203,7 @@
       // Delete post
       $(document).on('click', '.delete-sparepart', function() {
          var postId = $(this).data('id');
-         if (confirm('Are you sure you want to delete this post?')) {
+         if (confirm('Are you sure you want to delete this Sparepart?')) {
                $.ajax({
                   url: 'sparepart/delete/' + postId,
                   type: 'DELETE',

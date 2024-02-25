@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Sparepart;
 use Session;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class SparepartController extends Controller
 {
@@ -140,4 +142,47 @@ class SparepartController extends Controller
         Session::flash('success', 'Sparepart berhasil dihapus.');
         return response()->json(['success' => true], 200);
     }
+
+    public function exportXlsx() {
+        $sparepart = Sparepart::all();
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'No.');
+        $sheet->setCellValue('B1', 'Kode Sparepart');
+        $sheet->setCellValue('C1', 'Nama Sparepart');
+        $sheet->setCellValue('D1', 'Harga');
+        $sheet->setCellValue('E1', 'Stock');
+        $sheet->setCellValue('F1', 'Status');
+        $sheet->setCellValue('G1', 'Keterangan');
+        
+        $column = 2;
+        foreach ($sparepart as $key => $value) {
+            $sheet->setCellValue('A'.$column, ($key+1));
+            $sheet->setCellValue('B'.$column, $value->kode_sparepart);
+            $sheet->setCellValue('C'.$column, $value->nama_sparepart);
+            $sheet->setCellValue('D'.$column, $value->harga);
+            $sheet->setCellValue('E'.$column, $value->stock);
+            $sheet->setCellValue('F'.$column, $value->status);
+            $sheet->setCellValue('G'.$column, $value->keterangan);
+            $column ++;
+        }
+
+        $sheet->getStyle('A1:G1')->getFont()->setBold(true);
+        $sheet->getColumnDimension('A')->setAutoSize(true);
+        $sheet->getColumnDimension('B')->setAutoSize(true);
+        $sheet->getColumnDimension('C')->setAutoSize(true);
+        $sheet->getColumnDimension('D')->setAutoSize(true);
+        $sheet->getColumnDimension('E')->setAutoSize(true);
+        $sheet->getColumnDimension('F')->setAutoSize(true);
+        $sheet->getColumnDimension('G')->setAutoSize(true);
+
+        $writer = new Xlsx($spreadsheet);
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename=sparepart.xlsx');
+        header('Cache-Control: max-age=0');
+        $writer->save('php://output');
+        exit();
+    }
+
 }
