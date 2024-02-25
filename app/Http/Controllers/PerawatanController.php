@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\M_armada;
+use App\Models\Perawatan;
 
 class PerawatanController extends Controller
 {
@@ -12,7 +13,8 @@ class PerawatanController extends Controller
      */
     public function index()
     {
-        return view('kepala_gudang.perawatan');
+        $data = Perawatan::orderBy('created_at', 'desc')->get();
+        return view('kepala_gudang.perawatan', compact('data'));
     }
 
     /**
