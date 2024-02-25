@@ -17,12 +17,12 @@ class SparepartFactory extends Factory
     public function definition(): array
     {
         return [
-            'kode_sparepart' => $this->faker->word,
-            'nama_sparepart' => $this->faker->word,
-            'stock' => $this->faker->randomNumber(),
-            'harga' => $this->faker->randomNumber(),
+            'kode_sparepart' => $this->faker->isbn10(),
+            'nama_sparepart' => $this->faker->unique()->sentence(2, true),
+            'stock' => $this->faker->numberBetween(1, 50),
+            'harga' => $this->faker->randomNumber(6, false),
             'status' => $this->faker->randomElement(['READY', 'KOSONG']),
-            'keterangan' => $this->faker->word,
+            'keterangan' => $this->faker->sentence(5, true),
         ];
     }
 }
