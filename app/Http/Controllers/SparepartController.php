@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sparepart;
-use Session;
+use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class SparepartController extends Controller
 {
@@ -54,8 +56,7 @@ class SparepartController extends Controller
                     // ], 200);
                     Session::flash('success', 'Sparepart berhasil ditambahkan.');
                     return response()->json(['success' => true], 200);
-                }
-                catch(Exception $e) {
+                } catch(Exception $e) {
                     return response()->json([
                         'success' => 'false',
                         'errors'  => $e->getMessage(),
@@ -119,8 +120,7 @@ class SparepartController extends Controller
                     // ], 200);
                     Session::flash('success', 'Sparepart berhasil diubah.');
                     return response()->json(['success' => true], 200);
-                }
-                catch(Exception $e) {
+                } catch(Exception $e) {
                     return response()->json([
                         'success' => 'false',
                         'errors'  => $e->getMessage(),
@@ -139,5 +139,17 @@ class SparepartController extends Controller
         $armada->delete();
         Session::flash('success', 'Sparepart berhasil dihapus.');
         return response()->json(['success' => true], 200);
+    }
+
+    public function riwayatSparepart()
+    {
+        $data = Sparepart::select('spareparts.nama_sparepart', 'spareparts.kode_sparepart', 'spareparts.stock', DB::raw('COUNT(perbaikan_has_spareparts.sparepart_id) as total_used'))
+                ->leftJoin('perbaikan_has_spareparts', 'spareparts.id', '=', 'perbaikan_has_spareparts.sparepart_id')
+                ->leftJoin('perbaikans', 'perbaikan_has_spareparts.perbaikan_id', '=', 'perbaikans.id')
+                ->groupBy('spareparts.id', 'spareparts.nama_sparepart', 'spareparts.kode_sparepart', 'spareparts.stock')
+                ->orderBy('total_used', 'DESC')
+                ->get();
+
+        return view('kepala_gudang.riwayat-sparepart', compact('data'));
     }
 }
