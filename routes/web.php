@@ -49,10 +49,13 @@ Route::middleware(['auth', 'checkRole:KEPALA-GUDANG'])->prefix('kepala-gudang')-
         Route::post('/', [SparepartController::class, 'store']);
         Route::post('/edit', [SparepartController::class, 'edit']);
         Route::put('/update', [SparepartController::class, 'update']);
-        Route::delete('sparepart/delete/{id}', [SparepartController::class, 'destroy']);
+        Route::delete('/delete/{id}', [SparepartController::class, 'destroy']);
+        Route::get('/xlsx', [SparepartController::class, 'exportXlsx']);
+
         // riwayat sparepart
         Route::get('/riwayat', [SparepartController::class, 'riwayatSparepart']);
     });
+
 
 
     // user
