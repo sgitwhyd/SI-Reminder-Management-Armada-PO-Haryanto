@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Armada;
 use Illuminate\Http\Request;
-use App\Models\M_armada;
 use App\Models\Perawatan;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class PerawatanController extends Controller
 {
@@ -22,10 +24,8 @@ class PerawatanController extends Controller
      */
     public function create()
     {
-        $data = [
-            'jenis_trayek' => M_armada::get_enum_values('master_armada', 'jenis_trayek'),
-        ];
-        return view('add-perawatan', $data);
+        $data_armada  = Armada::all();
+        return view('kepala_gudang.buat-perawatan', compact('data_armada'));
     }
 
     /**
@@ -33,7 +33,37 @@ class PerawatanController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $validData = Validator::make($request->all(), [
+            'id_armada' => 'required|exists:armadas,id',
+            'tanggal' => 'required',
+            'oli_gardan' => 'required|string',
+            'oli_transmisi' => 'required|string',
+            'oli_mesin' => 'required|string',
+            'ttd_kepala_gudang' => 'required|file|mimes:jpeg,png,jpg',
+        ]);
+
+        
+        if($validData->fails()) {
+            for($i = 0; $i < count($validData->errors()); $i++) {
+                flash()->addError($validData->errors()->all()[$i]);
+            }
+            return redirect()->back();
+        }
+
+        $fileName = time() . '.' . $request->file('ttd_kepala_gudang')->extension();
+        $dataToStore = [
+            'id_armada' => $request->id_armada,
+            'tanggal' => $request->tanggal,
+            'oli_gardan' => $request->oli_gardan,
+            'oli_mesin' => $request->oli_mesin,
+            'oli_transmisi' => $request->oli_transmisi,
+            'ttd_kepala_gudang' => $request->file('ttd_kepala_gudang')->store('uploads', 'public', $fileName),
+        ];
+
+        Perawatan::create($dataToStore);
+        flash()->addSuccess('Perawatan berhasil ditambahkan');
+        return redirect()->back();
+
         
     }
 
