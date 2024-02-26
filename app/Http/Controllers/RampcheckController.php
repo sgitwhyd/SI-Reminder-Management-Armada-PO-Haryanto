@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Rampcheck;
+use Barryvdh\DomPDF\PDF;
+use Exception;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
-use Session;
-use PDF;
 
 class RampcheckController extends Controller
 {
@@ -105,7 +106,7 @@ class RampcheckController extends Controller
             $ttd_kepala_gudang = time().'_'.$rd_name2.'.'.$ext2;
             $file_path2 = $ttd_2->storeAs('public/uploads', $ttd_kepala_gudang); // Store file in 'storage/app/uploads' directory
             $column['ttd_kepala_gudang'] = $ttd_kepala_gudang;
-            if(isset($request->status_check)){
+            if(isset($request->status_check)) {
                 $column['status'] = $request->status_check;
             }
         }
@@ -117,8 +118,7 @@ class RampcheckController extends Controller
         try {
             Rampcheck::create($column);
             return redirect()->to('kepala-gudang/rampcheck')->with('success', 'Rampcheck berhasil ditambahkan.');
-        }
-        catch(Exception $e) {
+        } catch(Exception $e) {
             return redirect()->back()->with('error', $e->getMessage)->withInput();
         }
     }
@@ -216,8 +216,7 @@ class RampcheckController extends Controller
         try {
             Rampcheck::where('id_rampcheck', $request->id_rampcheck)->update($column);
             return redirect()->to('kepala-gudang/rampcheck')->with('success', 'Rampcheck berhasil diubah.');
-        }
-        catch(Exception $e) {
+        } catch(Exception $e) {
             return redirect()->back()->with('error', $e->getMessage)->withInput();
         }
 
