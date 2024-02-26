@@ -17,10 +17,8 @@ return new class extends Migration {
             $table->string('oli_gardan');
             $table->string('oli_mesin');
             $table->string('oli_transmisi');
-            $table->enum('status', [
-                'selesai',
-                'menunggu konfirmasi kepala gudang'
-            ])->default('menunggu konfirmasi kepala gudang');
+            $table->string('ttd_kepala_gudang')->nullable();
+            
 
             $table->timestamps();
             $table->foreign('id_armada')->references('id')->on('armadas')->onDelete('cascade');

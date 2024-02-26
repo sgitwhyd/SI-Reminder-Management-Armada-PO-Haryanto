@@ -22,7 +22,6 @@ class PerawatanFactory extends Factory
             'oli_gardan' => $this->faker->numberBetween(1, 3000),
             'oli_mesin' => $this->faker->numberBetween(1, 3000),
             'oli_transmisi' => $this->faker->numberBetween(1, 3000),
-            'status' => $this->faker->randomElement(['selesai', 'menunggu konfirmasi kepala gudang']),
         ];
     }
 }

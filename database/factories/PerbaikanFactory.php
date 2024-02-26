@@ -21,7 +21,6 @@ class PerbaikanFactory extends Factory
             'tanggal' => $this->faker->date(),
             'biaya' => $this->faker->randomNumber(),
             'keterangan' => $this->faker->word,
-            'status' => $this->faker->randomElement(['selesai', 'menunggu konfirmasi kepala gudang']),
         ];
     }
 }

@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('perbaikan_id');
             $table->unsignedBigInteger('sparepart_id');
+            $table->integer('jumlah');
             $table->timestamps();
 
             $table->foreign('perbaikan_id')->references('id')->on('perbaikans')->onDelete('cascade');

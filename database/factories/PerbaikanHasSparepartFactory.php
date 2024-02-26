@@ -19,6 +19,7 @@ class PerbaikanHasSparepartFactory extends Factory
         return [
             'perbaikan_id' => $this->faker->randomElement([1, 2, 3, 4, 5]),
             'sparepart_id' => $this->faker->randomElement([1, 2, 3, 4, 5]),
+            'jumlah' => $this->faker->randomDigitNotNull,
         ];
     }
 }

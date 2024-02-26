@@ -14,10 +14,6 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('id_armada');
             $table->date('tanggal');
-            $table->enum('status', [
-                'selesai',
-                'menunggu konfirmasi kepala gudang'
-            ])->default('menunggu konfirmasi kepala gudang');
             $table->integer('biaya')->length(11)->unsigned();
             $table->text('keterangan', 100);
 
