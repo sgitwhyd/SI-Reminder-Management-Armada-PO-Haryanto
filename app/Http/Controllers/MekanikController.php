@@ -97,4 +97,10 @@ class MekanikController extends Controller
         flash()->addSuccess('Perbaikan berhasil ditambahkan');
         return redirect()->back();
     }
+
+    public function showSukuCadang()
+    {
+        $data = Sparepart::all();
+        return view('mekanik.suku-cadang', compact('data'));
+    }
 }
