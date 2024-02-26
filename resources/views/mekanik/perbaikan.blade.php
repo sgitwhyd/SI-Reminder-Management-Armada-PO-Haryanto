@@ -2,9 +2,8 @@
 @include('sidebar.menu_mekanik')
 
 @section('content')
-<a href="/mekanik/tambah-perbaikan" class="btn btn-primary mb-3">
-  + Perbaikan
-</a>
+<h2 class="mb-2 page-title">Data Perbaikan</h2>
+<p class="card-text">Mencakup data perbaikan tiap-tiap armada</p>
 <div class="card shadow">
   <div class="card-body">
     <table class="table datatables" id="dataPerbaikan">
@@ -25,9 +24,6 @@
           </th>
           <th>
             Keterangan
-          </th>
-          <th>
-            Status
           </th>
         </tr>
       </thead>
@@ -60,13 +56,6 @@
             Rp. {{ number_format($total, 0,0) }}
           </td>
           <td>{{ $value->keterangan }}</td>
-          <td>
-            @if($value->status == 'selesai')
-            <span class="badge badge-success">Selesai</span>
-            @else
-            <span class="badge badge-warning">Belum Selesai</span>
-            @endif
-          </td>
         </tr>
         @endforeach
       </tbody>
