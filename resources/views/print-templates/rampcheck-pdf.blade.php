@@ -279,13 +279,17 @@
       <td width="50%">
         <div class="signature-frame">
           <p class="text-center">Tertanda Checker</p>
-          <img src="../public/storage/uploads/<?= $rampcheck['ttd_checker']; ?>" alt="" />
+          <?php if($rampcheck['ttd_checker']) : ?>
+          <img src="../public/storage/<?= $rampcheck['ttd_checker']; ?>" alt="" />
+          <?php else :?>
+          <img src="../public/storage/<?= $rampcheck['ttd_kepala_gudang']; ?>" alt="" />
+          <?php endif; ?>
         </div>
       </td>
       <td>
         <div class="signature-frame">
           <p class="text-center">Tertanda Kepala Gudang</p>
-          <img src="../public/storage/uploads/<?= $rampcheck['ttd_kepala_gudang']; ?>" alt="" />
+          <img src="../public/storage/<?= $rampcheck['ttd_kepala_gudang']; ?>" alt="" />
         </div>
       </td>
     </tr>
