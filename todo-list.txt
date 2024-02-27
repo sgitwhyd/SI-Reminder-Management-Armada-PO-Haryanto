@@ -5,6 +5,8 @@
 ### prosess
 - 
 
+## bug
+- 
 
 ### finish
 - register

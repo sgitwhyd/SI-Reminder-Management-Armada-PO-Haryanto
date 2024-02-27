@@ -56,7 +56,7 @@
             <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false"></button>
             <div class="dropdown-menu dropdown-menu-right">
-              <a href="{{'rampcheck/edit/'.$value->id}}" class="dropdown-item">Delete</a>
+              <button type="button" class="dropdown-item delete-perawatan" data-id="{{$value->id}}">Delete</button>
             </div>
           </td>
         </tr>
@@ -77,6 +77,29 @@ $('#dataPerawatan').DataTable({
     [10, 25, 50, "All"]
   ]
 });
+
+  $(document).ready(function(){
+  // Delete post
+    $(document).on('click', '.delete-perawatan', function() {
+        var postId = $(this).data('id');
+        if (confirm('Apakah anda yakin untuk menghapus perawatan?')) {
+          $.ajax({
+              url: 'perawatan/delete/' + postId,
+              type: 'DELETE',
+              data: {
+                _token: '{{ csrf_token() }}'
+              },
+              success: function(data) {
+                location.reload();
+              },
+              error: function(xhr, status, error) {
+                console.error('Error:', error);
+              }
+          });
+        }
+    });
+
+  })
 </script>
 
 @endsection

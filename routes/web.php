@@ -74,6 +74,7 @@ Route::middleware(['auth', 'checkRole:KEPALA-GUDANG'])->prefix('kepala-gudang')-
         Route::get('/buat-perbaikan', [PerbaikanController::class, 'createPerbaikan']);
         Route::post('/buat-perbaikan', [PerbaikanController::class, 'storePerbaikan'])->name('buat-perbaikan');
         Route::get('/detail/{id}', [PerbaikanController::class, 'detailPerbaikan']);
+        Route::delete('/delete/{id}', [PerbaikanController::class, 'destroy']);
     });
 
     // perawatan

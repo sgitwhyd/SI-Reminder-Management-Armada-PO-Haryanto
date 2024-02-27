@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use App\Models\Armada;
 use App\Models\Perbaikan;
 use App\Models\Sparepart;
@@ -76,5 +77,13 @@ class PerbaikanController extends Controller
     {
         $data = Perbaikan::where('id', $id)->with(['spareparts', 'sparepart'])->first();
         return view('kepala_gudang.detail-perbaikan', compact('data'));
+    }
+
+    public function destroy($id)
+    {
+        $perbaikan = Perbaikan::findOrFail($id);
+        $perbaikan->delete();
+        Session::flash('success', 'Perbaikan berhasil dihapus.');
+        return response()->json(['success' => true], 200);
     }
 }
