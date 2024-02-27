@@ -53,6 +53,7 @@ class PerbaikanController extends Controller
                 'sparepart_id' => $sparepart['id'],
                 'jumlah' => $sparepart['jumlah']
             ];
+            Sparepart::where('id', $sparepart['id'])->decrement('stock', $sparepart['jumlah']);
         }
 
         $validData = $validData->validated();
