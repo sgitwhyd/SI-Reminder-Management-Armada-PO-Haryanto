@@ -162,193 +162,113 @@
       theme: 'bootstrap4',
    });
 
-$('.select-trayek').select2({
-  theme: 'bootstrap4',
-});
+   $('.select-trayek').select2({
+   theme: 'bootstrap4',
+   });
 
-$(document).ready(function() {
-  //  Edit post
-  $(document).on('click', '.edit-armada', function() {
-    var postId = $(this).data('id');
-    $.ajax({
-      url: 'armada/edit',
-      type: 'post',
-      data: {
-        id: postId,
-        _token: '{{ csrf_token() }}'
-      },
-      success: function(data) {
-        $('#postId').val(data['id'])
-        $('#no_polisi').val(data['no_polisi'])
-        $('#no_lambung').val(data['no_lambung'])
-        $('#no_stnk').val(data['no_stnk'])
-        $('#tahun').val(data['tahun'])
-        $('#trayek').val(data['trayek'])
-        $('#jenis_trayek').val(data['jenis_trayek'])
-        $('#addArmada').modal('show');
-      },
-      error: function(xhr, status, error) {
-        console.error('Error:', error);
-      }
-    });
-  });
-
-  // Save or update post
-  $('#armada-add').submit(function(e) {
-    e.preventDefault();
-    var postId = $('#postId').val();
-    var no_pol = $('#no_polisi').val();
-    var no_lam = $('#no_lambung').val();
-    var no_stnk = $('#no_stnk').val();
-    var tahun = $('#tahun').val();
-    var trayek = $('#trayek').val();
-    var jenis_trayek = $('#jenis_trayek').val();
-    var url = postId ? 'armada/update' : 'armada';
-    var method = postId ? 'PUT' : 'POST';
-
-    $.ajax({
-      url: url,
-      type: method,
-      data: {
-        id_armada: postId,
-        no_polisi: no_pol,
-        no_lambung: no_lam,
-        no_stnk: no_stnk,
-        tahun: tahun,
-        trayek: trayek,
-        jenis_trayek: jenis_trayek,
-        _token: '{{ csrf_token() }}'
-      },
-      success: function(data) {
-        // successHtml = '<div class="alert alert-success">'+data['message']+'</div>';
-        // $('#form-notif').html( successHtml );
-        // $('#addArmada').modal('hide');
-        location.reload();
-      },
-      error: function(data) {
-        var result = data.responseJSON;
-        errorsHtml = '<div class="alert alert-danger"><ul>';
-        $.each(result.errors, function(key, value) {
-          errorsHtml += '<li>' + value[0] + '</li>';
-        });
-        errorsHtml += '</ul></div>';
-        $('#form-notif').html(errorsHtml);
-        $('#addArmada').modal('hide');
-      }
-    });
-  });
-
-  // Delete post
-  $(document).on('click', '.delete-armada', function() {
-    var postId = $(this).data('id');
-    if (confirm('Apakah anda yakin untuk menghapus armada?')) {
+   $(document).ready(function() {
+   //  Edit post
+   $(document).on('click', '.edit-armada', function() {
+      var postId = $(this).data('id');
       $.ajax({
-        url: 'armada/delete/' + postId,
-        type: 'DELETE',
-        data: {
-          _token: '{{ csrf_token() }}'
-        },
-        success: function(data) {
-          location.reload();
-        },
-        error: function(xhr, status, error) {
-          console.error('Error:', error);
-        }
-      });
-    }
-  });
-
-      // Save or update post
-      $('#armada-add').submit(function(e) {
-         e.preventDefault();
-         var postId = $('#postId').val();
-         var no_pol = $('#no_polisi').val();
-         var no_lam = $('#no_lambung').val();
-         var no_stnk = $('#no_stnk').val();
-         var tahun = $('#tahun').val();
-         var trayek = $('#trayek').val();
-         var jenis_trayek = $('#jenis_trayek').val();
-         var gambar_armada = $('#gambar_armada')[0].files[0];
-         var url = postId ? 'armada/update' : 'armada';
-         var method = postId ? 'PUT' : 'POST';
-         console.log(gambar_armada);
-     
-         // $.ajax({
-         //    type: "POST",
-         //    url: action,
-         //    crossDomain: true,
-         //    data: new FormData(this),
-         //    dataType: "json",
-         //    processData: false,
-         //    contentType: false,
-         //    headers: {
-         //       "Accept": "application/json"
-         //    }
-         // })
-         $.ajax({
-            url: url,
-            type: method,
-            data: {
-               id_armada: postId,
-               no_polisi: no_pol,
-               no_lambung: no_lam,
-               no_stnk: no_stnk,
-               tahun: tahun,
-               trayek: trayek,
-               jenis_trayek: jenis_trayek,
-               _token: '{{ csrf_token() }}'
-            },
-            success: function(data) {
-               // successHtml = '<div class="alert alert-success">'+data['message']+'</div>';
-               // $('#form-notif').html( successHtml );
-               // $('#addArmada').modal('hide');
-               location.reload();
-            },
-            error: function(data) {
-               var result = data.responseJSON;
-               errorsHtml = '<div class="alert alert-danger"><ul>';
-               $.each( result.errors, function( key, value ) {
-                     errorsHtml += '<li>'+ value[0] + '</li>';
-               });
-               errorsHtml += '</ul></div>';
-               $('#form-notif').html( errorsHtml );
-               $('#addArmada').modal('hide');
-            }
-         });
-      });
-
-      // Delete post
-      $(document).on('click', '.delete-armada', function() {
-         var postId = $(this).data('id');
-         if (confirm('Apakah anda yakin untuk menghapus armada?')) {
-            $.ajax({
-               url: 'armada/delete/' + postId,
-               type: 'DELETE',
-               data: {
-                  _token: '{{ csrf_token() }}'
-               },
-               success: function(data) {
-                  location.reload();
-               },
-               error: function(xhr, status, error) {
-                  console.error('Error:', error);
-               }
-            });
+         url: 'armada/edit',
+         type: 'post',
+         data: {
+         id: postId,
+         _token: '{{ csrf_token() }}'
+         },
+         success: function(data) {
+         $('#postId').val(data['id'])
+         $('#no_polisi').val(data['no_polisi'])
+         $('#no_lambung').val(data['no_lambung'])
+         $('#no_stnk').val(data['no_stnk'])
+         $('#tahun').val(data['tahun'])
+         $('#trayek').val(data['trayek'])
+         $('#jenis_trayek').val(data['jenis_trayek'])
+         $('#addArmada').modal('show');
+         },
+         error: function(xhr, status, error) {
+         console.error('Error:', error);
          }
       });
+   });
 
-      $('#addArmada').on('hidden.bs.modal', function () {
-         $('#postId').val('')
-         $('#no_polisi').val('')
-         $('#no_lambung').val('')
-         $('#no_stnk').val('')
-         $('#tahun').val('')
-         $('#trayek').val('')
-         $('#jenis_trayek').val('AKAP')
+   // Save or update post
+   $('#armada-add').submit(function(e) {
+      e.preventDefault();
+      var postId = $('#postId').val();
+      var no_pol = $('#no_polisi').val();
+      var no_lam = $('#no_lambung').val();
+      var no_stnk = $('#no_stnk').val();
+      var tahun = $('#tahun').val();
+      var trayek = $('#trayek').val();
+      var jenis_trayek = $('#jenis_trayek').val();
+      var url = postId ? 'armada/update' : 'armada';
+      var method = postId ? 'PUT' : 'POST';
+
+      $.ajax({
+         url: url,
+         type: method,
+         data: {
+         id_armada: postId,
+         no_polisi: no_pol,
+         no_lambung: no_lam,
+         no_stnk: no_stnk,
+         tahun: tahun,
+         trayek: trayek,
+         jenis_trayek: jenis_trayek,
+         _token: '{{ csrf_token() }}'
+         },
+         success: function(data) {
+         // successHtml = '<div class="alert alert-success">'+data['message']+'</div>';
+         // $('#form-notif').html( successHtml );
+         // $('#addArmada').modal('hide');
+         location.reload();
+         },
+         error: function(data) {
+         var result = data.responseJSON;
+         errorsHtml = '<div class="alert alert-danger"><ul>';
+         $.each(result.errors, function(key, value) {
+            errorsHtml += '<li>' + value[0] + '</li>';
+         });
+         errorsHtml += '</ul></div>';
+         $('#form-notif').html(errorsHtml);
+         $('#addArmada').modal('hide');
+         }
       });
    });
-  </script>
-  
-@endsection
 
+   // Delete post
+   $(document).on('click', '.delete-armada', function() {
+      var postId = $(this).data('id');
+      if (confirm('Apakah anda yakin untuk menghapus armada?')) {
+         $.ajax({
+         url: 'armada/delete/' + postId,
+         type: 'DELETE',
+         data: {
+            _token: '{{ csrf_token() }}'
+         },
+         success: function(data) {
+            location.reload();
+         },
+         error: function(xhr, status, error) {
+            console.error('Error:', error);
+         }
+         });
+      }
+   });
+
+   $('#addArmada').on('hidden.bs.modal', function () {
+      $('#postId').val('')
+      $('#no_polisi').val('')
+      $('#no_lambung').val('')
+      $('#no_stnk').val('')
+      $('#tahun').val('')
+      $('#trayek').val('')
+      $('#jenis_trayek').val('AKAP')
+   });
+});
+
+</script>
+  
 @endsection
