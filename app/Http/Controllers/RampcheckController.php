@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Rampcheck;
 use App\Models\User;
-use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use PDF;
 use Exception;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;

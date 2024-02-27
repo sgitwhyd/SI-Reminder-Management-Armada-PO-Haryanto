@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Armada;
 use Illuminate\Http\Request;
 use App\Models\Perawatan;
+use Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -94,8 +95,11 @@ class PerawatanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $perawatan = Perawatan::findOrFail($id);
+        $perawatan->delete();
+        Session::flash('success', 'Perawatan berhasil dihapus.');
+        return response()->json(['success' => true], 200);
     }
 }

@@ -15,24 +15,12 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>
-            Armada/No. Lambung
-          </th>
-          <th>
-            Tanggal Perbaikan
-          </th>
-          <th>
-            Suku Cadang
-          </th>
-          <th>
-            Biaya
-          </th>
-          <th>
-            Keterangan
-          </th>
-          <th>
-            Aksi
-          </th>
+          <th>Armada/No. Lambung</th>
+          <th>Tanggal Perbaikan</th>
+          <th>Suku Cadang</th>
+          <th>Biaya</th>
+          <th>Keterangan</th>
+          <th>Aksi</th>
         </tr>
       </thead>
       <tbody>
@@ -40,9 +28,7 @@
         <tr>
           <td>{{ $index + 1 }}</td>
           <td>{{ $value->armada->no_lambung }}</td>
-          <td>
-            {{ $value->tanggal }}
-          </td>
+          <td>{{ $value->tanggal }}</td>
           <td>
             @if($value->spareparts->isEmpty())
             -
@@ -52,18 +38,14 @@
             @endforeach
             @endif
           </td>
-          <td>
-            Rp. {{ number_format($value->biaya, 0,0) }}
-          </td>
+          <td>Rp. {{ number_format($value->biaya, 0,0) }}</td>
           <td>{{ $value->keterangan }}</td>
           <td>
             <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false"></button>
             <div class="dropdown-menu dropdown-menu-right">
-              <a href="/kepala-gudang/perbaikan/detail/{{ $value->id }}"
-                class="dropdown-item delete-rampcheck">Detail</a>
-              <button type=" button" class="dropdown-item delete-rampcheck"
-                data-id="{{$value['id_rampcheck']}}">Delete</button>
+              <a href="/kepala-gudang/perbaikan/detail/{{ $value->id }}" class="dropdown-item delete-rampcheck">Detail</a>
+              <button type=" button" class="dropdown-item delete-perbaikan" data-id="{{$value->id}}">Delete</button>
             </div>
           </td>
         </tr>
@@ -84,6 +66,30 @@ $('#dataPerbaikan').DataTable({
     [10, 25, 50, "All"]
   ]
 });
+
+$(document).ready(function(){
+  // Delete post
+    $(document).on('click', '.delete-perbaikan', function() {
+        var postId = $(this).data('id');
+        if (confirm('Apakah anda yakin untuk menghapus perbaikan?')) {
+          $.ajax({
+              url: 'perbaikan/delete/' + postId,
+              type: 'DELETE',
+              data: {
+                _token: '{{ csrf_token() }}'
+              },
+              success: function(data) {
+                location.reload();
+              },
+              error: function(xhr, status, error) {
+                console.error('Error:', error);
+              }
+          });
+        }
+    });
+
+  })
+
 </script>
 
 @endsection
