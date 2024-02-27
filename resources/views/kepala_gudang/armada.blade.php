@@ -258,7 +258,6 @@ $(document).ready(function() {
     }
   });
 
-<<<<<<< HEAD
       // Save or update post
       $('#armada-add').submit(function(e) {
          e.preventDefault();
@@ -351,18 +350,5 @@ $(document).ready(function() {
   </script>
   
 @endsection
-=======
-  $('#addArmada').on('hidden.bs.modal', function() {
-    $('#postId').val('')
-    $('#no_polisi').val('')
-    $('#no_lambung').val('')
-    $('#no_stnk').val('')
-    $('#tahun').val('')
-    $('#trayek').val('')
-    $('#jenis_trayek').val('AKAP')
-  });
-});
-</script>
->>>>>>> 1b720fdfd8cc8c0313b9ee9c1d0de517262474ae
 
 @endsection
