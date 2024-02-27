@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Rampcheck;
-use Barryvdh\DomPDF\PDF;
+use PDF;
 use Exception;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -113,8 +113,6 @@ class RampcheckController extends Controller
 
         $user_id = Auth::user();
         $column['user_id'] = $user_id->id_user;
-
-
         try {
             Rampcheck::create($column);
             return redirect()->to('kepala-gudang/rampcheck')->with('success', 'Rampcheck berhasil ditambahkan.');
