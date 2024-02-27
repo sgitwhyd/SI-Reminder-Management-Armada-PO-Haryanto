@@ -11,4 +11,14 @@ class Rampcheck extends Model
     protected $table = 'rampchecks';
     protected $primaryKey = 'id_rampcheck';
     protected $guarded = [];
+
+    public function armada()
+    {
+        return $this->belongsTo(Armada::class, 'id_armada');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

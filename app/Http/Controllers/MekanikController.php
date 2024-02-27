@@ -14,7 +14,7 @@ class MekanikController extends Controller
 
     public function showPerawatan()
     {
-        $data = Perawatan::orderBy('status', 'desc')->get();
+        $data = Perawatan::orderBy('created_at', 'desc')->get();
         return view('mekanik.perawatan', compact('data'));
     }
 
@@ -51,7 +51,7 @@ class MekanikController extends Controller
 
     public function showPerbaikan()
     {
-        $data = Perbaikan::orderBy('status', 'desc')->get();
+        $data = Perbaikan::orderBy('created_at', 'desc')->get();
         return view('mekanik.perbaikan', compact('data'));
     }
 
