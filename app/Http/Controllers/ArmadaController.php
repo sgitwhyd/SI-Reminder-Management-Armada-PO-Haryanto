@@ -42,6 +42,7 @@ class ArmadaController extends Controller
                 'tahun' => 'required',
                 'trayek' => 'required',
                 'jenis_trayek' => 'required',
+                'gambar_armada' => 'required|file|max:1024',
             ]);
 
             if (!$isValid) {
@@ -50,6 +51,15 @@ class ArmadaController extends Controller
                     'errors'  => $isValid->errors()->all(),
                 ], 400);
             } else {
+                if ($request->hasFile('gambar_armada')) {
+                    $ttd_1 = $request->file('gambar_armada');
+                    $rd_name1 = Str::random(15); // random caracter generator
+                    $ext1 = $ttd_1->getClientOriginalExtension();
+                    $gambar_armada = time().'_'.$rd_name1.'.'.$ext1;
+                    $file_path1 = $ttd_1->storeAs('public/armada', $gambar_armada); // Store file in 'storage/app/uploads' directory
+                    $request['gambar_armada'] = $gambar_armada;
+                }
+
                 try {
                     Armada::create($request->all());
                     // return response()->json([

@@ -18,7 +18,8 @@
                         <span aria-hidden="true">×</span>
                      </button>
                   </div>
-                  <form action="" id="armada-add" method="">
+                  <form action="" id="armada-add" method="" enctype="multipart/form-data">
+                     @csrf
                      <input type="hidden" name="postId" id="postId">
                      <div class="modal-body">
                         <div class="form-row">
@@ -54,6 +55,13 @@
                                  <option value="MPU">MPU</option>
                                  <option value="PARIWISATA">PARIWISATA</option>
                               </select>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label for="gambar_armada">Gambar Armada</label>
+                           <div class="custom-file mb-3">
+                              <input type="file" class="custom-file-input" id="gambar_armada" name="gambar_armada" required="">
+                              <label class="custom-file-label" for="gambar_armada">Choose file...</label>
                            </div>
                         </div>
                      </div>
@@ -124,7 +132,16 @@
 
 @section('script')
 <script>
-    $('#dataArmada').DataTable({
+   $('.custom-file-input').on('change', function() {
+      let fileName = $(this).val().split('\\').pop();
+      $(this).next('.custom-file-label').addClass("selected").html(fileName);
+      var file = $(this).file;
+        var formData = new FormData();
+        formData.append('file', file);
+        console.log(file);
+   });
+
+   $('#dataArmada').DataTable({
       autoWidth: true,
       "lengthMenu": [
          [10, 25, 50, -1],
@@ -173,9 +190,23 @@
          var tahun = $('#tahun').val();
          var trayek = $('#trayek').val();
          var jenis_trayek = $('#jenis_trayek').val();
+         var gambar_armada = $('#gambar_armada')[0].files[0];
          var url = postId ? 'armada/update' : 'armada';
          var method = postId ? 'PUT' : 'POST';
-
+         console.log(gambar_armada);
+     
+         // $.ajax({
+         //    type: "POST",
+         //    url: action,
+         //    crossDomain: true,
+         //    data: new FormData(this),
+         //    dataType: "json",
+         //    processData: false,
+         //    contentType: false,
+         //    headers: {
+         //       "Accept": "application/json"
+         //    }
+         // })
          $.ajax({
             url: url,
             type: method,
