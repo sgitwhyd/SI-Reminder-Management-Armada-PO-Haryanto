@@ -95,7 +95,7 @@ Route::middleware(['auth', 'checkRole:KEPALA-GUDANG'])->prefix('kepala-gudang')-
         Route::get('/show/{id}', [RampcheckController::class,'show']);
         Route::post('/', [RampcheckController::class,'store']);
         Route::get('/edit/{id}', [RampcheckController::class, 'edit']);
-        Route::put('/update', [RampcheckController::class, 'update']);
+        Route::put('/update/{id}', [RampcheckController::class, 'update']);
         Route::delete('rampcheck/delete/{id}', [RampcheckController::class, 'destroy']);
         Route::get('/pdf/{id}', [RampcheckController::class, 'rampcheckPDF']);
 
@@ -107,6 +107,8 @@ Route::middleware(['auth', 'checkRole:CREW'])->prefix('crew')->group(function ()
     Route::get('/dashboard', [CrewController::class, 'index']);
     Route::get('/riwayat-perbaikan', [CrewController::class, 'riwayatPerbaikan']);
     Route::get('/riwayat-perawatan', [CrewController::class, 'riwayatPerawatan']);
+    Route::get('/buat-rampcheck', [CrewController::class, 'createRampcheck']);
+    Route::post('/buat-rampcheck', [CrewController::class, 'storeRampcheck']);
 });
 
 Route::middleware(['auth', 'checkRole:MEKANIK'])->prefix('mekanik')->as('mekanik.')->group(function () {

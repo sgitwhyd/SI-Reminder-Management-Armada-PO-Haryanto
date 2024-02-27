@@ -1,14 +1,14 @@
 @extends('layouts.main')
-@include('sidebar.menu_kepala_gudang')
+@include('sidebar.menu_crew')
 
 @section('content')
 <div class="row justify-content-center">
   <div class="col-12">
     <h2 class="mb-2 page-title">Form Rampcheck</h2>
     <p class="card-text">Mencakup data pengecekan sebelum keberangkatan</p>
-    <a href="{{ '/kepala-gudang/rampcheck' }}" class="btn mb-2 btn-secondary"><i class="fe fe-chevron-left fe-18"></i>
+    <a href="{{ '/crew/dashboard' }}" class="btn mb-2 btn-secondary"><i class="fe fe-chevron-left fe-18"></i>
       Kembali</a>
-    <form action="{{ '/kepala-gudang/rampcheck'}}" method="post" enctype="multipart/form-data">
+    <form action="{{ '/crew/buat-rampcheck'}}" method="post" enctype="multipart/form-data">
       @csrf
       <div class="row my-4">
         <div class="col-md-12">
@@ -29,18 +29,6 @@
                   <input type="time" class="form-control" id="time_check" name="time_check" required>
                 </div>
               </div>
-              <div class="form-group row">
-                <label for="select-armada" class="col-sm-3 col-form-label">Armada</label>
-                <div class="col-sm-9">
-                  <select name="id_armada" id="select-armada" style="width: 100%;" required>
-                    <option value="" selected disabled>Pilih armada</option>
-                    @foreach($armadas as $armada)
-                    <option value="{{ $armada->id }}">{{ $armada->no_lambung }}</option>
-                    @endforeach
-                  </select>
-                </div>
-              </div>
-
             </div>
           </div>
         </div>
@@ -419,11 +407,13 @@
                 <textarea class="form-control" id="catatan_rampcheck" name="catatan_rampcheck"
                   placeholder="Catatan dalam pengecekan" rows="5"></textarea>
               </div>
-              <div class="form-group">
-                <label for="ttd_kepala_gudang">Tertanda Kepala Gudang</label>
-                <div class="custom-file mb-3">
-                  <input type="file" class="custom-file-input" id="ttd_kepala_gudang" name="ttd_kepala_gudang">
-                  <label class="custom-file-label" for="ttd_kepala_gudang">Choose file...</label>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="ttd_checker">Tertanda Checker</label>
+                  <div class="custom-file mb-3">
+                    <input type="file" class="custom-file-input" id="ttd_checker" name="ttd_checker" required="">
+                    <label class="custom-file-label" for="ttd_checker">Choose file...</label>
+                  </div>
                 </div>
               </div>
               <button type="submit" class="btn mb-2 btn-primary"><i class="fe fe-send"></i> Simpan</button>
@@ -455,11 +445,7 @@ $(document).ready(function() {
 
   });
 
-  $('#select-armada').select2({
-    theme: 'bootstrap4',
-    placeholder: 'Pilih Armada',
-    allowClear: true
-  });
+
 });
 </script>
 @endsection
