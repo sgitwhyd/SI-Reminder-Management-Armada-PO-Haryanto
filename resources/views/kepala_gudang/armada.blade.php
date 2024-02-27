@@ -47,7 +47,7 @@
                               <label for="trayek">Trayek</label>
                               <input type="text" class="form-control" id="trayek" name="trayek">
                            </div>
-                           <div class="form-group col-md-6">
+                           <div class="form-group col-md-6 d-flex flex-column">
                               <label for="jenis_trayek">Jenis Trayek</label>
                               <select class="form-control select-trayek" id="jenis_trayek" name="jenis_trayek" tabindex="-1">
                                  <option value="AKAP">AKAP</option>
@@ -144,10 +144,6 @@
    $('.custom-file-input').on('change', function() {
       let fileName = $(this).val().split('\\').pop();
       $(this).next('.custom-file-label').addClass("selected").html(fileName);
-      var file = $(this).file;
-        var formData = new FormData();
-        formData.append('file', file);
-        console.log(file);
    });
 
    $('#dataArmada').DataTable({
@@ -203,22 +199,30 @@
       var tahun = $('#tahun').val();
       var trayek = $('#trayek').val();
       var jenis_trayek = $('#jenis_trayek').val();
+      var gambar_armada = $('#gambar_armada')[0].files[0];
       var url = postId ? 'armada/update' : 'armada';
       var method = postId ? 'PUT' : 'POST';
-
+      var formData = new FormData(this);
+      console.log(formData);
       $.ajax({
          url: url,
          type: method,
-         data: {
-         id_armada: postId,
-         no_polisi: no_pol,
-         no_lambung: no_lam,
-         no_stnk: no_stnk,
-         tahun: tahun,
-         trayek: trayek,
-         jenis_trayek: jenis_trayek,
-         _token: '{{ csrf_token() }}'
-         },
+         data: formData,
+         processData: false,
+         dataType: "json",
+         contentType: false,
+
+         // data: {
+         //    id_armada: postId,
+         //    no_polisi: no_pol,
+         //    no_lambung: no_lam,
+         //    no_stnk: no_stnk,
+         //    tahun: tahun,
+         //    trayek: trayek,
+         //    jenis_trayek: jenis_trayek,
+         //    gambar_armada: gambar_armada,
+         //    _token: '{{ csrf_token() }}'
+         // },
          success: function(data) {
          // successHtml = '<div class="alert alert-success">'+data['message']+'</div>';
          // $('#form-notif').html( successHtml );

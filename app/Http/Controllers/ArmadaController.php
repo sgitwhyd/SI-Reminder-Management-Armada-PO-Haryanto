@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Armada;
 use Session;
+use Illuminate\Support\Str;
 
 
 class ArmadaController extends Controller
@@ -44,24 +45,30 @@ class ArmadaController extends Controller
                 'jenis_trayek' => 'required',
                 'gambar_armada' => 'required|file|max:1024',
             ]);
-
             if (!$isValid) {
                 return response()->json([
                     'success' => 'false',
                     'errors'  => $isValid->errors()->all(),
                 ], 400);
             } else {
-                if ($request->hasFile('gambar_armada')) {
-                    $ttd_1 = $request->file('gambar_armada');
-                    $rd_name1 = Str::random(15); // random caracter generator
-                    $ext1 = $ttd_1->getClientOriginalExtension();
-                    $gambar_armada = time().'_'.$rd_name1.'.'.$ext1;
-                    $file_path1 = $ttd_1->storeAs('public/armada', $gambar_armada); // Store file in 'storage/app/uploads' directory
-                    $request['gambar_armada'] = $gambar_armada;
-                }
-
+                $gma = $request->file('gambar_armada');
+                $rd_name1 = Str::random(15); // random caracter generator
+                $ext1 = $gma->getClientOriginalExtension();
+                $gambar_armada = time().'_'.$rd_name1.'.'.$ext1;
+                $file_path1 = $gma->storeAs('public/armada', $gambar_armada); // Store file in 'storage/app/uploads' directory
+                // $request->gambar_armada = $gambar_armada;
+                // dd($request->all());
+                $column = [
+                    'no_polisi' => $request->no_polisi,
+                    'no_lambung' => $request->no_lambung,
+                    'no_stnk' => $request->no_stnk,
+                    'tahun' => $request->tahun,
+                    'trayek' => $request->trayek,
+                    'jenis_trayek' => $request->jenis_trayek,
+                    'gambar_armada' => $gambar_armada,
+                ];
                 try {
-                    Armada::create($request->all());
+                    Armada::create($column);
                     // return response()->json([
                     //     'success' => true,
                     //     'message'  => 'Armada berhasil ditambahkan.',
