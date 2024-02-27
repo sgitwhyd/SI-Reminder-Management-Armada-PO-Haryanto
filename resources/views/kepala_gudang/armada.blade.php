@@ -71,63 +71,6 @@
                      </div>
                   </form>
                </div>
-=======
-<div class="row justify-content-center">
-  <div class="col-12">
-    <h2 class="mb-2 page-title">Data Armada</h2>
-    <p class="card-text">Mencakup data surat kendaraan dan kesedian armada</p>
-    <button type="button" class="btn mb-2 btn-primary" data-toggle="modal" data-target="#addArmada"><i
-        class="fe fe-plus"></i> Tambah</button>
-    {{-- modal add --}}
-    <div class="modal fade" id="addArmada" tabindex="-1" role="dialog" aria-labelledby="addArmadaTitle"
-      aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="addArmadaTitle">Tambah Armada</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <form action="" id="armada-add" method="">
-            <input type="hidden" name="postId" id="postId">
-            <div class="modal-body">
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="no_polisi">No. Polisi</label>
-                  <input type="text" class="form-control" id="no_polisi" name="no_polisi">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="no_stnk">No. STNK</label>
-                  <input type="text" class="form-control" id="no_stnk" name="no_stnk">
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="no_lambung">No. Lambung</label>
-                  <input type="text" class="form-control" id="no_lambung" name="no_lambung">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="tahun">Tahun</label>
-                  <input type="number" class="form-control" id="tahun" name="tahun">
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="trayek">Trayek</label>
-                  <input type="text" class="form-control" id="trayek" name="trayek">
-                </div>
-                <div class="form-group col-md-6 d-flex flex-column">
-                  <label for="jenis_trayek">Jenis Trayek</label>
-                  <select class="form-control select-trayek" id="jenis_trayek" name="jenis_trayek" tabindex="-1">
-                    <option value="AKAP">AKAP</option>
-                    <option value="AKDP">AKDP</option>
-                    <option value="MPU">MPU</option>
-                    <option value="PARIWISATA">PARIWISATA</option>
-                  </select>
-                </div>
-              </div>
->>>>>>> 1b720fdfd8cc8c0313b9ee9c1d0de517262474ae
             </div>
             <div class="modal-footer">
               <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Close</button>
