@@ -134,126 +134,117 @@
 
 @section('script')
 <script>
-$('#datasparepart').DataTable({
-  autoWidth: true,
-  "lengthMenu": [
-    [10, 25, 50, -1],
-    [10, 25, 50, "All"]
-  ]
-});
+  $('#datasparepart').DataTable({
+    autoWidth: true,
+    "lengthMenu": [
+      [10, 25, 50, -1],
+      [10, 25, 50, "All"]
+    ]
+  });
 
-$('.select-status').select2({
-  theme: 'bootstrap4',
-});
+  $('.select-status').select2({
+    theme: 'bootstrap4',
+  });
 
-$.ajax({
-  url: url,
-  type: method,
-  data: {
-    id_sp: postId,
-    kode_sparepart: kode_sparepart,
-    nama_sparepart: nama_sparepart,
-    stock: stock,
-    harga: harga,
-    keterangan: keterangan,
-    status: status,
-    _token: '{{ csrf_token() }}'
-  },
-  success: function(data) {
-    // successHtml = '<div class="alert alert-success">'+data['message']+'</div>';
-    // $('#form-notif').html( successHtml );
-    // $('#addSparepart').modal('hide');
-    location.reload();
-  },
-  error: function(data) {
-    var result = data.responseJSON;
-    errorsHtml = '<div class="alert alert-danger"><ul>';
-    $.each(result.errors, function(key, value) {
-      errorsHtml += '<li>' + value[0] + '</li>';
+  $(document).ready(function() {
+    //  Edit post
+    $(document).on('click', '.edit-sparepart', function(){
+        var postId = $(this).data('id');
+        $.ajax({
+          url: 'sparepart/edit',
+          type: 'POST',
+          data: {
+              id: postId,
+              _token: '{{ csrf_token() }}'
+          },
+          success: function(data) {
+              // console.log(data)
+              $('#postId').val(data['id'])
+              $('#nama_sparepart').val(data['nama_sparepart'])
+              $('#kode_sparepart').val(data['kode_sparepart'])
+              $('#stock').val(data['stock'])
+              $('#harga').val(data['harga'])
+              $('#status').val(data['status']).trigger('change')
+              $('#keterangan').val(data['keterangan'])
+              $('#addSparepart').modal('show');
+          },
+          error: function(xhr, status, error) {
+              console.error('Error:', error);
+          }
+        });
     });
-    errorsHtml += '</ul></div>';
-    $('#form-notif').html(errorsHtml);
-    $('#addSparepart').modal('hide');
-  }
-});
-// Delete post
-$(document).on('click', '.delete-sparepart', function() {
-  var postId = $(this).data('id');
-  if (confirm('Are you sure you want to delete this Sparepart?')) {
-    $.ajax({
-      url: 'sparepart/delete/' + postId,
-      type: 'DELETE',
-      data: {
-        _token: '{{ csrf_token() }}'
-      },
-      success: function(data) {
-        location.reload();
-      },
-      error: function(xhr, status, error) {
-        console.error('Error:', error);
-      }
+    // Save or update post
+    $('#sparepart-add').submit(function(e) {
+      e.preventDefault();
+      var postId = $('#postId').val();
+      var kode_sparepart = $('#kode_sparepart').val();
+      var nama_sparepart = $('#nama_sparepart').val();
+      var stock = $('#stock').val();
+      var harga = $('#harga').val();
+      var keterangan = $('#keterangan').val();
+      var status = $('#status').val();
+      var url = postId ? 'sparepart/update' : 'sparepart';
+      var method = postId ? 'PUT' : 'POST';
+      $.ajax({
+        url: url,
+        type: method,
+        data: {
+            id_sp: postId,
+            kode_sparepart: kode_sparepart,
+            nama_sparepart: nama_sparepart,
+            stock: stock,
+            harga: harga,
+            keterangan: keterangan,
+            status: status,
+            _token: '{{ csrf_token() }}'
+        },
+        success: function(data) {
+            // successHtml = '<div class="alert alert-success">'+data['message']+'</div>';
+            // $('#form-notif').html( successHtml );
+            // $('#addSparepart').modal('hide');
+            location.reload();
+        },
+        error: function(data) {
+            var result = data.responseJSON;
+            errorsHtml = '<div class="alert alert-danger"><ul>';
+            $.each( result.errors, function( key, value ) {
+                  errorsHtml += '<li>'+ value[0] + '</li>';
+            });
+            errorsHtml += '</ul></div>';
+            $('#form-notif').html( errorsHtml );
+            $('#addSparepart').modal('hide');
+        }
+      });
     });
-  }
-});
+  // Delete post
+  $(document).on('click', '.delete-sparepart', function() {
+    var postId = $(this).data('id');
+    if (confirm('Are you sure you want to delete this sparepart?')) {
+      $.ajax({
+        url: 'sparepart/delete/' + postId,
+        type: 'DELETE',
+        data: {
+          _token: '{{ csrf_token() }}'
+        },
+        success: function(data) {
+          location.reload();
+        },
+        error: function(xhr, status, error) {
+          console.error('Error:', error);
+        }
+      });
+    }
+  });
 
-$.ajax({
-  url: url,
-  type: method,
-  data: {
-    id_sp: postId,
-    kode_sparepart: kode_sparepart,
-    nama_sparepart: nama_sparepart,
-    stock: stock,
-    harga: harga,
-    keterangan: keterangan,
-    status: status,
-    _token: '{{ csrf_token() }}'
-  },
-  success: function(data) {
-    // successHtml = '<div class="alert alert-success">'+data['message']+'</div>';
-    // $('#form-notif').html( successHtml );
-    // $('#addSparepart').modal('hide');
-    location.reload();
-  },
-  error: function(data) {
-    var result = data.responseJSON;
-    errorsHtml = '<div class="alert alert-danger"><ul>';
-    $.each(result.errors, function(key, value) {
-      errorsHtml += '<li>' + value[0] + '</li>';
-    });
-    errorsHtml += '</ul></div>';
-    $('#form-notif').html(errorsHtml);
-    $('#addSparepart').modal('hide');
-  }
-});
-// Delete post
-$(document).on('click', '.delete-sparepart', function() {
-  var postId = $(this).data('id');
-  if (confirm('Are you sure you want to delete this post?')) {
-    $.ajax({
-      url: 'sparepart/delete/' + postId,
-      type: 'DELETE',
-      data: {
-        _token: '{{ csrf_token() }}'
-      },
-      success: function(data) {
-        location.reload();
-      },
-      error: function(xhr, status, error) {
-        console.error('Error:', error);
-      }
-    });
-  }
-});
-
-$('#addSparepart').on('hidden.bs.modal', function() {
-  $('#postId').val('')
-  $('#kode_sparepart').val('')
-  $('#nama_sparepart').val('')
-  $('#stock').val('')
-  $('#harga').val('')
-  $('#status').val('')
-  $('#keterangan').val('')
+  $('#addSparepart').on('hidden.bs.modal', function() {
+    $('#postId').val('')
+    $('#kode_sparepart').val('')
+    $('#nama_sparepart').val('')
+    $('#stock').val('')
+    $('#harga').val('')
+    $('#status').val('')
+    $('#keterangan').val('')
+  });
 });
 </script>
 
