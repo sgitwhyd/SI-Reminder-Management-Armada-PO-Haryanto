@@ -46,6 +46,9 @@
                   <th>
                     Jumlah
                   </th>
+                  <th>
+                    Aksi
+                  </th>
                 </tr>
               </thead>
               <tbody id="sparepart">
@@ -117,18 +120,73 @@ $(document).ready(function() {
   const choosedSparepart = [];
 
   $('#suku_cadang').hide();
+
+  window.render = function() {
+    let html = '';
+
+    $.each(choosedSparepart, function(index, value) {
+      html += `
+        <tr id="sparepart-${value.id}">
+          <td>${value.kode_sparepart}</td>
+          <td>${value.nama_sparepart}</td>
+          <td class="jumlah">${value.jumlah}</td>
+          <td class="jumlah">
+            <button type="button" class="btn btn-danger delete-sparepart"
+              onClick="deleteSparepart(${value.id})">Hapus</button>
+          </td>
+        </tr>
+      `;
+    });
+
+    $('#spareparts').val(JSON.stringify(choosedSparepart));
+
+    if (choosedSparepart.length > 0) {
+      $('#suku_cadang').show();
+    } else {
+      $('#suku_cadang').hide();
+    }
+
+    $('#sparepart').html(html);
+  }
+
+  window.deleteSparepart = function(id) {
+    const sparepart = choosedSparepart.find((item) => item.id === id);
+    if (sparepart.jumlah > 1) {
+      choosedSparepart.map(item => {
+        if (item.id === id) {
+          item.jumlah -= 1;
+        }
+      })
+    } else {
+      const index = choosedSparepart.findIndex((item) => item.id === id);
+      choosedSparepart.splice(index, 1);
+    }
+
+    render();
+
+  }
+
+
   $('.buttonTambahSparepart').click(function() {
     const sparepart = $(this).attr('data');
     const sparepartObj = JSON.parse(sparepart);
 
+    choosedSparepart.some(item => {
+      if (item.id === sparepartObj.id && item.jumlah >= sparepartObj.stock) {
+        alert('Stock tidak mencukupi');
+        return;
+      }
+
+      if (item.id === sparepartObj.id) {
+        item.jumlah += 1;
+        render();
+        return;
+      }
+
+    })
+
     const isExist = choosedSparepart.find((item) => item.id === sparepartObj.id);
-    if (isExist) {
-      choosedSparepart.map(item => {
-        if (item.id === sparepartObj.id) {
-          item.jumlah += 1;
-        }
-      })
-    } else {
+    if (!isExist) {
       choosedSparepart.push({
         id: sparepartObj.id,
         kode_sparepart: sparepartObj.kode_sparepart,
@@ -138,24 +196,7 @@ $(document).ready(function() {
       })
     }
 
-    let html = '';
-
-    $.each(choosedSparepart, function(index, value) {
-      html += `
-        <tr id="sparepart-${value.id}">
-          <td>${value.kode_sparepart}</td>
-          <td>${value.nama_sparepart}</td>
-          <td class="jumlah">${value.jumlah}</td>
-        </tr>
-      `;
-    });
-
-    $('#spareparts').val(JSON.stringify(choosedSparepart));
-    $('#suku_cadang').show();
-
-    $('#sparepart').html(html);
-
-    console.log(choosedSparepart);
+    render();
   })
 });
 </script>
