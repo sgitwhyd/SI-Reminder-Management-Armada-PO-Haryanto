@@ -17,6 +17,7 @@ class ArmadaFactory extends Factory
     public function definition(): array
     {
         return [
+            'gambar_armada' => $this->faker->imageUrl(640, 480, 'armada'),
             'no_polisi' => 'AD' . $this->faker->numberBetween(1000, 9999) . $this->faker->randomLetter . $this->faker->randomLetter,
             'no_lambung' => 'HM' . $this->faker->numberBetween(1000, 9999) . $this->faker->randomLetter . $this->faker->randomLetter,
             'no_stnk' => 'STNK' . $this->faker->numberBetween(1000, 9999) . $this->faker->randomLetter . $this->faker->randomLetter,

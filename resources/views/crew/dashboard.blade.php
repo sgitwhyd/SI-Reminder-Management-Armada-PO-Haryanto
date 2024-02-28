@@ -72,7 +72,7 @@
           <strong>
             Foto Armada
           </strong>
-          <img src="https://via.placeholder.com/150" alt="Foto Armada" class="img-fluid" style="width: 200px;">
+          <img src="{{ $dataBus->gambar_armada }}" alt="Foto Armada" width="200">
         </div>
       </div>
     </div>

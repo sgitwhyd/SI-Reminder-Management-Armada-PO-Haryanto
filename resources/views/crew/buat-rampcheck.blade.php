@@ -6,7 +6,7 @@
   <div class="col-12">
     <h2 class="mb-2 page-title">Form Rampcheck</h2>
     <p class="card-text">Mencakup data pengecekan sebelum keberangkatan</p>
-    <a href="{{ '/crew/dashboard' }}" class="btn mb-2 btn-secondary"><i class="fe fe-chevron-left fe-18"></i>
+    <a href="{{ '/crew/riwayat-rampcheck' }}" class="btn mb-2 btn-secondary"><i class="fe fe-chevron-left fe-18"></i>
       Kembali</a>
     <form action="{{ '/crew/buat-rampcheck'}}" method="post" enctype="multipart/form-data">
       @csrf

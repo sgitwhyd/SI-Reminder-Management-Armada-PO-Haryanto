@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Rampcheck;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use PDF;
 use Exception;
 use Illuminate\Support\Facades\Session;
@@ -191,7 +192,7 @@ class RampcheckController extends Controller
         ];
 
         // $pdf = PDF::load_html('print-templates/rampcheck-pdf');
-        $pdf = PDF::loadView('print-templates/rampcheck-pdf', $data);
+        $pdf = FacadePdf::loadView('print-templates/rampcheck-pdf', $data);
         return $pdf->stream('Rampcheck.pdf');
         
     }

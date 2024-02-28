@@ -21,11 +21,14 @@ class CrewController extends Controller
         $dataBus = Armada::where('id', $busId)->first();
         $dataPerawatan = Perawatan::where('id_armada', $busId)->latest('created_at')->first();
         // ganti 3 bulan sesuai dengan interval perawatan
-        $alertPerawatan = Carbon::parse($dataPerawatan->tanggal)->addDays(5);
-        if($today->gt($alertPerawatan)) {
-            $alertPerawatan = $dataPerawatan;
-        } else {
-            $alertPerawatan = null;
+        $alertPerawatan = null;
+        if($dataPerawatan) {
+            $alertPerawatan = Carbon::parse($dataPerawatan->tanggal)->addDays(5);
+            if($today->gt($alertPerawatan)) {
+                $alertPerawatan = $dataPerawatan;
+            } else {
+                $alertPerawatan = null;
+            }
         }
         return view('crew.dashboard', compact('dataBus', 'alertPerawatan'));
 
@@ -117,6 +120,12 @@ class CrewController extends Controller
         flash()->addSuccess('Rampcheck berhasil dibuat');
 
         return redirect()->back();
+    }
+
+    public function riwayatRampcheck()
+    {
+        $list_rampcheck = Rampcheck::where('id_armada', 1)->orderBy('created_at', 'DESC')->get();
+        return view('crew.riwayat-rampcheck', compact('list_rampcheck'));
     }
 
 

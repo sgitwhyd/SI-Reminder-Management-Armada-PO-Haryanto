@@ -109,6 +109,9 @@ Route::middleware(['auth', 'checkRole:CREW'])->prefix('crew')->group(function ()
     Route::get('/riwayat-perawatan', [CrewController::class, 'riwayatPerawatan']);
     Route::get('/buat-rampcheck', [CrewController::class, 'createRampcheck']);
     Route::post('/buat-rampcheck', [CrewController::class, 'storeRampcheck']);
+    Route::get('/riwayat-rampcheck', [CrewController::class, 'riwayatRampcheck']);
+    Route::get('/pdf/{id}', [RampcheckController::class, 'rampcheckPDF']);
+
 });
 
 Route::middleware(['auth', 'checkRole:MEKANIK'])->prefix('mekanik')->as('mekanik.')->group(function () {
