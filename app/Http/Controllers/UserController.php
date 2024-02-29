@@ -125,10 +125,7 @@ class UserController extends Controller
                     ];
                     if($request->password === null) unset($user['password']);
                     User::where('id_user', $request->id_user)->update($user);
-                    // return response()->json([
-                    //     'success' => true,
-                    //     'message'  => 'Sparepart berhasil ditambahkan.',
-                    // ], 200);
+                   
                     Session::flash('success', 'User berhasil diubah.');
                     return response()->json(['success' => true], 200);
                 }

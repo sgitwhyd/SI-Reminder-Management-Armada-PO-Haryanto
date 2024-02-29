@@ -13,7 +13,7 @@ class User extends Authenticatable
     protected $table = 'users';
     protected $primaryKey = 'id_user';
     protected $fillable = ['username','password', 'full_name', 'role', 'id_armada'];
-    // protected $guarded = ['id'];
+    // protected $guarded = ['id_user'];
 
     public function rampchecks()
     {

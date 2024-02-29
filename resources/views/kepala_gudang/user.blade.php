@@ -164,16 +164,20 @@
                _token: '{{ csrf_token() }}'
             },
             success: function(data) {
-               $('#postId').val(data['id_user'])
-               $('#full_name').val(data['full_name'])
-               $('#username').val(data['username'])
+               $('#postId').val(data['id_user']);
+               $('#full_name').val(data['full_name']);
+               $('#username').val(data['username']);
+               if(data['id_armada'] != "0" && data['role'] == "CREW") {
+                  $('#armada').val(data['id_armada']).trigger('change');
+                  $('select#armada').prop('disabled', false);
+               };
                if(data['role'] == 'KEPALA-GUDANG'){
                   $('#kepala_gudang').prop('checked', true);
                } else if (data['role'] == 'MEKANIK'){
                   $('#mekanik').prop('checked', true);
                } else if (data['role'] == 'CREW'){
                   $('#crew').prop('checked', true);
-               }
+               };
                $('#addUser').modal('show');
             },
             error: function(xhr, status, error) {
@@ -210,9 +214,6 @@
                _token: '{{ csrf_token() }}'
             },
             success: function(data) {
-               // successHtml = '<div class="alert alert-success">'+data['message']+'</div>';
-               // $('#form-notif').html( successHtml );
-               // $('#adduser').modal('hide');
                location.reload();
             },
             error: function(data) {
@@ -238,7 +239,6 @@
                   _token: '{{ csrf_token() }}'
                },
                success: function(data) {
-                  console.log(data);
                   location.reload();
                },
                error: function(xhr, status, error) {
