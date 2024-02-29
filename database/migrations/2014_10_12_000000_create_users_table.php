@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('full_name', 100);
             $table->string('password', 255);
             $table->enum('role', ['KEPALA-GUDANG', 'CREW', 'MEKANIK'])->default('CREW');
+            $table->integer('id_armada', false, true)->nullable();
             $table->timestamps();
         });
     }

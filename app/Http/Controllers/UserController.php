@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Armada;
 use Session;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,8 +16,10 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+        $data_armada = Armada::all();
         $data = [
             'users' => $users,
+            'data_armada' => $data_armada,
         ];
         return view('kepala_gudang.user', $data);
     }
@@ -39,6 +42,8 @@ class UserController extends Controller
                 'username' => 'required|unique:users',
                 'full_name' => 'required',
                 'password' => 'required|min:8',
+                'role' => 'required',
+                'id_armada' => 'numeric',
             ]);
 
             if (!$isValid) {
@@ -53,6 +58,7 @@ class UserController extends Controller
                         'username' => $request->username,
                         'password' => Hash::make($request->password),
                         'role' => $request->role,
+                        'id_armada' => $request->id_armada,
                     ];
 
                     User::create($user);

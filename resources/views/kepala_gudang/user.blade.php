@@ -40,7 +40,7 @@
                            <div class="form-row">
                               <div class="col-md-4">
                                  <div class="custom-control custom-radio mb-3">
-                                    <input type="radio" class="custom-control-input" id="kepala_gudang" value="KEPALA GUDANG" name="role" required>
+                                    <input type="radio" class="custom-control-input" id="kepala_gudang" value="KEPALA-GUDANG" name="role" required>
                                     <label class="custom-control-label" for="kepala_gudang">Kepala Gudang</label>
                                  </div>
                               </div>
@@ -52,12 +52,21 @@
                               </div>
                               <div class="col-md-4">
                                  <div class="custom-control custom-radio mb-3">
-                                    <input type="radio" class="custom-control-input" id="crew" value="CREW"name="role" required>
+                                    <input type="radio" class="custom-control-input" id="crew" value="CREW" name="role" required>
                                     <label class="custom-control-label" for="crew">Crew</label>
                                  </div>
                               </div>
                            </div>
                         </div>
+                        <div class="form-group d-flex flex-column mb-3">
+                           <label for="armada">Pilih Armada</label>
+                           <select name="id_armada" id="armada" class="custom-select" disabled>
+                              <option value="">-- pilih armada</option>
+                             @foreach($data_armada as $armada)
+                             <option value="{{ $armada['id'] }}">{{ $armada['no_lambung'] }}</option>
+                             @endforeach
+                           </select>
+                         </div>
                      </div>
                      <div class="modal-footer">
                         <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Close</button>
@@ -124,10 +133,13 @@
       ]
    });
 
-   $('.select-trayek').select2({
+   $('#armada').select2({
       theme: 'bootstrap4',
+      placeholder: 'Pilih Armada',
+      allowClear: true
    });
 
+   // generate random password
    function generatePassword(length) {
       let result = '';
       const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -155,7 +167,7 @@
                $('#postId').val(data['id_user'])
                $('#full_name').val(data['full_name'])
                $('#username').val(data['username'])
-               if(data['role'] == 'KEPALA GUDANG'){
+               if(data['role'] == 'KEPALA-GUDANG'){
                   $('#kepala_gudang').prop('checked', true);
                } else if (data['role'] == 'MEKANIK'){
                   $('#mekanik').prop('checked', true);
@@ -176,8 +188,10 @@
          var full_name = $('#full_name').val();
          var username = $('#username').val();
          var password = $('#password').val();
+         var armada = $('#armada').val() != "" ? $('#armada').val() : 0;
          var role;
-         if($('#kepala_gudang').is(':checked')) role = 'KEPALA GUDANG';
+         console.log(armada);
+         if($('#kepala_gudang').is(':checked')) role = 'KEPALA-GUDANG';
          if($('#mekanik').is(':checked')) role = 'MEKANIK';
          if($('#crew').is(':checked')) role = 'CREW';
          var url = postId ? 'user/update' : 'user';
@@ -192,6 +206,7 @@
                username: username,
                password: password,
                role: role,
+               id_armada: armada,
                _token: '{{ csrf_token() }}'
             },
             success: function(data) {
@@ -232,13 +247,22 @@
             });
          }
       });
-
+      // clear input form
       $('#adduser').on('hidden.bs.modal', function () {
-         $('#postId').val('')
-         $('#username').val('')
-         $('#full_name').val('')
-         $('#email').val('')
-         $('#password').val('')
+         $('#postId').val('');
+         $('#username').val('');
+         $('#full_name').val('');
+         $('#email').val('');
+         $('#password').val('');
+      });
+      // option for select armada
+      $('.custom-radio').on('click', function () {
+         if($('#crew').is(':checked')){
+            $('select#armada').prop('disabled', false);
+         } else {
+            $('select#armada').prop('disabled', true);
+         };
+         console.log($('#crew').is(':checked'));
       });
    });
   </script>

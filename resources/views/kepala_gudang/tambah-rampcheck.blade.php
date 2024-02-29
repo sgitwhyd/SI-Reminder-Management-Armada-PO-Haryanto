@@ -439,27 +439,27 @@
 
 @section('script')
 <script>
-$(document).ready(function() {
-  $('.custom-file-input').on('change', function() {
-    let fileName = $(this).val().split('\\').pop();
-    $(this).next('.custom-file-label').addClass("selected").html(fileName);
-  });
+  $(document).ready(function() {
+    $('.custom-file-input').on('change', function() {
+      let fileName = $(this).val().split('\\').pop();
+      $(this).next('.custom-file-label').addClass("selected").html(fileName);
+    });
 
-  $('#check_all').on('click', function() {
-    var checkAll = $(this).is(':checked');
-    if (checkAll) {
-      $('#rampcheck-list .custom-control-input').prop('checked', true);
-    } else {
-      $('#rampcheck-list .custom-control-input').prop('checked', false);
-    }
+    $('#check_all').on('click', function() {
+      var checkAll = $(this).is(':checked');
+      if (checkAll) {
+        $('#rampcheck-list .custom-control-input').prop('checked', true);
+      } else {
+        $('#rampcheck-list .custom-control-input').prop('checked', false);
+      }
 
-  });
+    });
 
-  $('#select-armada').select2({
-    theme: 'bootstrap4',
-    placeholder: 'Pilih Armada',
-    allowClear: true
+    $('#select-armada').select2({
+      theme: 'bootstrap4',
+      placeholder: 'Pilih Armada',
+      allowClear: true
+    });
   });
-});
 </script>
 @endsection
