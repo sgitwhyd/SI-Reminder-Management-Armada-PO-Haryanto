@@ -35,6 +35,8 @@ Route::get('/forgot-pass', [AuthController::class, 'forgotPassword']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::middleware(['auth', 'checkRole:KEPALA-GUDANG'])->prefix('kepala-gudang')->as('kepala_gudang.')->group(function () {
+    Route::get('/upload-multiple', [HomeController::class, 'multiUpload']);
+    Route::post('/uploads', [HomeController::class, 'storeUpload']);
     Route::get('/dashboard', [HomeController::class, 'indexKepalaGudang']);
     // armada
     Route::get('/armada', [ArmadaController::class, 'index']);
