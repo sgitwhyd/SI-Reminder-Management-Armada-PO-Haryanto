@@ -1,18 +1,36 @@
-@extends('layouts.main')
-@include('sidebar.menu_kepala_gudang')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    Detail Perbaikan {{ $data->armada->no_lambung }}
+  </title>
+  <style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
 
-@section('content')
-<h1>
-  Detail Perbaikan
-</h1>
+  table,
+  th,
+  td {
+    border: 1px solid black;
+  }
 
-
-<div class="card shadow">
+  th,
+  td {
+    padding: 10px;
+    text-align: left;
+  }
+  </style>
+</head>
+<body>
   <div class="card-body">
     <div class="col-12">
-      <h5>
+      <h3>
         Detail Armada
-      </h5>
+      </h3>
 
       <table class="table">
         <tr>
@@ -66,9 +84,9 @@
       </table>
     </div>
     <div class="col-12">
-      <h5>
+      <h3>
         Daftar Sparepart Yang Digunakan
-      </h5>
+      </h3>
       <table class="table datatables" id="dataPerbaikan">
         <thead>
           <tr>
@@ -115,19 +133,13 @@
       </table>
     </div>
     <div class="col-12">
-      <h5>
+      <h3>
         Keterangan
-      </h5>
+      </h3>
       <p>
         {{ $data->keterangan }}
       </p>
-      <a href="pdf/{{ request('id') }}" target="_blank" class="btn btn-primary">
-        Cetak Data Perbaikan
-      </a>
     </div>
   </div>
-</div>
-@endsection
-@section('script')
-
-@endsection
+</body>
+</html>

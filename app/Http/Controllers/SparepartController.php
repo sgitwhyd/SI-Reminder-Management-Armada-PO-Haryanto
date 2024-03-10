@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Perbaikan;
 use Illuminate\Http\Request;
 use App\Models\Sparepart;
 use Exception;
@@ -145,7 +146,7 @@ class SparepartController extends Controller
 
     public function riwayatSparepart()
     {
-        $data = Sparepart::select('spareparts.nama_sparepart', 'spareparts.kode_sparepart', 'spareparts.stock', DB::raw('COUNT(perbaikan_has_spareparts.sparepart_id) as total_used'))
+        $data = Sparepart::select('spareparts.nama_sparepart', 'spareparts.id', 'spareparts.kode_sparepart', 'spareparts.stock', DB::raw('COUNT(perbaikan_has_spareparts.sparepart_id) as total_used'))
                 ->leftJoin('perbaikan_has_spareparts', 'spareparts.id', '=', 'perbaikan_has_spareparts.sparepart_id')
                 ->leftJoin('perbaikans', 'perbaikan_has_spareparts.perbaikan_id', '=', 'perbaikans.id')
                 ->groupBy('spareparts.id', 'spareparts.nama_sparepart', 'spareparts.kode_sparepart', 'spareparts.stock')
@@ -196,5 +197,17 @@ class SparepartController extends Controller
         header('Cache-Control: max-age=0');
         $writer->save('php://output');
         exit();
+    }
+
+    public function detailRiwayatSparepart($id)
+    {
+        $sparepart = Sparepart::findOrFail($id);
+        $spareparts = Perbaikan::select('perbaikans.tanggal', 'armadas.no_lambung', 'perbaikans.id')
+                ->leftJoin('armadas', 'perbaikans.id_armada', '=', 'armadas.id')
+                ->leftJoin('perbaikan_has_spareparts', 'perbaikans.id', '=', 'perbaikan_has_spareparts.perbaikan_id')
+                ->where('perbaikan_has_spareparts.sparepart_id', $id)
+                ->get();
+
+        return view('kepala_gudang.detail-riwayat-sparepart', compact('spareparts', 'sparepart'));
     }
 }

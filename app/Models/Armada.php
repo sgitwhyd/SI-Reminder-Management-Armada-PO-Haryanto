@@ -15,4 +15,9 @@ class Armada extends Model
     {
         return $this->hasMany(Perawatan::class);
     }
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'id_armada', 'id');
+    }
 }

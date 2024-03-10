@@ -17,6 +17,9 @@
             <th>Nama Sparepart</th>
             <th>Total Digunakan</th>
             <th>Stock</th>
+            <th>
+              Detail
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -27,6 +30,11 @@
             <td>{{ $sparepart->nama_sparepart }}</td>
             <td>{{ $sparepart->total_used }}</td>
             <td>{{ $sparepart->stock }}</td>
+            <td>
+              <a href="riwayat/{{ $sparepart->id }}">
+                Detail
+              </a>
+            </td>
           </tr>
           @endforeach
         </tbody>

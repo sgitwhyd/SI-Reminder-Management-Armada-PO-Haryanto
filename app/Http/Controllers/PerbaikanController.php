@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Session;
 use App\Models\Armada;
 use App\Models\Perbaikan;
 use App\Models\Sparepart;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class PerbaikanController extends Controller
@@ -85,5 +86,13 @@ class PerbaikanController extends Controller
         $perbaikan->delete();
         Session::flash('success', 'Perbaikan berhasil dihapus.');
         return response()->json(['success' => true], 200);
+    }
+
+    public function detailPerbaikanPDF($id)
+    {
+        $data = Perbaikan::where('id', $id)->with(['spareparts', 'sparepart'])->first();
+        $fileName = 'detail-perbaikan-' . $data->armada->no_lambung . '.pdf';
+        $pdf = Pdf::loadView('kepala_gudang.detail-perbaikan-pdf', compact('data'));
+        return $pdf->stream($fileName);
     }
 }

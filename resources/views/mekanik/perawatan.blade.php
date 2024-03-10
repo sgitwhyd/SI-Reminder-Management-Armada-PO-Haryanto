@@ -35,9 +35,9 @@
           <td>{{ $index + 1 }}</td>
           <td>{{ $value->armada->no_lambung }}</td>
           <td>{{ $value->tanggal }}</td>
-          <td>{{ number_format((float)$value->oli_gardan, 0, '.') }} KM</td>
-          <td>{{ number_format((float)$value->oli_mesin, 0, '.') }} KM</td>
-          <td>{{ number_format((float)$value->oli_transmisi, 0, '.') }} KM</td>
+          <td>{{ $value->oli_gardan }} </td>
+          <td>{{ $value->oli_mesin }} </td>
+          <td>{{ $value->oli_transmisi }} </td>
         </tr>
         @endforeach
       </tbody>

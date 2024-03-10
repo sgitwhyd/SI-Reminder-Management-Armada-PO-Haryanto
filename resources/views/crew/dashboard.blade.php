@@ -63,7 +63,9 @@
             Crew
           </strong>
           <span>
-            Pak Budi, Pak Joko, Pak Agus
+            @foreach($dataBus->users as $user)
+            {{ $user->full_name }},
+            @endforeach
           </span>
         </div>
       </div>

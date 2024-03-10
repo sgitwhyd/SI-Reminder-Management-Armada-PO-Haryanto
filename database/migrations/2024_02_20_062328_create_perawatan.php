@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('id_armada');
             $table->date('tanggal');
             $table->string('oli_gardan');
-            $table->string('oli_mesin');
+            $table->string('oli_mesin')->nullable();
             $table->string('oli_transmisi');
             $table->string('ttd_kepala_gudang')->nullable();
             

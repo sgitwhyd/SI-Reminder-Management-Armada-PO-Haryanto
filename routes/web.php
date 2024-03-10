@@ -54,6 +54,7 @@ Route::middleware(['auth', 'checkRole:KEPALA-GUDANG'])->prefix('kepala-gudang')-
 
         // riwayat sparepart
         Route::get('/riwayat', [SparepartController::class, 'riwayatSparepart']);
+        Route::get('/riwayat/{id}', [SparepartController::class, 'detailRiwayatSparepart']);
     });
 
 
@@ -75,6 +76,7 @@ Route::middleware(['auth', 'checkRole:KEPALA-GUDANG'])->prefix('kepala-gudang')-
         Route::post('/buat-perbaikan', [PerbaikanController::class, 'storePerbaikan'])->name('buat-perbaikan');
         Route::get('/detail/{id}', [PerbaikanController::class, 'detailPerbaikan']);
         Route::delete('/delete/{id}', [PerbaikanController::class, 'destroy']);
+        Route::get('/detail/pdf/{id}', [PerbaikanController::class, 'detailPerbaikanPDF']);
     });
 
     // perawatan

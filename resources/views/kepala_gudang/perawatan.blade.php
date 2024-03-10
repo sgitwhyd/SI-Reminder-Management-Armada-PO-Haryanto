@@ -27,10 +27,10 @@
             Oli Gardan
           </th>
           <th>
-            Oli Mesin
+            Oli Transmisi
           </th>
           <th>
-            Oli Transmisi
+            Oli Mesin
           </th>
           <th>
             Tertanda
@@ -46,9 +46,9 @@
           <td>{{ $index + 1 }}</td>
           <td>{{ $value->armada->no_lambung }}</td>
           <td>{{ $value->tanggal }}</td>
-          <td>{{ number_format((float)$value->oli_gardan, 0, '.') }} KM</td>
-          <td>{{ number_format((float)$value->oli_mesin, 0, '.') }} KM</td>
-          <td>{{ number_format((float)$value->oli_transmisi, 0, '.') }} KM</td>
+          <td>{{ $value->oli_gardan }} </td>
+          <td>{{ $value->oli_transmisi }} </td>
+          <td>{{ $value->oli_mesin }} </td>
           <td>
             <img src="{{ asset('storage/' . $value->ttd_kepala_gudang) }}" style="width: 120px;" alt="tanda-tangan">
           </td>
@@ -78,28 +78,28 @@ $('#dataPerawatan').DataTable({
   ]
 });
 
-  $(document).ready(function(){
+$(document).ready(function() {
   // Delete post
-    $(document).on('click', '.delete-perawatan', function() {
-        var postId = $(this).data('id');
-        if (confirm('Apakah anda yakin untuk menghapus perawatan?')) {
-          $.ajax({
-              url: 'perawatan/delete/' + postId,
-              type: 'DELETE',
-              data: {
-                _token: '{{ csrf_token() }}'
-              },
-              success: function(data) {
-                location.reload();
-              },
-              error: function(xhr, status, error) {
-                console.error('Error:', error);
-              }
-          });
+  $(document).on('click', '.delete-perawatan', function() {
+    var postId = $(this).data('id');
+    if (confirm('Apakah anda yakin untuk menghapus perawatan?')) {
+      $.ajax({
+        url: 'perawatan/delete/' + postId,
+        type: 'DELETE',
+        data: {
+          _token: '{{ csrf_token() }}'
+        },
+        success: function(data) {
+          location.reload();
+        },
+        error: function(xhr, status, error) {
+          console.error('Error:', error);
         }
-    });
+      });
+    }
+  });
 
-  })
+})
 </script>
 
 @endsection

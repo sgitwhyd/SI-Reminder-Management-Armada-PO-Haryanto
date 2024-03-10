@@ -19,10 +19,10 @@
                 Oli Gardan
               </th>
               <th>
-                Oli Mesin
+                Oli Transmisi
               </th>
               <th>
-                Oli Transmisi
+                Oli Mesin
               </th>
               <th>
                 Tanda Tangan Kepala Gudang
@@ -35,9 +35,9 @@
               <td>
                 {{ $item->tanggal }}
               </td>
-              <td>{{ number_format((float)$item->oli_gardan, 0, '.') }} KM</td>
-              <td>{{ number_format((float)$item->oli_mesin, 0, '.') }} KM</td>
-              <td>{{ number_format((float)$item->oli_transmisi, 0, '.') }} KM</td>
+              <td>{{ $item->oli_gardan }} </td>
+              <td>{{ $item->oli_mesin }} </td>
+              <td>{{ $item->oli_transmisi }} </td>
               <td>
                 <img src="{{ asset('storage/' . $item->ttd_kepala_gudang) }}" alt="ttd_kepala_gudang" width="100">
               </td>

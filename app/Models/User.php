@@ -19,4 +19,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Rampcheck::class, 'user_id', 'id');
     }
+
+    public function armada()
+    {
+        return $this->belongsTo(Armada::class, 'id_armada', 'id');
+    }
 }

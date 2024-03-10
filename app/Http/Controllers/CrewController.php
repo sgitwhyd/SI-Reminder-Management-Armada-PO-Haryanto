@@ -17,13 +17,13 @@ class CrewController extends Controller
     public function index()
     {
         $today = Carbon::now();
-        $busId = 1;
+        $busId = Auth::user()->id_armada;
         $dataBus = Armada::where('id', $busId)->first();
         $dataPerawatan = Perawatan::where('id_armada', $busId)->latest('created_at')->first();
         // ganti 3 bulan sesuai dengan interval perawatan
         $alertPerawatan = null;
         if($dataPerawatan) {
-            $alertPerawatan = Carbon::parse($dataPerawatan->tanggal)->addDays(5);
+            $alertPerawatan = Carbon::parse($dataPerawatan->tanggal)->addDays(1);
             if($today->gt($alertPerawatan)) {
                 $alertPerawatan = $dataPerawatan;
             } else {
