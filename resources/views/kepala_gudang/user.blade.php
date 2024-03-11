@@ -248,13 +248,16 @@
          }
       });
       // clear input form
-      $('#adduser').on('hidden.bs.modal', function () {
+      $('#addUser').on('hidden.bs.modal', function () {
          $('#postId').val('');
          $('#username').val('');
          $('#full_name').val('');
          $('#email').val('');
          $('#password').val('');
+         $('input[type="radio"]').prop('checked', false);
+         $('#armada').val('').prop('disabled', true);
       });
+      
       // option for select armada
       $('.custom-radio').on('click', function () {
          if($('#crew').is(':checked')){
@@ -262,10 +265,8 @@
          } else {
             $('select#armada').prop('disabled', true);
          };
-         console.log($('#crew').is(':checked'));
       });
    });
   </script>
   
 @endsection
-
