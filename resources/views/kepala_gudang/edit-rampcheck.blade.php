@@ -85,333 +85,286 @@
             <h4 class="card-title">Kondisi Kendaraan</h4>
           </div>
           <div class="card-body kondisi-kendaraan">
-            <div class="custom-control custom-checkbox mb-2">
-              <input type="checkbox" class="custom-control-input" id="check_all" name="check_all">
-              <label class="custom-control-label" for="check_all"><strong>Check all</strong></label>
-            </div>
-            <hr class="my-2">
-            <div id="rampcheck-list">
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Panel LED dalam</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="pld_ada" name="pld_ada">
-                    <label class="custom-control-label" for="pld_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="pld_baik" name="pld_baik">
-                    <label class="custom-control-label" for="pld_baik">Baik</label>
+              <div class="custom-control custom-checkbox mb-2">
+                <input type="checkbox" class="custom-control-input" id="check_all" name="check_all">
+                <!-- <label class="custom-control-label" for="check_all"><strong>Check all</strong></label> -->
+              </div>
+              <hr class="my-2">
+              <div id="rampcheck-list">
+                <div class="form-group row">
+                  <label for="panel_led_dalam" class="col-sm-3 col-form-label">Panel LED dalam</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="panel_led_dalam" name="panel_led_dalam" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
+                    <!-- <div class="custom-control custom-checkbox mx-auto mb-2">
+                      <input type="checkbox" class="custom-control-input" id="pld_ada" name="pld_ada">
+                      <label class="custom-control-label" for="pld_ada">Ada</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mx-auto mb-2">
+                      <input type="checkbox" class="custom-control-input" id="pld_baik" name="pld_baik">
+                      <label class="custom-control-label" for="pld_baik">Baik</label>
+                    </div> -->
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Lampu Kabin</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="lampu_kabin_ada" name="lampu_kabin_ada">
-                    <label class="custom-control-label" for="lampu_kabin_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="lampu_kabin_baik" name="lampu_kabin_baik">
-                    <label class="custom-control-label" for="lampu_kabin_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="lampu_kabin" class="col-sm-3 col-form-label">Lampu Kabin</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="lampu_kabin" name="lampu_kabin" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Klakson</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="klakson_ada" name="klakson_ada">
-                    <label class="custom-control-label" for="klakson_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="klakson_baik" name="klakson_baik">
-                    <label class="custom-control-label" for="klakson_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="klakson" class="col-sm-3 col-form-label">Klakson</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="klakson" name="klakson" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Konektor Pintu Hidrolik</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="konektor_ph_ada" name="konektor_ph_ada">
-                    <label class="custom-control-label" for="konektor_ph_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="konektor_ph_baik" name="konektor_ph_baik">
-                    <label class="custom-control-label" for="konektor_ph_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="konektor_pintu_hidrolik" class="col-sm-3 col-form-label">Konektor Pintu Hidrolik</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="konektor_pintu_hidrolik" name="konektor_pintu_hidrolik" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Handgrip</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="handgrip_ada" name="handgrip_ada">
-                    <label class="custom-control-label" for="handgrip_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="handgrip_baik" name="handgrip_baik">
-                    <label class="custom-control-label" for="handgrip_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="handgrip" class="col-sm-3 col-form-label">Handgrip</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="handgrip" name="handgrip" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Tempat Sampah</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="tempat_sampah_ada" name="tempat_sampah_ada">
-                    <label class="custom-control-label" for="tempat_sampah_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="tempat_sampah_baik"
-                      name="tempat_sampah_baik">
-                    <label class="custom-control-label" for="tempat_sampah_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="tempat_sampah" class="col-sm-3 col-form-label">Tempat Sampah</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="tempat_sampah" name="tempat_sampah" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Pemadam/APAR(2)</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="apar_ada" name="apar_ada">
-                    <label class="custom-control-label" for="apar_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="apar_baik" name="apar_baik">
-                    <label class="custom-control-label" for="apar_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="apar" class="col-sm-3 col-form-label">Pemadam/APAR(2)</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="apar" name="apar" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Palu Darurat</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="palu_darurat_ada" name="palu_darurat_ada">
-                    <label class="custom-control-label" for="palu_darurat_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="palu_darurat_baik" name="palu_darurat_baik">
-                    <label class="custom-control-label" for="palu_darurat_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="palu_darurat" class="col-sm-3 col-form-label">Palu Darurat</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="palu_darurat" name="palu_darurat" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">PJK</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="pjk_ada" name="pjk_ada">
-                    <label class="custom-control-label" for="pjk_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="pjk_baik" name="pjk_baik">
-                    <label class="custom-control-label" for="pjk_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="pjk" class="col-sm-3 col-form-label">PJK</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="pjk" name="pjk" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Ban/Roda</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="ban_ada" name="ban_ada">
-                    <label class="custom-control-label" for="ban_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="ban_baik" name="ban_baik">
-                    <label class="custom-control-label" for="ban_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="ban" class="col-sm-3 col-form-label">Ban/Roda</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="ban" name="ban" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">AC</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="ac_ada" name="ac_ada">
-                    <label class="custom-control-label" for="ac_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="ac_baik" name="ac_baik">
-                    <label class="custom-control-label" for="ac_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="ac" class="col-sm-3 col-form-label">AC</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="ac" name="ac" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Panel LED luar</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="panel_led_luar_ada"
-                      name="panel_led_luar_ada">
-                    <label class="custom-control-label" for="panel_led_luar_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="panel_led_luar_baik"
-                      name="panel_led_luar_baik">
-                    <label class="custom-control-label" for="panel_led_luar_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="panel_led_luar" class="col-sm-3 col-form-label">Panel LED luar</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="panel_led_luar" name="panel_led_luar" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Lampu Utama</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="lampu_utama_ada" name="lampu_utama_ada">
-                    <label class="custom-control-label" for="lampu_utama_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="lampu_utama_baik" name="lampu_utama_baik">
-                    <label class="custom-control-label" for="lampu_utama_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="lampu_utama" class="col-sm-3 col-form-label">Lampu Utama</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="lampu_utama" name="lampu_utama" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Lampu Sein</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="lampu_sein_ada" name="lampu_sein_ada">
-                    <label class="custom-control-label" for="lampu_sein_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="lampu_sein_baik" name="lampu_sein_baik">
-                    <label class="custom-control-label" for="lampu_sein_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="lampu_sein" class="col-sm-3 col-form-label">Lampu Sein</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="lampu_sein" name="lampu_sein" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Lampu Senja</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="lampu_senja_ada" name="lampu_senja_ada">
-                    <label class="custom-control-label" for="lampu_senja_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="lampu_senja_baik" name="lampu_senja_baik">
-                    <label class="custom-control-label" for="lampu_senja_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="lampu_senja" class="col-sm-3 col-form-label">Lampu Senja</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="lampu_senja" name="lampu_senja" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Wiper dan Washer</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="wiper_washer_ada" name="wiper_washer_ada">
-                    <label class="custom-control-label" for="wiper_washer_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="wiper_washer_baik" name="wiper_washer_baik">
-                    <label class="custom-control-label" for="wiper_washer_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="wiper_washer" class="col-sm-3 col-form-label">Wiper dan Washer</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="wiper_washer" name="wiper_washer" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Spion</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="spion_ada" name="spion_ada">
-                    <label class="custom-control-label" for="spion_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="spion_baik" name="spion_baik">
-                    <label class="custom-control-label" for="spion_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="spion" class="col-sm-3 col-form-label">Spion</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="spion" name="spion" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Lampu Mundur</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="lampu_mundur_ada" name="lampu_mundur_ada">
-                    <label class="custom-control-label" for="lampu_mundur_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="lampu_mundur_baik" name="lampu_mundur_baik">
-                    <label class="custom-control-label" for="lampu_mundur_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="lampu_mundur" class="col-sm-3 col-form-label">Lampu Mundur</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="lampu_mundur" name="lampu_mundur" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Lampu Rem</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="lampu_rem_ada" name="lampu_rem_ada">
-                    <label class="custom-control-label" for="lampu_rem_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="lampu_rem_baik" name="lampu_rem_baik">
-                    <label class="custom-control-label" for="lampu_rem_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="lampu_rem" class="col-sm-3 col-form-label">Lampu Rem</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="lampu_rem" name="lampu_rem" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Lampu Plat Nopol</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="lampu_plat_nopol_ada"
-                      name="lampu_plat_nopol_ada">
-                    <label class="custom-control-label" for="lampu_plat_nopol_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="lampu_plat_nopol_baik"
-                      name="lampu_plat_nopol_baik">
-                    <label class="custom-control-label" for="lampu_plat_nopol_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="lampu_plat_nopol" class="col-sm-3 col-form-label">Lampu Plat Nopol</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="lampu_plat_nopol" name="lampu_plat_nopol" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Dongkrak</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="dongkrak_ada" name="dongkrak_ada">
-                    <label class="custom-control-label" for="dongkrak_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="dongkrak_baik" name="dongkrak_baik">
-                    <label class="custom-control-label" for="dongkrak_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="dongkrak" class="col-sm-3 col-form-label">Dongkrak</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="dongkrak" name="dongkrak" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Pembuka Roda</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="pembuka_roda_ada" name="pembuka_roda_ada">
-                    <label class="custom-control-label" for="pembuka_roda_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="pembuka_roda_baik" name="pembuka_roda_baik">
-                    <label class="custom-control-label" for="pembuka_roda_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="pembuka_roda" class="col-sm-3 col-form-label">Pembuka Roda</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="pembuka_roda" name="pembuka_roda" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Segitiga Pengaman</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="segitiga_pengaman_ada"
-                      name="segitiga_pengaman_ada">
-                    <label class="custom-control-label" for="segitiga_pengaman_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="segitiga_pengaman_baik"
-                      name="segitiga_pengaman_baik">
-                    <label class="custom-control-label" for="segitiga_pengaman_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="segitiga_pengaman" class="col-sm-3 col-form-label">Segitiga Pengaman</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="segitiga_pengaman" name="segitiga_pengaman" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="panel_led_dalam" class="col-sm-3 col-form-label">Ban Cadangan</label>
-                <div class="form-row col-sm-9">
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="ban_cadangan_ada" name="ban_cadangan_ada">
-                    <label class="custom-control-label" for="ban_cadangan_ada">Ada</label>
-                  </div>
-                  <div class="custom-control custom-checkbox mx-auto mb-2">
-                    <input type="checkbox" class="custom-control-input" id="ban_cadangan_baik" name="ban_cadangan_baik">
-                    <label class="custom-control-label" for="ban_cadangan_baik">Baik</label>
+                <div class="form-group row">
+                  <label for="ban_cadangan" class="col-sm-3 col-form-label">Ban Cadangan</label>
+                  <div class="col-sm-9">
+                    <select class="form-control " id="ban_cadangan" name="ban_cadangan" tabindex="-1">
+                        <option value="ADA">Ada</option>
+                        <option value="TIDAK ADA">Tidak Ada</option>
+                        <option value="BAIK">Baik</option>
+                        <option value="TIDAK BAIK">Tidak Baik</option>
+                    </select>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
       <div class="col-md-12">
@@ -492,30 +445,30 @@ $(document).ready(function() {
 
   });
   $('#id_rampcheck').val("{{ $rampcheck['id_rampcheck']}}");
-  if ("{{ $rampcheck['panel_led_dalam']}}" == 'ADA') $('#pld_ada').prop('checked', true);
-  if ("{{ $rampcheck['lampu_kabin']}}" == 'ADA') $('#lampu_kabin_ada').prop('checked', true);
-  if ("{{ $rampcheck['klakson']}}" == 'ADA') $('#klakson_ada').prop('checked', true);
-  if ("{{ $rampcheck['konektor_pintu_hidrolik']}}" == 'ADA') $('#konektor_ph_ada').prop('checked', true);
-  if ("{{ $rampcheck['handgrip']}}" == 'ADA') $('#handgrip_ada').prop('checked', true);
-  if ("{{ $rampcheck['tempat_sampah']}}" == 'ADA') $('#tempat_sampah_ada').prop('checked', true);
-  if ("{{ $rampcheck['apar']}}" == 'ADA') $('#apar_ada').prop('checked', true);
-  if ("{{ $rampcheck['palu_darurat']}}" == 'ADA') $('#palu_darurat_ada').prop('checked', true);
-  if ("{{ $rampcheck['pjk']}}" == 'ADA') $('#pjk_ada').prop('checked', true);
-  if ("{{ $rampcheck['ban']}}" == 'ADA') $('#ban_ada').prop('checked', true);
-  if ("{{ $rampcheck['ac']}}" == 'ADA') $('#ac_ada').prop('checked', true);
-  if ("{{ $rampcheck['panel_led_luar']}}" == 'ADA') $('#panel_led_luar_ada').prop('checked', true);
-  if ("{{ $rampcheck['lampu_utama']}}" == 'ADA') $('#lampu_utama_ada').prop('checked', true);
-  if ("{{ $rampcheck['lampu_sein']}}" == 'ADA') $('#lampu_sein_ada').prop('checked', true);
-  if ("{{ $rampcheck['lampu_senja']}}" == 'ADA') $('#lampu_senja_ada').prop('checked', true);
-  if ("{{ $rampcheck['wiper_washer']}}" == 'ADA') $('#wiper_washer_ada').prop('checked', true);
-  if ("{{ $rampcheck['spion']}}" == 'ADA') $('#spion_ada').prop('checked', true);
-  if ("{{ $rampcheck['lampu_mundur']}}" == 'ADA') $('#lampu_mundur_ada').prop('checked', true);
-  if ("{{ $rampcheck['lampu_rem']}}" == 'ADA') $('#lampu_rem_ada').prop('checked', true);
-  if ("{{ $rampcheck['lampu_plat_nopol']}}" == 'ADA') $('#lampu_plat_nopol_ada').prop('checked', true);
-  if ("{{ $rampcheck['dongkrak']}}" == 'ADA') $('#dongkrak_ada').prop('checked', true);
-  if ("{{ $rampcheck['pembuka_roda']}}" == 'ADA') $('#pembuka_roda_ada').prop('checked', true);
-  if ("{{ $rampcheck['segitiga_pengaman']}}" == 'ADA') $('#segitiga_pengaman_ada').prop('checked', true);
-  if ("{{ $rampcheck['ban_cadangan']}}" == 'ADA') $('#ban_cadangan_ada').prop('checked', true);
+  $('#panel_led_dalam').val("{{ $rampcheck['panel_led_dalam'] }}");
+  $('#lampu_kabin').val("{{ $rampcheck['lampu_kabin'] }}");
+  $('#klakson').val("{{ $rampcheck['klakson'] }}");
+  $('#konektor_pintu_hidrolik').val("{{ $rampcheck['konektor_pintu_hidrolik'] }}");
+  $('#handgrip').val("{{ $rampcheck['handgrip'] }}");
+  $('#tempat_sampah').val("{{ $rampcheck['tempat_sampah'] }}");
+  $('#apar').val("{{ $rampcheck['apar'] }}");
+  $('#palu_darurat').val("{{ $rampcheck['palu_darurat'] }}");
+  $('#pjk').val("{{ $rampcheck['pjk'] }}");
+  $('#ban').val("{{ $rampcheck['ban'] }}");
+  $('#ac').val("{{ $rampcheck['ac'] }}");
+  $('#panel_led_luar').val("{{ $rampcheck['panel_led_luar'] }}");
+  $('#lampu_utama').val("{{ $rampcheck['lampu_utama'] }}");
+  $('#lampu_sein').val("{{ $rampcheck['lampu_sein'] }}");
+  $('#lampu_senja').val("{{ $rampcheck['lampu_senja'] }}");
+  $('#wiper_washer').val("{{ $rampcheck['wiper_washer'] }}");
+  $('#spion').val("{{ $rampcheck['spion'] }}");
+  $('#lampu_mundur').val("{{ $rampcheck['lampu_mundur'] }}");
+  $('#lampu_rem').val("{{ $rampcheck['lampu_rem'] }}");
+  $('#lampu_plat_nopol').val("{{ $rampcheck['lampu_plat_nopol'] }}");
+  $('#dongkrak').val("{{ $rampcheck['dongkrak'] }}");
+  $('#pembuka_roda').val("{{ $rampcheck['pembuka_roda'] }}");
+  $('#segitiga_pengaman').val("{{ $rampcheck['segitiga_pengaman'] }}");
+  $('#ban_cadangan').val("{{ $rampcheck['ban_cadangan'] }}");
 });
 </script>
 @endsection

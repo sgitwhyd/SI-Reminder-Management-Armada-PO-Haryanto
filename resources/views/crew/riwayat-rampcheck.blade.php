@@ -64,7 +64,6 @@
                       aria-haspopup="true" aria-expanded="false"></button>
                     <div class="dropdown-menu dropdown-menu-right">
                       <a href="{{ 'pdf/'.$value['id_rampcheck'] }}" class="dropdown-item">View</a>
-                      <a href="{{'edit/'.$value['id_rampcheck']}}" class="dropdown-item">Konfirmasi</a>
                       <button type="button" class="dropdown-item delete-rampcheck"
                         data-id="{{$value['id_rampcheck']}}">Delete</button>
                     </div>
