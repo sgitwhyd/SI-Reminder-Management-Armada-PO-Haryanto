@@ -84,8 +84,8 @@ Route::middleware(['auth', 'checkRole:KEPALA-GUDANG'])->prefix('kepala-gudang')-
         Route::get('/', [PerawatanController::class, 'index']);
         Route::get('/buat-perawatan', [PerawatanController::class, 'create']);
         Route::post('/buat-perawatan', [PerawatanController::class,'store'])->name('buat-perawatan');
-        Route::post('/edit/{id}', [PerawatanController::class, 'edit']);
-        Route::put('/update/{id}', [PerawatanController::class, 'update']);
+        Route::get('/edit-perawatan/{id}', [PerawatanController::class, 'edit'])->name('edit-perawatan');
+        Route::put('/update-perawatan', [PerawatanController::class, 'update'])->name('update-perawatan');
         Route::delete('/delete/{id}', [PerawatanController::class, 'destroy']);
 
     });
@@ -98,7 +98,7 @@ Route::middleware(['auth', 'checkRole:KEPALA-GUDANG'])->prefix('kepala-gudang')-
         Route::post('/', [RampcheckController::class,'store']);
         Route::get('/edit/{id}', [RampcheckController::class, 'edit']);
         Route::put('/update/{id}', [RampcheckController::class, 'update']);
-        Route::delete('rampcheck/delete/{id}', [RampcheckController::class, 'destroy']);
+        Route::delete('/delete/{id}', [RampcheckController::class, 'destroy']);
         Route::get('/pdf/{id}', [RampcheckController::class, 'rampcheckPDF']);
 
     });

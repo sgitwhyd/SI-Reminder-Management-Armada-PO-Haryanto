@@ -56,6 +56,7 @@
             <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false"></button>
             <div class="dropdown-menu dropdown-menu-right">
+              <a href="/kepala-gudang/perawatan/edit-perawatan/{{$value->id}}" class="dropdown-item edit-perawatan">Edit</a>
               <button type="button" class="dropdown-item delete-perawatan" data-id="{{$value->id}}">Delete</button>
             </div>
           </td>

@@ -79,17 +79,52 @@ class PerawatanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $data_armada = Armada::all();
+        $perawatan = Perawatan::find($id);
+        return view('kepala_gudang/edit-perawatan', compact('data_armada','perawatan'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        // dd($request->ttd_kepala_gudang);
+
+        $validData = Validator::make($request->all(), [
+            'id_armada' => 'required|exists:armadas,id',
+            'tanggal' => 'required',
+            'oli_gardan' => 'required|string',
+            'oli_transmisi' => 'required|string',
+            'oli_mesin' => 'required|string',
+        ]);
+
+        
+        if($validData->fails()) {
+            for($i = 0; $i < count($validData->errors()); $i++) {
+                flash()->addError($validData->errors()->all()[$i]);
+            }
+            return redirect()->back();
+        }
+        
+        $dataToStore = [
+            'id_armada' => $request->id_armada,
+            'tanggal' => $request->tanggal,
+            'oli_gardan' => $request->oli_gardan,
+            'oli_mesin' => $request->oli_mesin,
+            'oli_transmisi' => $request->oli_transmisi,
+        ];
+        if($request->ttd_kepala_gudang){
+            $fileName = time() . '.' . $request->file('ttd_kepala_gudang')->extension();
+            $dataToStore['ttd_kepala_gudang'] = $request->file('ttd_kepala_gudang')->store('uploads', 'public', $fileName);
+        }
+
+        Perawatan::where('id', $request->id_perawatan)->update($dataToStore);
+        flash()->addSuccess('Perawatan berhasil diubah');
+        return $this->index();
+
     }
 
     /**
