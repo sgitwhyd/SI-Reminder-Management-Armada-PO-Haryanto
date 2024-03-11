@@ -1,5 +1,5 @@
 ### remaining
-- 
+- form rampcheck radio to select
 
 
 ### prosess
