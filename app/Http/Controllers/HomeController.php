@@ -32,11 +32,8 @@ class HomeController extends Controller
             $test[] = $tanggalRutinPerawatan;
             if($tanggalRutinPerawatan >= $today) {
                 $alertPerawatan[] = $value;
-            } else {
-                $alertPerawatan[] = [];
             }
         }
-
         return view('kepala_gudang.dashboard', compact('alertPerawatan'));
     }
 }
