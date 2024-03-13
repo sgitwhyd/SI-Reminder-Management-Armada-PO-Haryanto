@@ -113,6 +113,7 @@ class ArmadaController extends Controller
     {
         if ($request->ajax()) {
             // check if request data same with old data (soon)
+            // 
             $isValid = $request->validate([
                 'no_polisi' => 'required',
                 'no_lambung' => 'required',
@@ -137,7 +138,9 @@ class ArmadaController extends Controller
                         'trayek' => $request->trayek,
                         'jenis_trayek' => $request->jenis_trayek,
                     ];
-                    Armada::where('id', $request->id_armada)->update($armada);
+                    // check if image change (soon)
+                    // 
+                    Armada::where('id', $request->postId)->update($armada);
                 
                     Session::flash('success', 'Armada berhasil diubah.');
                     return response()->json(['success' => true], 200);

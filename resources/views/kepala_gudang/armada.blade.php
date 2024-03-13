@@ -20,6 +20,7 @@
                   </div>
                   <form action="" id="armada-add" method="" enctype="multipart/form-data">
                      @csrf
+                     @method("POST")
                      <input type="hidden" name="postId" id="postId">
                      <div class="modal-body">
                         <div class="form-row">
@@ -72,12 +73,7 @@
                   </form>
                </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn mb-2 btn-primary">Save data</button>
-            </div>
-          </form>
-        </div>
+         </div>
       </div>
     </div>
     <div id="form-notif">
@@ -174,14 +170,16 @@
          _token: '{{ csrf_token() }}'
          },
          success: function(data) {
-         $('#postId').val(data['id'])
-         $('#no_polisi').val(data['no_polisi'])
-         $('#no_lambung').val(data['no_lambung'])
-         $('#no_stnk').val(data['no_stnk'])
-         $('#tahun').val(data['tahun'])
-         $('#trayek').val(data['trayek'])
-         $('#jenis_trayek').val(data['jenis_trayek'])
+         $('input[name=_method]').val('PUT');
+         $('#postId').val(data['id']);
+         $('#no_polisi').val(data['no_polisi']);
+         $('#no_lambung').val(data['no_lambung']);
+         $('#no_stnk').val(data['no_stnk']);
+         $('#tahun').val(data['tahun']);
+         $('#trayek').val(data['trayek']);
+         $('#jenis_trayek').val(data['jenis_trayek']).trigger('change');
          $('#addArmada').modal('show');
+         $('#gambar_armada').prop('required', false);
          },
          error: function(xhr, status, error) {
          console.error('Error:', error);
@@ -201,33 +199,19 @@
       var jenis_trayek = $('#jenis_trayek').val();
       var gambar_armada = $('#gambar_armada')[0].files[0];
       var url = postId ? 'armada/update' : 'armada';
-      var method = postId ? 'PUT' : 'POST';
       var formData = new FormData(this);
       console.log(formData);
       $.ajax({
          url: url,
-         type: method,
+         type: 'POST',
          data: formData,
          processData: false,
          dataType: "json",
          contentType: false,
+         headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()},
 
-         // data: {
-         //    id_armada: postId,
-         //    no_polisi: no_pol,
-         //    no_lambung: no_lam,
-         //    no_stnk: no_stnk,
-         //    tahun: tahun,
-         //    trayek: trayek,
-         //    jenis_trayek: jenis_trayek,
-         //    gambar_armada: gambar_armada,
-         //    _token: '{{ csrf_token() }}'
-         // },
          success: function(data) {
-         // successHtml = '<div class="alert alert-success">'+data['message']+'</div>';
-         // $('#form-notif').html( successHtml );
-         // $('#addArmada').modal('hide');
-         location.reload();
+            location.reload();
          },
          error: function(data) {
          var result = data.responseJSON;
