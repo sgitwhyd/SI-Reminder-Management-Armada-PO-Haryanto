@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Armada;
 use Illuminate\Http\Request;
 use App\Models\Perawatan;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -38,7 +38,6 @@ class PerawatanController extends Controller
             'id_armada' => 'required|exists:armadas,id',
             'tanggal' => 'required',
             'oli_gardan' => 'required|string',
-            'oli_transmisi' => 'required|string',
             'oli_mesin' => 'required|string',
             'ttd_kepala_gudang' => 'required|file|mimes:jpeg,png,jpg',
         ]);
@@ -83,7 +82,7 @@ class PerawatanController extends Controller
     {
         $data_armada = Armada::all();
         $perawatan = Perawatan::find($id);
-        return view('kepala_gudang/edit-perawatan', compact('data_armada','perawatan'));
+        return view('kepala_gudang/edit-perawatan', compact('data_armada', 'perawatan'));
     }
 
     /**
@@ -116,7 +115,7 @@ class PerawatanController extends Controller
             'oli_mesin' => $request->oli_mesin,
             'oli_transmisi' => $request->oli_transmisi,
         ];
-        if($request->ttd_kepala_gudang){
+        if($request->ttd_kepala_gudang) {
             $fileName = time() . '.' . $request->file('ttd_kepala_gudang')->extension();
             $dataToStore['ttd_kepala_gudang'] = $request->file('ttd_kepala_gudang')->store('uploads', 'public', $fileName);
         }
