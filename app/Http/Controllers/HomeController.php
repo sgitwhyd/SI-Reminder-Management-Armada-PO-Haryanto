@@ -25,17 +25,18 @@ class HomeController extends Controller
                 ->get();
       
         $alertPerawatan = [];
-        $today = Carbon::now()->toDateString() ;
+        $today = Carbon::now()->toString();
         $test = [];
         foreach ($data as $key => $value) {
             $tanggalRutinPerawatan = Carbon::parse($value->tanggal)->addDays(1);
             $test[] = $tanggalRutinPerawatan;
-            if($tanggalRutinPerawatan >= $today) {
+            if($today >= $tanggalRutinPerawatan) {
                 $alertPerawatan[] = $value;
             } else {
-                $alertPerawatan[] = [];
+                $alertPerawatan = null;
             }
         }
+
 
         return view('kepala_gudang.dashboard', compact('alertPerawatan'));
     }
