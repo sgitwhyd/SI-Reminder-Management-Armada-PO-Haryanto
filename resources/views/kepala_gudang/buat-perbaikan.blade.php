@@ -166,8 +166,7 @@ $(document).ready(function() {
 
   }
 
-
-  $('.buttonTambahSparepart').click(function() {
+  $('#tableSparepart tbody').on('click', '.buttonTambahSparepart', function () {
     const sparepart = $(this).attr('data');
     const sparepartObj = JSON.parse(sparepart);
 
