@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Armada;
-use Session;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+use App\Models\Armada;
+use App\Models\User;
+use Session;
 
 class UserController extends Controller
 {
@@ -108,6 +108,7 @@ class UserController extends Controller
             $isValid = $request->validate([
                 'full_name' =>'required',
                 'username' =>'required',
+                'id_armada' => 'numeric',
             ]);
     
             if (!$isValid) {
@@ -122,6 +123,7 @@ class UserController extends Controller
                         'username' => $request->username,
                         'password' => $request->password,
                         'role' => $request->role,
+                        'id_armada' => $request->id_armada,
                     ];
                     if($request->password === null) unset($user['password']);
                     User::where('id_user', $request->id_user)->update($user);
