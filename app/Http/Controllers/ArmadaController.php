@@ -7,7 +7,6 @@ use App\Models\Armada;
 use Session;
 use Illuminate\Support\Str;
 
-
 class ArmadaController extends Controller
 {
     /**
@@ -51,13 +50,9 @@ class ArmadaController extends Controller
                     'errors'  => $isValid->errors()->all(),
                 ], 400);
             } else {
-                $gma = $request->file('gambar_armada');
-                $rd_name1 = Str::random(15); // random caracter generator
-                $ext1 = $gma->getClientOriginalExtension();
-                $gambar_armada = time().'_'.$rd_name1.'.'.$ext1;
-                $file_path1 = $gma->storeAs('public/armada', $gambar_armada); // Store file in 'storage/app/uploads' directory
-                // $request->gambar_armada = $gambar_armada;
-                // dd($request->all());
+                $fileName = time() . '.' . $request->file('gambar_armada')->extension();
+                $gambar_armada = $request->file('gambar_armada')->store('uploads', 'public', $fileName);
+
                 $column = [
                     'no_polisi' => $request->no_polisi,
                     'no_lambung' => $request->no_lambung,
@@ -75,8 +70,7 @@ class ArmadaController extends Controller
                     // ], 200);
                     Session::flash('success', 'Armada berhasil ditambahkan.');
                     return response()->json(['success' => true], 200);
-                }
-                catch(Exception $e) {
+                } catch(Exception $e) {
                     return response()->json([
                         'success' => 'false',
                         'errors'  => $e->getMessage(),
@@ -113,7 +107,7 @@ class ArmadaController extends Controller
     {
         if ($request->ajax()) {
             // check if request data same with old data (soon)
-            // 
+            //
             $isValid = $request->validate([
                 'no_polisi' => 'required',
                 'no_lambung' => 'required',
@@ -139,13 +133,12 @@ class ArmadaController extends Controller
                         'jenis_trayek' => $request->jenis_trayek,
                     ];
                     // check if image change (soon)
-                    // 
+                    //
                     Armada::where('id', $request->postId)->update($armada);
                 
                     Session::flash('success', 'Armada berhasil diubah.');
                     return response()->json(['success' => true], 200);
-                }
-                catch(Exception $e) {
+                } catch(Exception $e) {
                     return response()->json([
                         'success' => 'false',
                         'errors'  => $e->getMessage(),

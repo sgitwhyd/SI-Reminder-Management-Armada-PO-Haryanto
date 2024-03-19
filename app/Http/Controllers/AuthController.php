@@ -61,18 +61,16 @@ class AuthController extends Controller
     public function registerVerify(Request $request)
     {
         $isValid = $request->validate([
-            'email' => 'required|unique:users',
+            'fullname' => 'required',
             'username' => 'required|unique:users',
             'password' => 'required|min:8',
             'confirm_password' => 'required_with:password|same:password|min:8'
         ]);
 
         $user = User::create([
-            'email' => $request->email,
+            'full_name' => $request->fullname,
             'username' => $request->username,
             'password' => Hash::make($request->password),
-            'role' => $request->role ? $request->role : 'USER',
-            'is_active' => 1
         ]);
 
         Session::flash('success', 'Registrasi Berhasil. Akun Anda sudah Aktif silahkan Login menggunakan username dan password.');

@@ -10,6 +10,7 @@
       Perawatan, Terakhir dilakukan pada {{ $alertPerawatan->tanggal }}
     </div>
     @endif
+    @if($dataBus)
     <div class="row">
       <div class="col-md-6 col-xl-3 mb-4">
         <div class="card shadow border-0">
@@ -20,18 +21,26 @@
                   <i class="fe fe-16 fe-shopping-cart text-white mb-0"></i>
                 </span>
               </div>
+
               <div class="col pr-0">
                 <p class="small text-muted mb-0">Nomor Lambung</p>
                 <span class="h3 mb-0">
                   {{ $dataBus->no_lambung }}
                 </span>
               </div>
+
             </div>
           </div>
         </div>
       </div>
     </div> <!-- end section -->
+    @else
+    <div class="alert alert-warning" role="alert">
+      <span class="fe fe-alert-triangle fe-16 mr-2"></span> Anda Belum Terdaftar Pada Armada Manapun
+    </div>
+    @endif
   </div>
+  @if($dataBus)
   <div class="col-12">
     <h1>
       Detail Armada
@@ -74,11 +83,12 @@
           <strong>
             Foto Armada
           </strong>
-          <img src="{{ $dataBus->gambar_armada }}" alt="Foto Armada" width="200">
+          <img src="{{ asset('storage/' . $dataBus->gambar_armada) }}" alt="Foto Armada" width="200">
         </div>
       </div>
     </div>
   </div>
+  @endif
 </div>
 @endsection
 

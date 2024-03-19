@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Validator;
 class CrewController extends Controller
 {
 
+    protected $busId;
+
+    public function __construct()
+    {
+        $this->busId = Auth::user()->id_armada ?? null;
+    }
+    
     public function index()
     {
         $today = Carbon::now();
@@ -36,13 +43,13 @@ class CrewController extends Controller
 
     public function riwayatPerbaikan()
     {
-        $data = Perbaikan::where('id_armada', 1)->orderBy('created_at', 'DESC')->with('spareparts')->get();
+        $data = Perbaikan::where('id_armada', $this->busId)->orderBy('created_at', 'DESC')->with('spareparts')->get();
         return view('crew.riwayat-perbaikan', compact('data'));
     }
 
     public function riwayatPerawatan()
     {
-        $data = Perawatan::where('id_armada', 1)->orderBy('created_at', 'DESC')->get();
+        $data = Perawatan::where('id_armada', $this->busId)->orderBy('created_at', 'DESC')->get();
         return view('crew.riwayat-perawatan', compact('data'));
     }
 
