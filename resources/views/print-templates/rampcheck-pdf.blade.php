@@ -54,7 +54,6 @@
     width: 100px;
     height: 100px;
   }
-
   </style>
 </head>
 <body>
@@ -64,7 +63,7 @@
   <table>
     <tr>
       <td width="50%" class="font-semibold">Checker</td>
-      <td>: <?= $rampcheck['checker']; ?></td>
+      <td>: {{  $rampcheck->user->full_name }}</td>
     </tr>
     <tr>
       <td width="50%" class="font-semibold">Hari / Tanggal</td>
@@ -259,7 +258,8 @@
       </td>
     </tr>
   </table>
-  <br><hr>
+  <br>
+  <hr>
   <table>
     <tr>
       <td>
@@ -273,7 +273,8 @@
       </td>
     </tr>
   </table>
-  <br><hr>
+  <br>
+  <hr>
   <table>
     <tr>
       <td width="50%">
