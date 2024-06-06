@@ -154,7 +154,7 @@
 
    $(document).ready(function() {
       //  Edit post
-      $('.edit-user').click(function() {
+      $(document).on('click', '.edit-user', function() {
          var postId = $(this).data('id');
          $.ajax({
             url: 'user/edit',
